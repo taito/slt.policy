@@ -30,8 +30,8 @@ def setUp(self):
     portal = layer['portal']
     # Update global variables within the tests.
     self.globs.update({
-        'TEST_USER_NAME'; TEST_USER_NAME,
-        ̈́'TEST_USER_PASSWORD': TEST_USER_PASSWORD,
+        'TEST_USER_NAME': TEST_USER_NAME,
+        'TEST_USER_PASSWORD': TEST_USER_PASSWORD,
         'portal': portal,
         'browser': browser,
     })

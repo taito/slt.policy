@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name='slt.policy',
     version='0.0',
-    description="Turns plone site into SLL site.",
+    description="Turns plone site into SLT shopping site.",
     long_description=open("README.rst").read(),
     # Get more strings from
     # http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -18,7 +18,7 @@ setup(
     keywords='',
     author='Taito Horiuchi',
     author_email='taito.horiuchi@abita.fi',
-    url='http://www.slt.fi/kauppa',
+    url='http://www.sll.fi/kauppa',
     license='None-free',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['slt'],
@@ -32,10 +32,8 @@ setup(
         'hexagonit.testing',
         'plone.browserlayer',
         'setuptools',
-        'sll.carousel',
         'sll.locales',
-        'z3c.autoinclude',
-        'z3c.jbot'],
+        'z3c.autoinclude'],
     entry_points="""
     # -*- Entry points: -*-
 

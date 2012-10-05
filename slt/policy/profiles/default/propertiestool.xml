@@ -1,12 +1,26 @@
 <?xml version="1.0"?>
 <object name="portal_properties" meta_type="Plone Properties Tool">
 
+  <object name="navtree_properties" meta_type="Plone Property Sheet" purge="False">
+    <property name="metaTypesNotToList" type="lines" purge="False">
+      <element value="Collection"/>
+      <element value="Document"/>
+      <element value="Event"/>
+      <element value="File"/>
+      <element value="Image"/>
+      <element value="Link"/>
+      <element value="News Item"/>
+      <element value="Topic"/>
+    </property>
+  </object>
+
   <object name="site_properties" meta_type="Plone Property Sheet">
     <property name="available_editors" type="lines">
       <element value="TinyMCE"/>
     </property>
     <property name="default_editor" type="string">TinyMCE</property>
     <property name="default_language" type="string">fi</property>
+    <property name="disable_folder_sections" type="boolean">True</property>
     <property name="enable_link_integrity_checks" type="boolean">True</property>
     <property
       name="external_links_open_new_window"
@@ -29,23 +43,6 @@
     </property>
     <property name="use_email_as_login" type="boolean">True</property>
     <property name="visible_ids" type="boolean">True</property>
-  </object>
-
-  <object name="navtree_properties" meta_type="Plone Property Sheet">
-    <property name="metaTypesNotToList" type="lines" purge="False">
-      <element value="Collection"/>
-      <element value="Event"/>
-      <element value="File"/>
-      <element value="Image"/>
-      <element value="Link"/>
-      <element value="Topic"/>
-    </property>
-  </object>
-  <property name="enable_wf_state_filtering" type="boolean">False</property>
-  <property name="wf_states_to_show" type="lines"/>
-
-  <object name="folder_logo_properties" meta_type="Plone Property Sheet" purge="False">
-    <property name="logo_id" type="string">ylapalkin-logo.png</property>
   </object>
 
 </object>

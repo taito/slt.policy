@@ -8,102 +8,89 @@ class TestCase(IntegrationTestCase):
     def setUp(self):
         self.portal = self.layer['portal']
 
-    def test_package_installed(self):
+    def test_installed__package(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
-        self.failUnless(installer.isProductInstalled('slt.policy'))
+        self.assertTrue(installer.isProductInstalled('slt.policy'))
 
-    # def test_dependencies_installed(self):
-    #     installer = getToolByName(self.portal, 'portal_quickinstaller')
-    #     self.failUnless(installer.isProductInstalled('slt.templates'))
-    #     self.failUnless(installer.isProductInstalled('collective.cropimage'))
-    #     self.failUnless(installer.isProductInstalled('collective.contentleadimage'))
-    #     self.failUnless(installer.isProductInstalled('PloneFormGen'))
+    def test_browserlayer(self):
+        from slt.policy.browser.interfaces import ISltPolicyLayer
+        from plone.browserlayer import utils
+        self.assertIn(ISltPolicyLayer, utils.registered_layers())
 
-    # def test_installed__collective_portlet_fblikebox(self):
-    #     installer = getToolByName(self.portal, 'portal_quickinstaller')
-    #     self.failUnless(installer.isProductInstalled('collective.portlet.fblikebox'))
+    def test_jsregistry__popupforms(self):
+        javascripts = getToolByName(self.portal, 'portal_javascripts')
+        resource = javascripts.getResource('popupforms.js')
+        self.assertFalse(resource.getEnabled())
 
-    # def test_installed__slt_carousel(self):
-    #     installer = getToolByName(self.portal, 'portal_quickinstaller')
-    #     self.failUnless(installer.isProductInstalled('slt.carousel'))
+    def test_mailhost__smtp_host(self):
+        mailhost = getToolByName(self.portal, 'MailHost')
+        self.assertEqual(mailhost.smtp_host, 'sll.fi')
 
-    # def test_installed__slt_shopping(self):
-    #     installer = getToolByName(self.portal, 'portal_quickinstaller')
-    #     self.failUnless(installer.isProductInstalled('slt.shopping'))
+    def test_mailhost__smtp_port(self):
+        mailhost = getToolByName(self.portal, 'MailHost')
+        self.assertEqual(mailhost.smtp_port, 25)
 
-    # def test_abita_development_installed(self):
-    #     installer = getToolByName(self.portal, 'portal_quickinstaller')
-    #     self.failUnless(installer.isProductInstalled('abita.development'))
+    def test_metadata__version(self):
+        setup = getToolByName(self.portal, 'portal_setup')
+        self.assertEqual(
+            setup.getVersionForProfile('profile-slt.policy:default'), u'0')
 
-    # def test_slt_portlet_installed(self):
-    #     installer = getToolByName(self.portal, 'portal_quickinstaller')
-    #     self.failUnless(installer.isProductInstalled('slt.portlet'))
+    def test_metadata__installed__abita_development(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('abita.development'))
 
-    # def test_slt_theme_installed(self):
-    #     installer = getToolByName(self.portal, 'portal_quickinstaller')
-    #     self.failUnless(installer.isProductInstalled('slt.theme'))
+    def test_metadata__installed__collective_folderlogo(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('collective.folderlogo'))
 
-    # def test_hexagonit_socialbutton_installed(self):
-    #     installer = getToolByName(self.portal, 'portal_quickinstaller')
-    #     self.failUnless(installer.isProductInstalled('hexagonit.socialbutton'))
+    def test_metadata__installed__hexagonit_socialbutton(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('hexagonit.socialbutton'))
 
-    # def test_actions__dashboard(self):
-    #     tool = getToolByName(self.portal, 'portal_actions')
-    #     actions = getattr(tool, 'user')
-    #     action = getattr(actions, 'dashboard')
-    #     self.assertFalse(action.getProperty('visible'))
+    def test_properties__title(self):
+        self.assertEqual(self.portal.getProperty('title'), 'Luonnonsuojelukauppa')
 
-    # def test_actions__login(self):
-    #     tool = getToolByName(self.portal, 'portal_actions')
-    #     actions = getattr(tool, 'user')
-    #     action = getattr(actions, 'login')
-    #     self.assertFalse(action.getProperty('visible'))
+    def test_properties__description(self):
+        self.assertEqual(self.portal.getProperty('description'),
+            'Suomen Luonnonsuojelun Tuki Oy')
 
-    # def test_jsregistry__popupforms(self):
-    #     javascripts = getToolByName(self.portal, 'portal_javascripts')
-    #     resource = javascripts.getResource('popupforms.js')
-    #     self.assertFalse(resource.getEnabled())
+    def test_properties__email_from_address(self):
+        self.assertEqual(
+            self.portal.getProperty('email_from_address'),
+            'webmaster@sll.fi')
 
-    # def test_mailhost__smtp_host(self):
-    #     mailhost = getToolByName(self.portal, 'MailHost')
-    #     self.assertEqual(mailhost.smtp_host, 'slt.fi')
+    def test_properties__email_from_name(self):
+        self.assertEqual(self.portal.getProperty('email_from_name'),
+            'Suomen Luonnonsuojelun Tuki Oy')
 
-    # def test_mailhost__smtp_port(self):
-    #     mailhost = getToolByName(self.portal, 'MailHost')
-    #     self.assertEqual(mailhost.smtp_port, 25)
+    def test_properties__default_page(self):
+        self.assertEqual(self.portal.getProperty('default_page'), 'view')
 
-    # def test_metadata__version(self):
-    #     setup = getToolByName(self.portal, 'portal_setup')
-    #     self.assertEqual(
-    #         setup.getVersionForProfile('profile-slt.policy:default'), u'39')
+    def test_properties__validate_email(self):
+        self.assertTrue(self.portal.getProperty('validate_email'))
 
-    # ## properties.xml
-    # def test_properties__title(self):
-    #     self.assertEqual(
-    #         self.portal.getProperty('title'), 'Luonnonsuojeluliitto')
+    def get_navtree_property(self, name):
+        """Get property from navtree_properties based on the name."""
+        properties = getToolByName(self.portal, 'portal_properties')
+        navtree_properties = getattr(properties, 'navtree_properties')
+        return navtree_properties.getProperty(name)
 
-    # def test_properties__description(self):
-    #     self.assertEqual(
-    #         self.portal.getProperty('description'),
-    #         'Suomen luonnonsuojeluliitto ry')
+    def test_propertiestool__navtree_properties__metaTypesNotToList(self):
+        ctypes = (
+            'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
+        for ctype in ctypes:
+            self.assertIn(ctype, self.get_navtree_property('metaTypesNotToList'))
+        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 17)
 
-    # def test_properties__email_from_address(self):
-    #     self.assertEqual(
-    #         self.portal.getProperty('email_from_address'),
-    #         'webmaster@slt.fi')
+    def get_site_property(self, name):
+        """Get property from site_properties based on the name."""
+        properties = getToolByName(self.portal, 'portal_properties')
+        site_properties = getattr(properties, 'site_properties')
+        return site_properties.getProperty(name)
 
-    # def test_properties__email_from_name(self):
-    #     self.assertEqual(
-    #         self.portal.getProperty('email_from_name'),
-    #         'Suomen luonnonsuojeluliitto ry')
+    def test_propertiestool__site_properties__disable_folder_sections(self):
+        self.assertTrue(self.get_site_property('disable_folder_sections'))
 
-    # def test_properties_default_page(self):
-    #     self.assertEqual(
-    #         self.portal.getProperty('default_page'),
-    #         'slt-view')
-
-    # def test_properties_validate_email(self):
-    #     self.assertTrue(self.portal.getProperty('validate_email'))
 
     # ## propertiestool.xml
     # def test_propertiestool_site_properties__default_editor(self):
@@ -178,11 +165,6 @@ class TestCase(IntegrationTestCase):
     #     contents = ('Collection', 'Event', 'File', 'Image', 'Link', 'Topic')
     #     for content in contents:
     #         self.assertTrue(content in navtree_properties.getProperty('metaTypesNotToList'))
-
-    # def test_propertiestool_navtree_properties__enable_wf_state_filtering(self):
-    #     properties = getToolByName(self.portal, 'portal_properties')
-    #     navtree_properties = getattr(properties, 'navtree_properties')
-    #     self.assertFalse(navtree_properties.getProperty('enable_wf_state_filtering'))
 
     # def test_propertiestool_cli_properties__allowed_types(self):
     #     properties = getToolByName(self.portal, 'portal_properties')
@@ -363,9 +345,9 @@ class TestCase(IntegrationTestCase):
 
     # ## browserlayer.xml
     # def test_browserlayer(self):
-    #     from slt.policy.browser.interfaces import ISllPolicyLayer
+    #     from slt.policy.browser.interfaces import ISltPolicyLayer
     #     from plone.browserlayer import utils
-    #     self.failUnless(ISllPolicyLayer in utils.registered_layers())
+    #     self.failUnless(ISltPolicyLayer in utils.registered_layers())
 
     # def test_disable_self_reg(self):
     #     perms = self.portal.rolesOfPermission(permission='Add portal member')
@@ -416,7 +398,77 @@ class TestCase(IntegrationTestCase):
     #         'search-results'
     #     )
 
-    # def test_uninstall(self):
-    #     installer = getToolByName(self.portal, 'portal_quickinstaller')
-    #     installer.uninstallProducts(['slt.policy'])
-    #     self.failIf(installer.isProductInstalled('slt.policy'))
+    def uninstall_package(self):
+        """Uninstall package: slt.policy."""
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        installer.uninstallProducts(['slt.policy'])
+
+    def test_uninstall__package(self):
+        self.uninstall_package()
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.assertFalse(installer.isProductInstalled('slt.policy'))
+
+    def test_uninstall__browserlayer(self):
+        self.uninstall_package()
+        from slt.policy.browser.interfaces import ISltPolicyLayer
+        from plone.browserlayer import utils
+        self.assertNotIn(ISltPolicyLayer, utils.registered_layers())
+
+    def test_uninstall__jsregistry__popupforms(self):
+        self.uninstall_package()
+        javascripts = getToolByName(self.portal, 'portal_javascripts')
+        resource = javascripts.getResource('popupforms.js')
+        self.assertFalse(resource.getEnabled())
+
+    def test_uninstall__mailhost__smtp_host(self):
+        self.uninstall_package()
+        mailhost = getToolByName(self.portal, 'MailHost')
+        self.assertEqual(mailhost.smtp_host, 'sll.fi')
+
+    def test_uninstall__mailhost__smtp_port(self):
+        self.uninstall_package()
+        mailhost = getToolByName(self.portal, 'MailHost')
+        self.assertEqual(mailhost.smtp_port, 25)
+
+    def test_uninstall__metadata__installed__abita_development(self):
+        self.uninstall_package()
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('abita.development'))
+
+    def test_uninstall__metadata__installed__collective_folderlogo(self):
+        self.uninstall_package()
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('collective.folderlogo'))
+
+    def test_uninstall__metadata__installed__hexagonit_socialbutton(self):
+        self.uninstall_package()
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('hexagonit.socialbutton'))
+
+    def test_uninstall__properties__title(self):
+        self.uninstall_package()
+        self.assertEqual(self.portal.getProperty('title'), 'Luonnonsuojelukauppa')
+
+    def test_uninstall__properties__description(self):
+        self.uninstall_package()
+        self.assertEqual(self.portal.getProperty('description'),
+            'Suomen Luonnonsuojelun Tuki Oy')
+
+    def test_uninstall__properties__email_from_address(self):
+        self.uninstall_package()
+        self.assertEqual(
+            self.portal.getProperty('email_from_address'),
+            'webmaster@sll.fi')
+
+    def test_uninstall__properties__email_from_name(self):
+        self.uninstall_package()
+        self.assertEqual(self.portal.getProperty('email_from_name'),
+            'Suomen Luonnonsuojelun Tuki Oy')
+
+    def test_unintall__properties___default_page(self):
+        self.uninstall_package()
+        self.assertEqual(self.portal.getProperty('default_page'), 'view')
+
+    def test_uninstall__properties___validate_email(self):
+        self.uninstall_package()
+        self.assertTrue(self.portal.getProperty('validate_email'))
