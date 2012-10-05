@@ -1,4 +1,3 @@
-from Products.CMFCore.utils import getToolByName
 from hexagonit.testing.browser import Browser
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME

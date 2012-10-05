@@ -27,7 +27,6 @@ setup(
     install_requires=[
         'abita.development',
         'collective.folderlogo',
-        'five.grok',
         'hexagonit.socialbutton',
         'hexagonit.testing',
         'plone.browserlayer',

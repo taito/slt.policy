@@ -8,7 +8,6 @@
   xmlns="http://namespaces.zope.org/zope">
 
   <includeDependencies package="." />
-  <grok:grok package="." />
 
   <genericsetup:registerProfile
     description="Installs the slt.policy package"
@@ -18,7 +17,6 @@
     title="slt.policy"
     />
 
-  <!-- <include package=".browser" /> -->
   <include file="upgrades.zcml"/>
 
 </configure>

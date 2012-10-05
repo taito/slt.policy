@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <rolemap>
   <permissions>
-    <permission name="Portlets: Manage portlets" acquire="True">
+    <permission name="Add portal member" acquire="False">
+      <role name="Anonymous" />
+      <role name="Manager" />
+      <role name="Site Administrator"/>
+    </permission>
+    <!-- <permission name="Portlets: Manage portlets" acquire="True">
       <role name="Editor"/>
       <role name="Manager"/>
       <role name="Site Administrator"/>
@@ -20,6 +25,6 @@
       <role name="Editor" />
       <role name="Manager"/>
       <role name="Site Administrator"/>
-    </permission>
+    </permission> -->
   </permissions>
 </rolemap>
