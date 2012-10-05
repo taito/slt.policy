@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="slt.policy.various"
+               version="20121005-01"
+               handler="slt.policy.setuphandlers.setupVarious"
+               title="slt.policy: miscellaneous import steps">
+    Various import steps that are not handled by GS import/export
+    handlers.
+    <dependency step="metadata"/>
+  </import-step>
+</import-steps>

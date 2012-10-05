@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<site>
+  <property name="title">Luonnonsuojelukauppa</property>
+  <property name="description"></property>
+  <property name="default_page">view</property>
+  <property name="email_from_address" type="string">webmaster@sll.fi</property>
+  <property name="email_from_name" type="string">Suomen Luonto Tuki Oy</property>
+  <property name="validate_email" type="boolean">True</property>
+</site>

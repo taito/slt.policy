@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="slt.policy"
+    interface="slt.policy.browser.interfaces.ISltPolicyLayer"
+    />
+</layers>

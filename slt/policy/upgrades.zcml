@@ -1,0 +1,16 @@
+<configure
+  i18n_domain="slt.policy"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns="http://namespaces.zope.org/zope">
+
+  <!-- <genericsetup:upgradeStep
+    description=""
+    destination="1"
+    handler="slt.policy.upgrades.upgrade_0_to_1"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="0"
+    title="Disable ++resource++search.js"
+    /> -->
+
+</configure>
