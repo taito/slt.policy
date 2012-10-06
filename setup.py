@@ -32,6 +32,7 @@ setup(
         'plone.browserlayer',
         'setuptools',
         'sll.locales',
+        'slt.theme',
         'z3c.autoinclude'],
     entry_points="""
     # -*- Entry points: -*-

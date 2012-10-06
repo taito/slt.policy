@@ -47,6 +47,10 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('hexagonit.socialbutton'))
 
+    def test_metadata__installed__slt_theme(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('slt.theme'))
+
     def test_properties__title(self):
         self.assertEqual(self.portal.getProperty('title'), 'Luonnonsuojelukauppa')
 
@@ -223,6 +227,11 @@ class TestCase(IntegrationTestCase):
         self.uninstall_package()
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('hexagonit.socialbutton'))
+
+    def test_uninstall__metadata__installed__slt_theme(self):
+        self.uninstall_package()
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('slt.theme'))
 
     def test_uninstall__properties__title(self):
         self.uninstall_package()
