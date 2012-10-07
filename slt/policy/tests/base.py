@@ -16,7 +16,7 @@ class SltPolicyLayer(PloneSandboxLayer):
 
         # Required by Products.CMFPlone:plone-content to setup defaul plone site.
         z2.installProduct(app, 'Products.PythonScripts')
-        # z2.installProduct(app, 'Products.ATCountryWidget')
+        z2.installProduct(app, 'Products.ATCountryWidget')
 
         # import Products.PloneFormGen
         # self.loadZCML(package=Products.PloneFormGen)
@@ -43,7 +43,7 @@ class SltPolicyLayer(PloneSandboxLayer):
     def tearDownZope(self, app):
         """Tear down Zope."""
         # z2.uninstallProduct(app, 'Products.PloneFormGen')
-        # z2.uninstallProduct(app, 'ATCountryWidget')
+        z2.uninstallProduct(app, 'ATCountryWidget')
         z2.uninstallProduct(app, 'Products.PythonScripts')
 
 

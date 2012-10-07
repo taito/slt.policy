@@ -84,7 +84,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_navtree_property('metaTypesNotToList'))
-        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 17)
+        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 25)
 
     def get_site_property(self, name):
         """Get property from site_properties based on the name."""
@@ -118,7 +118,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_site_property('types_not_searched'))
-        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 17)
+        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 26)
 
     def test_propertiestool__site_properties__use_email_as_login(self):
         self.assertTrue(self.get_site_property('use_email_as_login'))
@@ -267,7 +267,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_navtree_property('metaTypesNotToList'))
-        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 17)
+        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 25)
 
     def test_uninstall__propertiestool__site_properties__available_editors(self):
         self.uninstall_package()
@@ -303,7 +303,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_site_property('types_not_searched'))
-        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 17)
+        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 26)
 
     def test_uninstall__propertiestool__site_properties__use_email_as_login(self):
         self.uninstall_package()
