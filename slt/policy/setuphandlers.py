@@ -78,4 +78,3 @@ def setupVarious(context):
     uninstall_package(context, ['plonetheme.classic'])
     create_containers(context)
     set_member_content_type(context)
-

@@ -25,6 +25,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'Products.Carousel',
         'abita.development',
         'collective.folderlogo',
         'hexagonit.socialbutton',

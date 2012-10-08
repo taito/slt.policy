@@ -12,6 +12,17 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.assertTrue(installer.isProductInstalled('slt.policy'))
 
+    def test_actions__user__dashboard(self):
+        actions = getToolByName(self.portal, 'portal_actions')
+        action = getattr(getattr(actions, 'user'), 'dashboard')
+        self.assertFalse(action.visible)
+
+    def test_actions__user__preferences(self):
+        actions = getToolByName(self.portal, 'portal_actions')
+        action = getattr(getattr(actions, 'user'), 'preferences')
+        self.assertEqual(action.url_expr,
+            'string:${globals_view/navigationRootUrl}/@@personal-information')
+
     def test_browserlayer(self):
         from slt.policy.browser.interfaces import ISltPolicyLayer
         from plone.browserlayer import utils
@@ -160,6 +171,43 @@ class TestCase(IntegrationTestCase):
     def test_rolemap__Add_portal_member__acquiredRolesAreUsedBy(self):
         permission = "Add portal member"
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
+
+    def test_rolemap__Portlets_View_dashboard__rolesOfPermission(self):
+        permission = "Portlets: View dashboard"
+        roles = [item['name'] for item in self.portal.rolesOfPermission(
+                permission) if item['selected'] == 'SELECTED']
+        roles.sort()
+        self.assertEqual(roles, ['Manager', 'Site Administrator'])
+
+    def test_rolemap__Portlets_View_dashboard__acquiredRolesAreUsedBy(self):
+        permission = "Portlets: View dashboard"
+        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), 'CHECKED')
+
+    def test_rolemap__Portlets_Manage_own_portlets__rolesOfPermission(self):
+        permission = "Portlets: Manage own portlets"
+        roles = [item['name'] for item in self.portal.rolesOfPermission(
+                permission) if item['selected'] == 'SELECTED']
+        roles.sort()
+        self.assertEqual(roles, ['Manager', 'Site Administrator'])
+
+    def test_rolemap__Portlets_Manage_own_portlets__acquiredRolesAreUsedBy(self):
+        permission = "Portlets: Manage own portlets"
+        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), 'CHECKED')
+
+    def test_rolemap__slt_theme_View_Personal_Preferences__rolesOfPermission(self):
+        permission = "slt.theme: View Personal Preferences"
+        roles = [item['name'] for item in self.portal.rolesOfPermission(
+                permission) if item['selected'] == 'SELECTED']
+        roles.sort()
+        self.assertEqual(roles, [
+            'Contributor',
+            'Editor',
+            'Manager',
+            'Site Administrator'])
+
+    def test_rolemap__slt_theme_View_Personal_Preferences__acquiredRolesAreUsedBy(self):
+        permission = "slt.theme: View Personal Preferences"
+        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), 'CHECKED')
 
     def test_setuphandlers__exclude_from_nav(self):
         ids = ['Members', 'events', 'news']

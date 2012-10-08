@@ -6,25 +6,19 @@
       <role name="Manager" />
       <role name="Site Administrator"/>
     </permission>
-    <!-- <permission name="Portlets: Manage portlets" acquire="True">
+    <permission name="Portlets: View dashboard" acquire="True">
+      <role name="Manager" />
+      <role name="Site Administrator"/>
+    </permission>
+    <permission name="Portlets: Manage own portlets" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+    </permission>
+    <permission name="slt.theme: View Personal Preferences" acquire="True">
+      <role name="Contributor"/>
       <role name="Editor"/>
       <role name="Manager"/>
       <role name="Site Administrator"/>
     </permission>
-    <permission name="Portlets: Manage own portlets" acquire="True">
-      <role name="Editor" />
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="plone.portlet.collection: Add collection portlet" acquire="True">
-      <role name="Editor" />
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="plone.portlet.static: Add static portlet" acquire="True">
-      <role name="Editor" />
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission> -->
   </permissions>
 </rolemap>

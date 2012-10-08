@@ -1,0 +1,21 @@
+Log in as member1::
+
+    >>> browser.login('member1', 'member1')
+
+Visiting dashboard::
+
+    >>> browser.open('/dashboard')
+    >>> 'Insufficient Privileges' in browser.contents
+    True
+
+Visiting @@manage-dashboard::
+
+    >>> browser.open('/@@manage-dashboard')
+    >>> 'Insufficient Privileges' in browser.contents
+    True
+
+Visiting @@personal-preferences::
+
+    >>> browser.open('/@@personal-preferences')
+    >>> 'Insufficient Privileges' in browser.contents
+    True
