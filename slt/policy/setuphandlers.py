@@ -58,6 +58,15 @@ def create_containers(context):
     modified(container)
 
 
+def set_member_content_type(context):
+    """Set member content type to slt.content.MemberArea."""
+    portal = context.getSite()
+    membership = getToolByName(portal, 'portal_membership')
+    logger.info('Setting member area type to slt.content.Member.')
+    membership.setMemberAreaType('slt.content.MemberArea')
+    membership.memberareaCreationFlag = True
+
+
 def setupVarious(context):
 
     if context.readDataFile('slt.policy_various.txt') is None:
@@ -68,4 +77,5 @@ def setupVarious(context):
     set_firstweekday(context)
     uninstall_package(context, ['plonetheme.classic'])
     create_containers(context)
+    set_member_content_type(context)
 
