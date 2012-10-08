@@ -177,6 +177,10 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.assertFalse(installer.isProductInstalled('plonetheme.classic'))
 
+    def test_setuphandlers__create_containers(self):
+        self.assertIsNotNone(self.portal.get('tilaukset'))
+        self.assertIsNotNone(self.portal.get('toimitustavat'))
+
     def test_tinymce__link_using_uids(self):
         tinymce = getToolByName(self.portal, 'portal_tinymce')
         self.assertTrue(tinymce.link_using_uids)

@@ -1,5 +1,6 @@
 from Products.CMFCore.utils import getToolByName
-
+from plone.dexterity.utils import createContentInContainer
+from zope.lifecycleevent import modified
 
 import logging
 
@@ -45,6 +46,18 @@ def uninstall_package(context, packages):
     installer.uninstallProducts(packages)
 
 
+def create_containers(context):
+    portal = context.getSite()
+    logger.info('Creating cart container named: Tilaukset.')
+    container = createContentInContainer(portal, 'collective.cart.core.CartContainer',
+        title="Tilaukset", checkConstraints=False)
+    modified(container)
+    logger.info('Creating shipping method container named: Toimitustavat.')
+    container = createContentInContainer(portal, 'collective.cart.shipping.ShippingMethodContainer',
+        title='Toimitustavat', checkConstraints=False)
+    modified(container)
+
+
 def setupVarious(context):
 
     if context.readDataFile('slt.policy_various.txt') is None:
@@ -54,3 +67,5 @@ def setupVarious(context):
     remove_front_page(context)
     set_firstweekday(context)
     uninstall_package(context, ['plonetheme.classic'])
+    create_containers(context)
+
