@@ -1,0 +1,25 @@
+Log in as Manger::
+
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+Link to Personal Information should be there::
+
+    >>> print browser.bycss('#personaltools-information')
+    --- 1 ---
+    <li id="personaltools-information">
+    <a href="http://nohost/plone/@@personal-information">Personal Information</a>
+    </li>
+
+Link to Preferences should be there::
+
+    >>> print browser.bycss('#personaltools-preferences')
+    --- 1 ---
+    <li id="personaltools-preferences">
+    <a href="http://nohost/plone/@@personal-preferences">Preferences</a>
+    </li>
+
+Visiting @@personal-preferences::
+
+    >>> browser.open('/@@personal-preferences')
+    >>> 'Insufficient Privileges' in browser.contents
+    False

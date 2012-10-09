@@ -27,7 +27,6 @@ setup(
     install_requires=[
         'Products.Carousel',
         'abita.development',
-        'collective.folderlogo',
         'hexagonit.socialbutton',
         'hexagonit.testing',
         'plone.browserlayer',

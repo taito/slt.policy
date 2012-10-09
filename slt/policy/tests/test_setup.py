@@ -12,16 +12,55 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.assertTrue(installer.isProductInstalled('slt.policy'))
 
-    def test_actions__user__dashboard(self):
+    def get_action(self, category, name):
+        """Get action by category and name."""
         actions = getToolByName(self.portal, 'portal_actions')
-        action = getattr(getattr(actions, 'user'), 'dashboard')
+        return getattr(getattr(actions, category), name)
+
+    def test_actions__user__dashboard(self):
+        action = self.get_action('user', 'dashboard')
         self.assertFalse(action.visible)
 
-    def test_actions__user__preferences(self):
-        actions = getToolByName(self.portal, 'portal_actions')
-        action = getattr(getattr(actions, 'user'), 'preferences')
+    def test_actions__user__information__i18n_domain(self):
+        action = self.get_action('user', 'information')
+        self.assertEqual(action.i18n_domain, 'plone')
+
+    def test_actions__user__information__meta_type(self):
+        action = self.get_action('user', 'information')
+        self.assertEqual(action.meta_type, 'CMF Action')
+
+    def test_actions__user__information__title(self):
+        action = self.get_action('user', 'information')
+        self.assertEqual(action.title, 'Personal Information')
+
+    def test_actions__user__information__descripion(self):
+        action = self.get_action('user', 'information')
+        self.assertEqual(action.description, '')
+
+    def test_actions__user__information__url_expr(self):
+        action = self.get_action('user', 'information')
         self.assertEqual(action.url_expr,
             'string:${globals_view/navigationRootUrl}/@@personal-information')
+
+    def test_actions__user__information__available_expr(self):
+        action = self.get_action('user', 'information')
+        self.assertEqual(action.available_expr, 'python:member is not None')
+
+    def test_actions__user__information__permissions(self):
+        action = self.get_action('user', 'information')
+        self.assertEqual(action.permissions, ('View',))
+
+    def test_actions__user__information__visible(self):
+        action = self.get_action('user', 'information')
+        self.assertTrue(action.visible)
+
+    def test_actions__user__preferences__permissions(self):
+        action = self.get_action('user', 'preferences')
+        self.assertEqual(action.permissions, ('slt.theme: View Personal Preferences',))
+
+    def test_actions__user__preferences__visible(self):
+        action = self.get_action('user', 'preferences')
+        self.assertTrue(action.visible)
 
     def test_browserlayer(self):
         from slt.policy.browser.interfaces import ISltPolicyLayer
@@ -49,10 +88,6 @@ class TestCase(IntegrationTestCase):
     def test_metadata__installed__abita_development(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('abita.development'))
-
-    def test_metadata__installed__collective_folderlogo(self):
-        installer = getToolByName(self.portal, 'portal_quickinstaller')
-        self.failUnless(installer.isProductInstalled('collective.folderlogo'))
 
     def test_metadata__installed__hexagonit_socialbutton(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -274,11 +309,6 @@ class TestCase(IntegrationTestCase):
         self.uninstall_package()
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('abita.development'))
-
-    def test_uninstall__metadata__installed__collective_folderlogo(self):
-        self.uninstall_package()
-        installer = getToolByName(self.portal, 'portal_quickinstaller')
-        self.failUnless(installer.isProductInstalled('collective.folderlogo'))
 
     def test_uninstall__metadata__installed__hexagonit_socialbutton(self):
         self.uninstall_package()

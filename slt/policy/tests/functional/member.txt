@@ -2,6 +2,18 @@ Log in as member1::
 
     >>> browser.login('member1', 'member1')
 
+Link to Personal Information should be there::
+
+    >>> print browser.bycss('#personaltools-information')
+    --- 1 ---
+    <li id="personaltools-information">
+    <a href="http://nohost/plone/@@personal-information">Personal Information</a>
+    </li>
+
+Link to Preferences should not be there::
+
+    >>> print browser.bycss('#personaltools-preferences')
+
 Visiting dashboard::
 
     >>> browser.open('/dashboard')
@@ -19,3 +31,9 @@ Visiting @@personal-preferences::
     >>> browser.open('/@@personal-preferences')
     >>> 'Insufficient Privileges' in browser.contents
     True
+
+Visiting @@personal-information::
+
+    >>> browser.open('/@@personal-information')
+    >>> 'Insufficient Privileges' in browser.contents
+    False
