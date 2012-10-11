@@ -130,7 +130,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_navtree_property('metaTypesNotToList'))
-        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 25)
+        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 27)
 
     def get_site_property(self, name):
         """Get property from site_properties based on the name."""
@@ -164,7 +164,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_site_property('types_not_searched'))
-        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 26)
+        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 28)
 
     def test_propertiestool__site_properties__use_email_as_login(self):
         self.assertTrue(self.get_site_property('use_email_as_login'))
@@ -262,7 +262,11 @@ class TestCase(IntegrationTestCase):
 
     def test_setuphandlers__create_containers(self):
         self.assertIsNotNone(self.portal.get('tilaukset'))
+        self.assertEqual(self.portal.get('tilaukset').Type(), u'Cart Container')
         self.assertIsNotNone(self.portal.get('toimitustavat'))
+        self.assertEqual(self.portal.get('toimitustavat').Type(), u'Shipping Method Container')
+        self.assertIsNotNone(self.portal.get('valikot'))
+        self.assertEqual(self.portal.get('valikot').Type(), 'Article Subtype Container')
 
     def test_setuphandlers__set_member_content_type(self):
         membership = getToolByName(self.portal, 'portal_membership')
@@ -354,7 +358,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_navtree_property('metaTypesNotToList'))
-        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 25)
+        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 27)
 
     def test_uninstall__propertiestool__site_properties__available_editors(self):
         self.uninstall_package()
@@ -390,7 +394,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_site_property('types_not_searched'))
-        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 26)
+        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 28)
 
     def test_uninstall__propertiestool__site_properties__use_email_as_login(self):
         self.uninstall_package()
