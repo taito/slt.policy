@@ -56,9 +56,6 @@ def create_containers(context):
     container = createContentInContainer(portal, 'collective.cart.shipping.ShippingMethodContainer',
         title='Toimitustavat', checkConstraints=False)
     modified(container)
-    container = createContentInContainer(portal, 'collective.cart.shopping.ArticleSubtypeContainer',
-        title='Valikot', checkConstraints=False)
-    modified(container)
 
 
 def set_member_content_type(context):
