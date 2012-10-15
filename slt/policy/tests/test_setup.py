@@ -271,6 +271,10 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(membership.memberarea_type, 'slt.content.MemberArea')
         self.assertTrue(membership.getMemberareaCreationFlag())
 
+    def test_setuphandlers__provideIShoppingSiteRoot(self):
+        from collective.cart.core.interfaces import IShoppingSiteRoot
+        self.assertTrue(IShoppingSiteRoot.providedBy(self.portal))
+
     def test_tinymce__link_using_uids(self):
         tinymce = getToolByName(self.portal, 'portal_tinymce')
         self.assertTrue(tinymce.link_using_uids)

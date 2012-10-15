@@ -1,6 +1,8 @@
 from Products.CMFCore.utils import getToolByName
 from plone.dexterity.utils import createContentInContainer
 from zope.lifecycleevent import modified
+from collective.cart.core.interfaces import IShoppingSiteRoot
+from zope.interface import alsoProvides
 
 import logging
 
@@ -67,6 +69,13 @@ def set_member_content_type(context):
     membership.memberareaCreationFlag = True
 
 
+def provideIShoppingSiteRoot(context):
+    """Provide IShoppingSiteRoot for plone root."""
+    portal = context.getSite()
+    alsoProvides(portal, IShoppingSiteRoot)
+    portal.reindexObject(idxs=['object_provides'])
+
+
 def setupVarious(context):
 
     if context.readDataFile('slt.policy_various.txt') is None:
@@ -78,3 +87,4 @@ def setupVarious(context):
     uninstall_package(context, ['plonetheme.classic'])
     create_containers(context)
     set_member_content_type(context)
+    provideIShoppingSiteRoot(context)
