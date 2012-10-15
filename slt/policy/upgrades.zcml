@@ -14,6 +14,16 @@
     title="Add permission and its role for: slt.theme: Manage feed for shop top"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="2"
+    handler="slt.policy.upgrades.update_typeinfo"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="1"
+    title="Update bahaviors for SubArticle"
+    />
+
   <!-- <genericsetup:upgradeStep
     description=""
     destination="1"

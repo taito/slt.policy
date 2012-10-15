@@ -12,6 +12,8 @@ Change log
 
 - Added upgrade step to add roles to permission: slt.theme: Manage feed for shop top.
   [taito]
+- Added upgrade step to add behaviors to collective.cart.shopping.SubArticle.
+  [taito]
 
 0.1 (2012-10-15)
 ================

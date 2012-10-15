@@ -1,3 +1,4 @@
+from Products.CMFCore.utils import getToolByName
 from slt.policy.tests.base import IntegrationTestCase
 
 
@@ -28,3 +29,14 @@ class TestCase(IntegrationTestCase):
             'Editor',
             'Manager',
             'Site Administrator'])
+
+    def test_update_typeinfo(self):
+        types = getToolByName(self.portal, 'portal_types')
+        ctype = types.getTypeInfo('collective.cart.shopping.SubArticle')
+        ctype.global_allow = True
+        self.assertTrue(ctype.global_allow)
+
+        from slt.policy.upgrades import update_typeinfo
+        update_typeinfo(self.portal)
+
+        self.assertFalse(ctype.global_allow)

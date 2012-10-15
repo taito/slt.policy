@@ -83,7 +83,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'1')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'2')
 
     def test_metadata__installed__abita_development(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
