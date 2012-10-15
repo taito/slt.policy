@@ -83,7 +83,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'0')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'1')
 
     def test_metadata__installed__abita_development(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -242,6 +242,21 @@ class TestCase(IntegrationTestCase):
 
     def test_rolemap__slt_theme_View_Personal_Preferences__acquiredRolesAreUsedBy(self):
         permission = "slt.theme: View Personal Preferences"
+        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), 'CHECKED')
+
+    def test_rolemap__slt_theme_Manage_feed_for_shop_top__rolesOfPermission(self):
+        permission = "slt.theme: Manage feed for shop top"
+        roles = [item['name'] for item in self.portal.rolesOfPermission(
+                permission) if item['selected'] == 'SELECTED']
+        roles.sort()
+        self.assertEqual(roles, [
+            'Contributor',
+            'Editor',
+            'Manager',
+            'Site Administrator'])
+
+    def test_rolemap__slt_theme_Manage_feed_for_shop_top__acquiredRolesAreUsedBy(self):
+        permission = "slt.theme: Manage feed for shop top"
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), 'CHECKED')
 
     def test_setuphandlers__exclude_from_nav(self):
@@ -442,18 +457,3 @@ class TestCase(IntegrationTestCase):
         ids = ['Members', 'events', 'news']
         for oid in ids:
             self.assertTrue(self.portal[oid].getExcludeFromNav())
-
-    def test_unintsll__setuphanlders__remove_front_page(self):
-        self.assertIsNone(self.portal.get('front-page'))
-
-    def test_uninstall__setuphandlers__set_firstweekday(self):
-        calendar = getToolByName(self.portal, 'portal_calendar')
-        self.assertEqual(calendar.firstweekday, 0)
-
-    def test_uninstall__setuphandlers__uninstall_package(self):
-        installer = getToolByName(self.portal, 'portal_quickinstaller')
-        self.assertFalse(installer.isProductInstalled('plonetheme.classic'))
-
-    def test_uninstall__tinymce__link_using_uids(self):
-        tinymce = getToolByName(self.portal, 'portal_tinymce')
-        self.assertTrue(tinymce.link_using_uids)

@@ -20,5 +20,11 @@
       <role name="Manager"/>
       <role name="Site Administrator"/>
     </permission>
+    <permission name="slt.theme: Manage feed for shop top" acquire="True">
+      <role name="Contributor"/>
+      <role name="Editor"/>
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+    </permission>
   </permissions>
 </rolemap>
