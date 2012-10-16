@@ -23,10 +23,3 @@ def update_typeinfo(context, logger=None):
     logger.info('Reimporting typeinfo.')
     setup.runImportStepFromProfile(
         'profile-collective.cart.shopping:default', 'typeinfo', run_dependencies=False, purge_old=False)
-
-
-# def upgrade_0_to_1(context, logger=None):
-#     """Disable Marker Interfaces."""
-#     if logger is None:
-#         # Called as upgrade step: define our own logger.
-#         logger = logging.getLogger(__name__)
