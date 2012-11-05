@@ -14,7 +14,7 @@ class TestCase(IntegrationTestCase):
         self.portal.manage_permission(permission)
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
         roles = [item['name'] for item in self.portal.rolesOfPermission(
-                permission) if item['selected'] == 'SELECTED']
+            permission) if item['selected'] == 'SELECTED']
         self.assertEqual(len(roles), 0)
 
         from slt.policy.upgrades import update_rolemap
@@ -22,7 +22,7 @@ class TestCase(IntegrationTestCase):
 
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), 'CHECKED')
         roles = [item['name'] for item in self.portal.rolesOfPermission(
-                permission) if item['selected'] == 'SELECTED']
+            permission) if item['selected'] == 'SELECTED']
         roles.sort()
         self.assertEqual(roles, [
             'Contributor',
@@ -40,3 +40,23 @@ class TestCase(IntegrationTestCase):
         update_typeinfo(self.portal)
 
         self.assertFalse(ctype.global_allow)
+
+    def test_update_registry(self):
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        record = getUtility(IRegistry).records.get('hexagonit.socialbutton.codes')
+        record.value = {
+            u'twitter': {u'code_text': u'<CODE />'},
+        }
+
+        self.assertEqual(getUtility(IRegistry)['hexagonit.socialbutton.codes'],
+            {u'twitter': {u'code_text': u'<CODE />'}})
+
+        from slt.policy.upgrades import update_registry
+        update_registry(self.portal)
+
+        self.assertEqual(getUtility(IRegistry)['hexagonit.socialbutton.codes'], {
+            u'twitter': {u'code_text': u'<a class="social-button twitter" title="Twitter" href="https://twitter.com/share?text=${title}?url=${url}">\n<img src="${portal_url}/++resource++hexagonit.socialbutton/twitter.gif" />\n</a>'},
+            u'facebook': {u'code_text': u'<a class="social-button facebook" title="Facebook" target="_blank" href="http://www.facebook.com/sharer.php?t=${title}&u=${url}">\n<img src="${portal_url}/++resource++hexagonit.socialbutton/facebook.gif" />\n</a>'},
+            u'google-plus': {u'code_text': u'<a class="social-button googleplus" title="Google+" href="https://plusone.google.com/_/+1/confirm?hl=${lang}&title=${title}&url=${url}">\n<img src="${portal_url}/++resource++hexagonit.socialbutton/google-plus.gif" />\n</a>'},
+        })

@@ -47,21 +47,21 @@
         <element key="view_permission_only">True</element>
         <element key="enabled">True</element>
         <element key="view_models">*</element>
-        <element key="content_types">Document,Folder,FormFolder,Plone Site,News Item,Event</element>
+        <element key="content_types">Document,Folder,Plone Site,News Item,collective.cart.core.Article,collective.cart.shopping.ArticleContainer</element>
         <element key="viewlet_manager">plone.belowcontent</element>
       </element>
       <element key="facebook">
         <element key="view_permission_only">True</element>
         <element key="enabled">True</element>
         <element key="view_models">*</element>
-        <element key="content_types">Document,Folder,FormFolder,Plone Site,News Item,Event</element>
+        <element key="content_types">Document,Folder,Plone Site,News Item,collective.cart.core.Article,collective.cart.shopping.ArticleContainer</element>
         <element key="viewlet_manager">plone.belowcontent</element>
       </element>
       <element key="google-plus">
         <element key="view_permission_only">True</element>
         <element key="enabled">True</element>
         <element key="view_models">*</element>
-        <element key="content_types">Document,Folder,FormFolder,Plone Site,News Item,Event</element>
+        <element key="content_types">Document,Folder,Plone Site,News Item,collective.cart.core.Article,collective.cart.shopping.ArticleContainer</element>
         <element key="viewlet_manager">plone.belowcontent</element>
       </element>
     </value>

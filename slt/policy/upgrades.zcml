@@ -24,14 +24,14 @@
     title="Update bahaviors for SubArticle"
     />
 
-  <!-- <genericsetup:upgradeStep
+  <genericsetup:upgradeStep
     description=""
-    destination="1"
-    handler="slt.policy.upgrades.upgrade_0_to_1"
+    destination="3"
+    handler="slt.policy.upgrades.update_registry"
     profile="slt.policy:default"
     sortkey="1"
-    source="0"
-    title="Disable ++resource++search.js"
-    /> -->
+    source="2"
+    title="Update social button records."
+    />
 
 </configure>
