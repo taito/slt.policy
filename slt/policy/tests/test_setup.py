@@ -82,7 +82,7 @@ class TestCase(IntegrationTestCase):
 
     def test_memberdata_properties(self):
         memberdata = getToolByName(self.portal, 'portal_memberdata')
-        ids = ['registration_number', 'organization', 'vat', 'street', 'post', 'city', 'phone']
+        ids = ['registration_number', ]
         for pid in ids:
             self.assertTrue(memberdata.hasProperty(pid))
 

@@ -63,7 +63,7 @@ class TestCase(IntegrationTestCase):
 
     def test_update_memberdata_properties(self):
         memberdata = getToolByName(self.portal, 'portal_memberdata')
-        ids = ['registration_number', 'organization', 'vat', 'street', 'post', 'city', 'phone']
+        ids = ['registration_number', ]
         memberdata.manage_delProperties(ids=ids)
         for pid in ids:
             self.assertFalse(memberdata.hasProperty(pid))
