@@ -11,6 +11,7 @@ Change log
 ================
 
 - Added social buttons to Article and its container. [taito]
+- Added properties for memberdata. [taito]
 
 0.2 (2012-11-04)
 ================

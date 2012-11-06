@@ -33,3 +33,13 @@ def update_registry(context, logger=None):
     logger.info('Reimporting registy.')
     setup.runImportStepFromProfile(
         PROFILE_ID, 'plone.app.registry', run_dependencies=False, purge_old=False)
+
+
+def update_memberdata_properties(context, logger=None):
+    """Update memberdata properties"""
+    if logger is None:
+        logger = logging.getLogger(__name__)
+    setup = getToolByName(context, 'portal_setup')
+    logger.info('Reimporting memberdata_properties.')
+    setup.runImportStepFromProfile(
+        PROFILE_ID, 'memberdata-properties', run_dependencies=False, purge_old=False)

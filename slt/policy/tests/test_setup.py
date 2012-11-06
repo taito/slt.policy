@@ -80,10 +80,16 @@ class TestCase(IntegrationTestCase):
         mailhost = getToolByName(self.portal, 'MailHost')
         self.assertEqual(mailhost.smtp_port, 25)
 
+    def test_memberdata_properties(self):
+        memberdata = getToolByName(self.portal, 'portal_memberdata')
+        ids = ['registration_number', 'organization', 'vat', 'street', 'post', 'city', 'phone']
+        for pid in ids:
+            self.assertTrue(memberdata.hasProperty(pid))
+
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'3')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'4')
 
     def test_metadata__installed__abita_development(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')

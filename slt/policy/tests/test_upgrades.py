@@ -60,3 +60,16 @@ class TestCase(IntegrationTestCase):
             u'facebook': {u'code_text': u'<a class="social-button facebook" title="Facebook" target="_blank" href="http://www.facebook.com/sharer.php?t=${title}&u=${url}">\n<img src="${portal_url}/++resource++hexagonit.socialbutton/facebook.gif" />\n</a>'},
             u'google-plus': {u'code_text': u'<a class="social-button googleplus" title="Google+" href="https://plusone.google.com/_/+1/confirm?hl=${lang}&title=${title}&url=${url}">\n<img src="${portal_url}/++resource++hexagonit.socialbutton/google-plus.gif" />\n</a>'},
         })
+
+    def test_update_memberdata_properties(self):
+        memberdata = getToolByName(self.portal, 'portal_memberdata')
+        ids = ['registration_number', 'organization', 'vat', 'street', 'post', 'city', 'phone']
+        memberdata.manage_delProperties(ids=ids)
+        for pid in ids:
+            self.assertFalse(memberdata.hasProperty(pid))
+
+        from slt.policy.upgrades import update_memberdata_properties
+        update_memberdata_properties(self.portal)
+
+        for pid in ids:
+            self.assertTrue(memberdata.hasProperty(pid))

@@ -34,4 +34,14 @@
     title="Update social button records."
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="4"
+    handler="slt.policy.upgrades.update_memberdata_properties"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="3"
+    title="Update memberdata properties"
+    />
+
 </configure>
