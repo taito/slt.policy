@@ -44,4 +44,14 @@
     title="Update memberdata properties"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="5"
+    handler="slt.policy.upgrades.update_actions"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="4"
+    title="Update actions for translation of Personal Information."
+    />
+
 </configure>

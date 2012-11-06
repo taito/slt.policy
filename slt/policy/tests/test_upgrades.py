@@ -73,3 +73,18 @@ class TestCase(IntegrationTestCase):
 
         for pid in ids:
             self.assertTrue(memberdata.hasProperty(pid))
+
+    def get_action(self, category, name):
+        """Get action by category and name."""
+        actions = getToolByName(self.portal, 'portal_actions')
+        return getattr(getattr(actions, category), name)
+
+    def test_update_actions(self):
+        action = self.get_action('user', 'dashboard')
+        action.visible = True
+        self.assertTrue(action.visible)
+
+        from slt.policy.upgrades import update_actions
+        update_actions(self.portal)
+
+        self.assertFalse(action.visible)

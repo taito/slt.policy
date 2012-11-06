@@ -33,7 +33,8 @@ setup(
         'setuptools',
         'sll.locales',
         'slt.theme',
-        'z3c.autoinclude'],
+        'z3c.autoinclude',
+        'zope.i18nmessageid'],
     entry_points="""
     # -*- Entry points: -*-
 

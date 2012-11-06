@@ -23,7 +23,7 @@ class TestCase(IntegrationTestCase):
 
     def test_actions__user__information__i18n_domain(self):
         action = self.get_action('user', 'information')
-        self.assertEqual(action.i18n_domain, 'plone')
+        self.assertEqual(action.i18n_domain, 'slt.policy')
 
     def test_actions__user__information__meta_type(self):
         action = self.get_action('user', 'information')
@@ -62,6 +62,71 @@ class TestCase(IntegrationTestCase):
         action = self.get_action('user', 'preferences')
         self.assertTrue(action.visible)
 
+    def test_actions__user__addresses__i18n_domain(self):
+        action = self.get_action('user', 'addresses')
+        self.assertEqual(action.i18n_domain, 'slt.policy')
+
+    def test_actions__user__addresses__meta_type(self):
+        action = self.get_action('user', 'addresses')
+        self.assertEqual(action.meta_type, 'CMF Action')
+
+    def test_actions__user__addresses__title(self):
+        action = self.get_action('user', 'addresses')
+        self.assertEqual(action.title, 'Addresses')
+
+    def test_actions__user__addresses__descripion(self):
+        action = self.get_action('user', 'addresses')
+        self.assertEqual(action.description, '')
+
+    def test_actions__user__addresses__url_expr(self):
+        action = self.get_action('user', 'addresses')
+        self.assertEqual(action.url_expr,
+            'string:${portal/portal_membership/getHomeUrl}/@@addresses')
+
+    def test_actions__user__addresses__available_expr(self):
+        action = self.get_action('user', 'addresses')
+        self.assertEqual(action.available_expr, 'python:member is not None')
+
+    def test_actions__user__addresses__permissions(self):
+        action = self.get_action('user', 'addresses')
+        self.assertEqual(action.permissions, ('View',))
+
+    def test_actions__user__addresses__visible(self):
+        action = self.get_action('user', 'addresses')
+        self.assertTrue(action.visible)
+
+    def test_actions__user__orders__i18n_domain(self):
+        action = self.get_action('user', 'orders')
+        self.assertEqual(action.i18n_domain, 'slt.policy')
+
+    def test_actions__user__orders__meta_type(self):
+        action = self.get_action('user', 'orders')
+        self.assertEqual(action.meta_type, 'CMF Action')
+
+    def test_actions__user__orders__title(self):
+        action = self.get_action('user', 'orders')
+        self.assertEqual(action.title, 'Orders')
+
+    def test_actions__user__orders__descripion(self):
+        action = self.get_action('user', 'orders')
+        self.assertEqual(action.description, '')
+
+    def test_actions__user__orders__url_expr(self):
+        action = self.get_action('user', 'orders')
+        self.assertEqual(action.url_expr, 'string:${portal_url}/tilaukset')
+
+    def test_actions__user__orders__available_expr(self):
+        action = self.get_action('user', 'orders')
+        self.assertEqual(action.available_expr, 'python:member is not None')
+
+    def test_actions__user__orders__permissions(self):
+        action = self.get_action('user', 'orders')
+        self.assertEqual(action.permissions, ('View',))
+
+    def test_actions__user__orders__visible(self):
+        action = self.get_action('user', 'orders')
+        self.assertTrue(action.visible)
+
     def test_browserlayer(self):
         from slt.policy.browser.interfaces import ISltPolicyLayer
         from plone.browserlayer import utils
@@ -89,7 +154,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'4')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'5')
 
     def test_metadata__installed__abita_development(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')

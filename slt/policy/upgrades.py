@@ -43,3 +43,12 @@ def update_memberdata_properties(context, logger=None):
     logger.info('Reimporting memberdata_properties.')
     setup.runImportStepFromProfile(
         PROFILE_ID, 'memberdata-properties', run_dependencies=False, purge_old=False)
+
+
+def update_actions(context, logger=None):
+    """Update actions"""
+    if logger is None:
+        logger = logging.getLogger(__name__)
+    setup = getToolByName(context, 'portal_setup')
+    logger.info('Reimporting actions.')
+    setup.runImportStepFromProfile(PROFILE_ID, 'actions', run_dependencies=False, purge_old=False)

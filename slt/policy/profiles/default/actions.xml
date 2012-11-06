@@ -3,12 +3,12 @@
 
   <object name="user" meta_type="CMF Action Category">
 
-    <object name="dashboard" meta_type="CMF Action" i18n:domain="plone">
+    <object name="dashboard" meta_type="CMF Action">
       <property name="visible">False</property>
     </object>
 
-    <object name="information" meta_type="CMF Action" i18n:domain="plone">
-      <property name="title" i18n:translate="title_personal_information_form">Personal Information</property>
+    <object name="information" meta_type="CMF Action" i18n:domain="slt.policy">
+      <property name="title" i18n:translate="">Personal Information</property>
       <property name="description" i18n:translate=""></property>
       <property
       name="url_expr">string:${globals_view/navigationRootUrl}/@@personal-information</property>
@@ -23,6 +23,32 @@
     <object name="preferences" meta_type="CMF Action" i18n:domain="plone" purge="False">
       <property name="permissions">
         <element value="slt.theme: View Personal Preferences"/>
+      </property>
+      <property name="visible">True</property>
+    </object>
+
+    <object name="addresses" meta_type="CMF Action" i18n:domain="slt.policy">
+      <property name="title" i18n:translate="">Addresses</property>
+      <property name="description" i18n:translate=""></property>
+      <property
+      name="url_expr">string:${portal/portal_membership/getHomeUrl}/@@addresses</property>
+      <property name="icon_expr"></property>
+      <property name="available_expr">python:member is not None</property>
+      <property name="permissions">
+        <element value="View"/>
+      </property>
+      <property name="visible">True</property>
+    </object>
+
+    <object name="orders" meta_type="CMF Action" i18n:domain="slt.policy">
+      <property name="title" i18n:translate="">Orders</property>
+      <property name="description" i18n:translate=""></property>
+      <property
+      name="url_expr">string:${portal_url}/tilaukset</property>
+      <property name="icon_expr"></property>
+      <property name="available_expr">python:member is not None</property>
+      <property name="permissions">
+        <element value="View"/>
       </property>
       <property name="visible">True</property>
     </object>
