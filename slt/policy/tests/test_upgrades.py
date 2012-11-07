@@ -88,3 +88,14 @@ class TestCase(IntegrationTestCase):
         update_actions(self.portal)
 
         self.assertFalse(action.visible)
+
+    def test_update_propertiestool(self):
+        properties = getToolByName(self.portal, 'portal_properties')
+        site_properties = getattr(properties, 'site_properties')
+        site_properties.manage_changeProperties(types_not_searched=())
+        self.assertNotIn('slt.content.MemberArea', site_properties.getProperty('types_not_searched'))
+
+        from slt.policy.upgrades import update_propertiestool
+        update_propertiestool(self.portal)
+
+        self.assertIn('slt.content.MemberArea', site_properties.getProperty('types_not_searched'))

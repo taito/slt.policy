@@ -44,7 +44,7 @@
       <property name="title" i18n:translate="">Orders</property>
       <property name="description" i18n:translate=""></property>
       <property
-      name="url_expr">string:${portal_url}/tilaukset</property>
+      name="url_expr">string:${portal/portal_membership/getHomeUrl}/@@orders</property>
       <property name="icon_expr"></property>
       <property name="available_expr">python:member is not None</property>
       <property name="permissions">

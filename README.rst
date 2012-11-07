@@ -12,6 +12,9 @@ Change log
 
 - Added social buttons to Article and its container. [taito]
 - Added properties for memberdata. [taito]
+- Adds slt.content.MemberArea to
+  types_not_searched and metaTypesNotToList. [taito]
+
 
 0.2 (2012-11-04)
 ================

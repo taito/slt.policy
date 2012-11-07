@@ -11,6 +11,7 @@
       <element value="Link"/>
       <element value="News Item"/>
       <element value="Topic"/>
+      <element value="slt.content.MemberArea"/>
     </property>
   </object>
 
@@ -32,6 +33,7 @@
       <element value="Link"/>
       <element value="News Item"/>
       <element value="Topic"/>
+      <element value="slt.content.MemberArea"/>
     </property>
     <property name="use_email_as_login" type="boolean">True</property>
     <property name="visible_ids" type="boolean">True</property>

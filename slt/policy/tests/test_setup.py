@@ -113,7 +113,7 @@ class TestCase(IntegrationTestCase):
 
     def test_actions__user__orders__url_expr(self):
         action = self.get_action('user', 'orders')
-        self.assertEqual(action.url_expr, 'string:${portal_url}/tilaukset')
+        self.assertEqual(action.url_expr, 'string:${portal/portal_membership/getHomeUrl}/@@orders')
 
     def test_actions__user__orders__available_expr(self):
         action = self.get_action('user', 'orders')
@@ -154,7 +154,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'5')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'6')
 
     def test_metadata__installed__abita_development(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -201,7 +201,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_navtree_property('metaTypesNotToList'))
-        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 26)
+        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 27)
 
     def get_site_property(self, name):
         """Get property from site_properties based on the name."""
@@ -232,7 +232,8 @@ class TestCase(IntegrationTestCase):
 
     def test_propertiestool__site_properties__types_not_searched(self):
         ctypes = (
-            'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
+            'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic',
+            'slt.content.MemberArea')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_site_property('types_not_searched'))
         self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 27)
@@ -443,7 +444,8 @@ class TestCase(IntegrationTestCase):
     def test_uninstall__propertiestool__navtree_properties__metaTypesNotToList(self):
         self.uninstall_package()
         ctypes = (
-            'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
+            'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic',
+            'slt.content.MemberArea')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_navtree_property('metaTypesNotToList'))
         self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 26)
@@ -475,14 +477,6 @@ class TestCase(IntegrationTestCase):
     def test_uninstall__propertiestool__site_properties__icon_visibility(self):
         self.uninstall_package()
         self.assertEqual(self.get_site_property('icon_visibility'), 'authenticated')
-
-    def test_uninstall__propertiestool__site_properties__types_not_searched(self):
-        self.uninstall_package()
-        ctypes = (
-            'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
-        for ctype in ctypes:
-            self.assertIn(ctype, self.get_site_property('types_not_searched'))
-        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 27)
 
     def test_uninstall__propertiestool__site_properties__use_email_as_login(self):
         self.uninstall_package()

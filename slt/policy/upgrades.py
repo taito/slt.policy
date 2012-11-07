@@ -52,3 +52,13 @@ def update_actions(context, logger=None):
     setup = getToolByName(context, 'portal_setup')
     logger.info('Reimporting actions.')
     setup.runImportStepFromProfile(PROFILE_ID, 'actions', run_dependencies=False, purge_old=False)
+
+
+def update_propertiestool(context, logger=None):
+    """Update propertiestool"""
+    if logger is None:
+        logger = logging.getLogger(__name__)
+    setup = getToolByName(context, 'portal_setup')
+    logger.info('Reimporting propertiestool.')
+    setup.runImportStepFromProfile(
+        PROFILE_ID, 'propertiestool', run_dependencies=False, purge_old=False)

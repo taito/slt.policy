@@ -54,4 +54,14 @@
     title="Update actions for translation of Personal Information."
     />
 
+  <genericsetup:upgradeStep
+    description="Adds slt.content.MemberArea to types_not_searched and metaTypesNotToList."
+    destination="6"
+    handler="slt.policy.upgrades.update_propertiestool"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="5"
+    title="Update propertiestool"
+    />
+
 </configure>
