@@ -15,7 +15,7 @@ Change log
 - Adds slt.content.MemberArea to
   types_not_searched and metaTypesNotToList. [taito]
 - Update roles for permission: Sharing page: Delegate roles. [taito]
-
+- Added member_workflow for member related content types. [taito]
 
 0.2 (2012-11-04)
 ================
