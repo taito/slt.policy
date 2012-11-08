@@ -109,4 +109,4 @@ class TestCase(IntegrationTestCase):
         from slt.policy.upgrades import update_workflows
         update_workflows(self.portal)
 
-        self.assertEqual(workflow.getChainForPortalType('slt.content.MemberArea'), ())
+        self.assertEqual(workflow.getChainForPortalType('slt.content.MemberArea'), ('member_workflow',))

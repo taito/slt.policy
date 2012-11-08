@@ -381,6 +381,257 @@ class TestCase(IntegrationTestCase):
         tinymce = getToolByName(self.portal, 'portal_tinymce')
         self.assertTrue(tinymce.link_using_uids)
 
+    def test_workflow__default(self):
+        workflow = getToolByName(self.portal, 'portal_workflow')
+        self.assertEqual(workflow._default_chain, ('two_states_workflow', ))
+
+    def test_workflow__type__collective_cart_shopping_CustomerInfo(self):
+        workflow = getToolByName(self.portal, 'portal_workflow')
+        self.assertEqual(workflow.getChainForPortalType('collective.cart.shopping.CustomerInfo'),
+            ('member_workflow', ))
+
+    def test_workflow__type__slt_content_MemberArea(self):
+        workflow = getToolByName(self.portal, 'portal_workflow')
+        self.assertEqual(workflow.getChainForPortalType('slt.content.MemberArea'),
+            ('member_workflow', ))
+
+    def get_workflow(self, name):
+        workflow = getToolByName(self.portal, 'portal_workflow')
+        return workflow[name]
+
+    def test_member_workflow__description(self):
+        workflow = self.get_workflow('member_workflow')
+        self.assertEqual(workflow.description, 'Private state only for member.')
+
+    def test_member_workflow__initial_state(self):
+        workflow = self.get_workflow('member_workflow')
+        self.assertEqual(workflow.initial_state, 'private')
+
+    def test_member_workflow__manager_bypass(self):
+        workflow = self.get_workflow('member_workflow')
+        self.assertFalse(workflow.manager_bypass)
+
+    def test_member_workflow__state_variable(self):
+        workflow = self.get_workflow('member_workflow')
+        self.assertEqual(workflow.state_var, 'review_state')
+
+    def test_member_workflow__title(self):
+        workflow = self.get_workflow('member_workflow')
+        self.assertEqual(workflow.title, 'Member Workflow')
+
+    def test_member_workflow__permissions(self):
+        workflow = self.get_workflow('member_workflow')
+        self.assertEqual(workflow.permissions, (
+            'Access contents information',
+            'Copy or Move',
+            'List folder contents',
+            'Modify portal content',
+            'View'))
+
+    def test_member_workflow__states__private__title(self):
+        workflow = self.get_workflow('member_workflow')
+        state = workflow.states.private
+        self.assertEqual(state.title, 'Private')
+
+    def test_member_workflow__states__private__description(self):
+        workflow = self.get_workflow('member_workflow')
+        state = workflow.states.private
+        self.assertEqual(state.description, 'Can only be seen and edited by the owner.')
+
+    def test_member_workflow__states__private__permission__Access_contents_information(self):
+        workflow = self.get_workflow('member_workflow')
+        state = workflow.states.private
+        self.assertEqual(state.getPermissionInfo('Access contents information'), {
+            'acquired': 0,
+            'roles': ['Manager', 'Owner', 'Site Administrator'],
+        })
+
+    def test_member_workflow__states__private__permission__Copy_or_Move(self):
+        workflow = self.get_workflow('member_workflow')
+        state = workflow.states.private
+        self.assertEqual(state.getPermissionInfo('Copy or Move'), {
+            'acquired': 0,
+            'roles': ['Manager', 'Site Administrator'],
+        })
+
+    def test_member_workflow__states__private__permission__List_folder_contents(self):
+        workflow = self.get_workflow('member_workflow')
+        state = workflow.states.private
+        self.assertEqual(state.getPermissionInfo('List folder contents'), {
+            'acquired': 0,
+            'roles': ['Manager', 'Site Administrator'],
+        })
+
+    def test_member_workflow__states__private__permission__Modify_portal_content(self):
+        workflow = self.get_workflow('member_workflow')
+        state = workflow.states.private
+        self.assertEqual(state.getPermissionInfo('Modify portal content'), {
+            'acquired': 0,
+            'roles': ['Manager', 'Owner', 'Site Administrator'],
+        })
+
+    def test_member_workflow__states__private__permission__View(self):
+        workflow = self.get_workflow('member_workflow')
+        state = workflow.states.private
+        self.assertEqual(state.getPermissionInfo('View'), {
+            'acquired': 0,
+            'roles': ['Manager', 'Owner', 'Site Administrator'],
+        })
+
+    def test_member_workflow__variables__action__for_catalog(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.action
+        self.assertFalse(variable.for_catalog)
+
+    def test_member_workflow__variables__action__for_status(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.action
+        self.assertTrue(variable.for_status)
+
+    def test_member_workflow__variables__action__updata_always(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.action
+        self.assertTrue(variable.update_always)
+
+    def test_member_workflow__variables__action__description(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.action
+        self.assertEqual(variable.description, 'Previous transition')
+
+    def test_member_workflow__variables__action__default(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.action
+        self.assertEqual(variable.getDefaultExprText(), 'transition/getId|nothing')
+
+    def test_member_workflow__variables__action__guard(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.action
+        self.assertIsNone(variable.info_guard)
+
+    def test_member_workflow__variables__actor__for_catalog(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.actor
+        self.assertFalse(variable.for_catalog)
+
+    def test_member_workflow__variables__actor__for_status(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.actor
+        self.assertTrue(variable.for_status)
+
+    def test_member_workflow__variables__actor__updata_always(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.actor
+        self.assertTrue(variable.update_always)
+
+    def test_member_workflow__variables__actor__description(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.actor
+        self.assertEqual(variable.description, 'The ID of the user who performed the last transition')
+
+    def test_member_workflow__variables__actor__default(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.actor
+        self.assertEqual(variable.getDefaultExprText(), 'user/getId')
+
+    def test_member_workflow__variables__actor__guard(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.actor
+        self.assertIsNone(variable.info_guard)
+
+    def test_member_workflow__variables__comments__for_catalog(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.comments
+        self.assertFalse(variable.for_catalog)
+
+    def test_member_workflow__variables__comments__for_status(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.comments
+        self.assertTrue(variable.for_status)
+
+    def test_member_workflow__variables__comments__updata_always(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.comments
+        self.assertTrue(variable.update_always)
+
+    def test_member_workflow__variables__comments__description(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.comments
+        self.assertEqual(variable.description, 'Comment about the last transition')
+
+    def test_member_workflow__variables__comments__default(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.comments
+        self.assertEqual(variable.getDefaultExprText(),
+            "python:state_change.kwargs.get('comment', '')")
+
+    def test_member_workflow__variables__comments__guard(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.comments
+        self.assertIsNone(variable.info_guard)
+
+    def test_member_workflow__variables__review_history__for_catalog(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.review_history
+        self.assertFalse(variable.for_catalog)
+
+    def test_member_workflow__variables__review_history__for_status(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.review_history
+        self.assertFalse(variable.for_status)
+
+    def test_member_workflow__variables__review_history__updata_always(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.review_history
+        self.assertFalse(variable.update_always)
+
+    def test_member_workflow__variables__review_history__description(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.review_history
+        self.assertEqual(variable.description, 'Provides access to workflow history')
+
+    def test_member_workflow__variables__review_history__default(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.review_history
+        self.assertEqual(variable.getDefaultExprText(),
+            "state_change/getHistory")
+
+    def test_member_workflow__variables__review_history__guard(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.review_history
+        self.assertEqual(variable.info_guard.permissions,
+            ('Request review', 'Review portal content'))
+
+    def test_member_workflow__variables__time__for_catalog(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.time
+        self.assertFalse(variable.for_catalog)
+
+    def test_member_workflow__variables__time__for_status(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.time
+        self.assertTrue(variable.for_status)
+
+    def test_member_workflow__variables__time__updata_always(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.time
+        self.assertTrue(variable.update_always)
+
+    def test_member_workflow__variables__time__description(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.time
+        self.assertEqual(variable.description, 'When the previous transition was performed')
+
+    def test_member_workflow__variables__time__default(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.time
+        self.assertEqual(variable.getDefaultExprText(),
+            "state_change/getDateTime")
+
+    def test_member_workflow__variables__time__guard(self):
+        workflow = self.get_workflow('member_workflow')
+        variable = workflow.variables.time
+        self.assertIsNone(variable.info_guard)
+
     def uninstall_package(self):
         """Uninstall package: slt.policy."""
         installer = getToolByName(self.portal, 'portal_quickinstaller')
