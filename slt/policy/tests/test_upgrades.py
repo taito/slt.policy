@@ -99,3 +99,14 @@ class TestCase(IntegrationTestCase):
         update_propertiestool(self.portal)
 
         self.assertIn('slt.content.MemberArea', site_properties.getProperty('types_not_searched'))
+
+    def test_update_workflows(self):
+        workflow = getToolByName(self.portal, 'portal_workflow')
+        workflow.setChainForPortalTypes(('slt.content.MemberArea', ), 'two_states_workflow')
+        self.assertEqual(workflow.getChainForPortalType('slt.content.MemberArea'),
+            ('two_states_workflow',))
+
+        from slt.policy.upgrades import update_workflows
+        update_workflows(self.portal)
+
+        self.assertEqual(workflow.getChainForPortalType('slt.content.MemberArea'), ())

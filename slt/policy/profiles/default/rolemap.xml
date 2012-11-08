@@ -26,5 +26,11 @@
       <role name="Manager"/>
       <role name="Site Administrator"/>
     </permission>
+    <permission name="Sharing page: Delegate roles" acquire="False">
+      <role name="Contributor"/>
+      <role name="Editor"/>
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+    </permission>
   </permissions>
 </rolemap>

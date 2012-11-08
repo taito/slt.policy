@@ -14,6 +14,7 @@ Change log
 - Added properties for memberdata. [taito]
 - Adds slt.content.MemberArea to
   types_not_searched and metaTypesNotToList. [taito]
+- Update roles for permission: Sharing page: Delegate roles. [taito]
 
 
 0.2 (2012-11-04)

@@ -62,3 +62,13 @@ def update_propertiestool(context, logger=None):
     logger.info('Reimporting propertiestool.')
     setup.runImportStepFromProfile(
         PROFILE_ID, 'propertiestool', run_dependencies=False, purge_old=False)
+
+
+def update_workflows(context, logger=None):
+    """Update workflows"""
+    if logger is None:
+        logger = logging.getLogger(__name__)
+    setup = getToolByName(context, 'portal_setup')
+    logger.info('Reimporting workflows.')
+    setup.runImportStepFromProfile(
+        PROFILE_ID, 'workflow', run_dependencies=False, purge_old=False)

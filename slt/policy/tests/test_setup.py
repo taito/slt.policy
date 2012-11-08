@@ -113,7 +113,7 @@ class TestCase(IntegrationTestCase):
 
     def test_actions__user__orders__url_expr(self):
         action = self.get_action('user', 'orders')
-        self.assertEqual(action.url_expr, 'string:${portal/portal_membership/getHomeUrl}/@@orders')
+        self.assertEqual(action.url_expr, 'string:${portal/portal_membership/getHomeUrl}')
 
     def test_actions__user__orders__available_expr(self):
         action = self.get_action('user', 'orders')
@@ -154,7 +154,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'6')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'8')
 
     def test_metadata__installed__abita_development(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -330,6 +330,21 @@ class TestCase(IntegrationTestCase):
     def test_rolemap__slt_theme_Manage_feed_for_shop_top__acquiredRolesAreUsedBy(self):
         permission = "slt.theme: Manage feed for shop top"
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), 'CHECKED')
+
+    def test_rolemap__Sharing_page_Delegate_roles__rolesOfPermission(self):
+        permission = "Sharing page: Delegate roles"
+        roles = [item['name'] for item in self.portal.rolesOfPermission(
+            permission) if item['selected'] == 'SELECTED']
+        roles.sort()
+        self.assertEqual(roles, [
+            'Contributor',
+            'Editor',
+            'Manager',
+            'Site Administrator'])
+
+    def test_rolemap__Sharing_page_Delegate_roles__acquiredRolesAreUsedBy(self):
+        permission = "Sharing page: Delegate roles"
+        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
 
     def test_setuphandlers__exclude_from_nav(self):
         ids = ['Members', 'events', 'news']

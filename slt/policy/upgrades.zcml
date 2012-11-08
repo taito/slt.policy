@@ -64,4 +64,24 @@
     title="Update propertiestool"
     />
 
+  <genericsetup:upgradeStep
+    description="Update workflow of slt.content.MemberArea."
+    destination="7"
+    handler="slt.policy.upgrades.update_workflows"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="6"
+    title="Update workflows"
+    />
+
+  <genericsetup:upgradeStep
+    description="Update roles for permission: Sharing page: Delegate roles."
+    destination="8"
+    handler="slt.policy.upgrades.update_rolemap"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="7"
+    title="Update rolemap"
+    />
+
 </configure>
