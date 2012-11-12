@@ -4,6 +4,7 @@
   <dependencies>
     <dependency>profile-abita.development:default</dependency>
     <dependency>profile-hexagonit.socialbutton:default</dependency>
+    <dependency>profile-slt.carousel:default</dependency>
     <dependency>profile-slt.theme:default</dependency>
   </dependencies>
 </metadata>

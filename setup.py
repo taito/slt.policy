@@ -32,6 +32,7 @@ setup(
         'plone.browserlayer',
         'setuptools',
         'sll.locales',
+        'slt.carousel',
         'slt.theme',
         'z3c.autoinclude',
         'zope.i18nmessageid'],

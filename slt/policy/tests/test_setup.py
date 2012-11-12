@@ -164,6 +164,10 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('hexagonit.socialbutton'))
 
+    def test_metadata__installed__slt_carousel(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('slt.carousel'))
+
     def test_metadata__installed__slt_theme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('slt.theme'))
@@ -201,7 +205,7 @@ class TestCase(IntegrationTestCase):
             'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_navtree_property('metaTypesNotToList'))
-        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 27)
+        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 28)
 
     def get_site_property(self, name):
         """Get property from site_properties based on the name."""
@@ -236,7 +240,7 @@ class TestCase(IntegrationTestCase):
             'slt.content.MemberArea')
         for ctype in ctypes:
             self.assertIn(ctype, self.get_site_property('types_not_searched'))
-        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 27)
+        self.assertEqual(len(self.get_site_property('types_not_searched')), len(ctypes) + 28)
 
     def test_propertiestool__site_properties__use_email_as_login(self):
         self.assertTrue(self.get_site_property('use_email_as_login'))
@@ -1059,15 +1063,6 @@ class TestCase(IntegrationTestCase):
     def test_uninstall__properties___validate_email(self):
         self.uninstall_package()
         self.assertTrue(self.portal.getProperty('validate_email'))
-
-    def test_uninstall__propertiestool__navtree_properties__metaTypesNotToList(self):
-        self.uninstall_package()
-        ctypes = (
-            'Collection', 'Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'Topic',
-            'slt.content.MemberArea')
-        for ctype in ctypes:
-            self.assertIn(ctype, self.get_navtree_property('metaTypesNotToList'))
-        self.assertEqual(len(self.get_navtree_property('metaTypesNotToList')), len(ctypes) + 26)
 
     def test_uninstall__propertiestool__site_properties__available_editors(self):
         self.uninstall_package()
