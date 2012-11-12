@@ -17,6 +17,14 @@ class TestCase(IntegrationTestCase):
         actions = getToolByName(self.portal, 'portal_actions')
         return getattr(getattr(actions, category), name)
 
+    def test_actions__object_buttons__hide_social_buttons(self):
+        action = self.get_action('object_buttons', 'hide_social_buttons')
+        self.assertEqual(action.permissions, ('hexagonit.socialbutton: Manage Social Button',))
+
+    def test_actions__object_buttons__show_social_buttons(self):
+        action = self.get_action('object_buttons', 'show_social_buttons')
+        self.assertEqual(action.permissions, ('hexagonit.socialbutton: Manage Social Button',))
+
     def test_actions__user__dashboard(self):
         action = self.get_action('user', 'dashboard')
         self.assertFalse(action.visible)
@@ -348,6 +356,21 @@ class TestCase(IntegrationTestCase):
 
     def test_rolemap__Sharing_page_Delegate_roles__acquiredRolesAreUsedBy(self):
         permission = "Sharing page: Delegate roles"
+        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
+
+    def test_rolemap__hexagonit_socialbutton_Manage_Social_Button__rolesOfPermission(self):
+        permission = "hexagonit.socialbutton: Manage Social Button"
+        roles = [item['name'] for item in self.portal.rolesOfPermission(
+            permission) if item['selected'] == 'SELECTED']
+        roles.sort()
+        self.assertEqual(roles, [
+            'Contributor',
+            'Editor',
+            'Manager',
+            'Site Administrator'])
+
+    def test_rolemap__hexagonit_socialbutton_Manage_Social_Button__acquiredRolesAreUsedBy(self):
+        permission = "hexagonit.socialbutton: Manage Social Button"
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
 
     def test_setuphandlers__exclude_from_nav(self):

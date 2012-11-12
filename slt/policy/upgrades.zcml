@@ -75,7 +75,7 @@
     />
 
   <genericsetup:upgradeStep
-    description="Update roles for permission: Sharing page: Delegate roles."
+    description="Update roles for permission: Sharing page: Delegate roles and hexagonit.socialbutton: Manage Social Button."
     destination="8"
     handler="slt.policy.upgrades.update_rolemap"
     profile="slt.policy:default"
