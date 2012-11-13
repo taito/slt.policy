@@ -55,6 +55,16 @@ def update_actions(context, logger=None):
 
 
 def update_propertiestool(context, logger=None):
+    """Update properties"""
+    if logger is None:
+        logger = logging.getLogger(__name__)
+    setup = getToolByName(context, 'portal_setup')
+    logger.info('Reimporting properties.')
+    setup.runImportStepFromProfile(
+        PROFILE_ID, 'properties', run_dependencies=False, purge_old=False)
+
+
+def update_propertiestool(context, logger=None):
     """Update propertiestool"""
     if logger is None:
         logger = logging.getLogger(__name__)
