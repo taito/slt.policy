@@ -7,7 +7,7 @@ This package contains policies for SLT shopping site.
 Change log
 ----------
 
-0.3 (2012-11-XX)
+0.3 (2012-11-13)
 ================
 
 - Added social buttons to Article and its container. [taito]
@@ -17,6 +17,7 @@ Change log
 - Update roles for permission: Sharing page: Delegate roles. [taito]
 - Added member_workflow for member related content types. [taito]
 - Added dependency to slt.carousel. [taito]
+- Updated default page. [taito]
 
 0.2 (2012-11-04)
 ================
