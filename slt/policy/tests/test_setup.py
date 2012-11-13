@@ -162,7 +162,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'8')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'9')
 
     def test_metadata__installed__abita_development(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -171,10 +171,6 @@ class TestCase(IntegrationTestCase):
     def test_metadata__installed__hexagonit_socialbutton(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('hexagonit.socialbutton'))
-
-    def test_metadata__installed__slt_carousel(self):
-        installer = getToolByName(self.portal, 'portal_quickinstaller')
-        self.failUnless(installer.isProductInstalled('slt.carousel'))
 
     def test_metadata__installed__slt_theme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -197,7 +193,7 @@ class TestCase(IntegrationTestCase):
             'Suomen Luonnonsuojelun Tuki Oy')
 
     def test_properties__default_page(self):
-        self.assertEqual(self.portal.getProperty('default_page'), 'view')
+        self.assertEqual(self.portal.getProperty('default_page'), 'slt-view')
 
     def test_properties__validate_email(self):
         self.assertTrue(self.portal.getProperty('validate_email'))
@@ -1078,10 +1074,6 @@ class TestCase(IntegrationTestCase):
         self.uninstall_package()
         self.assertEqual(self.portal.getProperty('email_from_name'),
             'Suomen Luonnonsuojelun Tuki Oy')
-
-    def test_unintall__properties___default_page(self):
-        self.uninstall_package()
-        self.assertEqual(self.portal.getProperty('default_page'), 'view')
 
     def test_uninstall__properties___validate_email(self):
         self.uninstall_package()

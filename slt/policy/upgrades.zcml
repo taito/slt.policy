@@ -84,4 +84,14 @@
     title="Update rolemap"
     />
 
+  <genericsetup:upgradeStep
+    description="Update properties for default_page."
+    destination="9"
+    handler="slt.policy.upgrades.update_rolemap"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="8"
+    title="Update properties"
+    />
+
 </configure>
