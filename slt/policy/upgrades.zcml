@@ -94,4 +94,14 @@
     title="Update properties"
     />
 
+  <genericsetup:upgradeStep
+    description="Update property: icon_visibility to disabled."
+    destination="10"
+    handler="slt.policy.upgrades.update_propertiestool"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="9"
+    title="Update propertiestool"
+    />
+
 </configure>

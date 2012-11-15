@@ -23,7 +23,7 @@
     <property name="disable_folder_sections" type="boolean">True</property>
     <property name="enable_sitemap" type="boolean">True</property>
     <property name="external_links_open_new_window" type="string">true</property>
-    <property name="icon_visibility" type="string">authenticated</property>
+    <property name="icon_visibility" type="string">disabled</property>
     <property name="types_not_searched" type="lines" purge="False">
       <element value="Collection"/>
       <element value="Document"/>

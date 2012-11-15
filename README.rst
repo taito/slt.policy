@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Change log
 ----------
 
+0.4 (2012-11-15)
+================
+
+- Added upgrade step to update property: icon_visibility to disabled. [taito]
+
 0.3 (2012-11-13)
 ================
 
