@@ -236,7 +236,7 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(self.get_site_property('external_links_open_new_window'), 'true')
 
     def test_propertiestool__site_properties__icon_visibility(self):
-        self.assertEqual(self.get_site_property('icon_visibility'), 'authenticated')
+        self.assertEqual(self.get_site_property('icon_visibility'), 'disabled')
 
     def test_propertiestool__site_properties__types_not_searched(self):
         ctypes = (
@@ -1102,10 +1102,6 @@ class TestCase(IntegrationTestCase):
     def test_uninstall__propertiestool__site_properties__external_links_open_new_window(self):
         self.uninstall_package()
         self.assertEqual(self.get_site_property('external_links_open_new_window'), 'true')
-
-    def test_uninstall__propertiestool__site_properties__icon_visibility(self):
-        self.uninstall_package()
-        self.assertEqual(self.get_site_property('icon_visibility'), 'authenticated')
 
     def test_uninstall__propertiestool__site_properties__use_email_as_login(self):
         self.uninstall_package()

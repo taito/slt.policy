@@ -54,7 +54,7 @@ def update_actions(context, logger=None):
     setup.runImportStepFromProfile(PROFILE_ID, 'actions', run_dependencies=False, purge_old=False)
 
 
-def update_propertiestool(context, logger=None):
+def update_properties(context, logger=None):
     """Update properties"""
     if logger is None:
         logger = logging.getLogger(__name__)
