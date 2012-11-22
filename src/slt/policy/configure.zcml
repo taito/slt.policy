@@ -5,7 +5,9 @@
   xmlns:i18n="http://namespaces.zope.org/i18n"
   xmlns="http://namespaces.zope.org/zope">
 
-  <includeDependencies package="." />
+  <include package="abita.development"/>
+  <include package="hexagonit.socialbutton"/>
+  <include package="slt.theme"/>
   <i18n:registerTranslations directory="locales" />
 
   <genericsetup:registerProfile

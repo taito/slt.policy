@@ -1,4 +1,5 @@
 exclude .travis.yml
 exclude bootstrap.py
 exclude travis.cfg
-prune buildout.d
+recursive-include docs *
+include *
