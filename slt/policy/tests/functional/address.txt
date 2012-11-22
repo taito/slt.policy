@@ -88,7 +88,7 @@ You need to fill the billing Info since you have not added your address to your 
     >>> browser.getControl(name="form.billing.widgets.first_name").value = 'Billing First Näme'
     >>> browser.getControl(name="form.billing.widgets.last_name").value = 'Billing Last Näme'
     >>> browser.getControl(name="form.billing.widgets.organization").value = 'Billing Örganization'
-    >>> browser.getControl(name="form.billing.widgets.vat").value = 'FI1234567890'
+    >>> browser.getControl(name="form.billing.widgets.vat").value = 'Billing1234567890'
     >>> browser.getControl(name="form.billing.widgets.email").value = 'first.last@email.billing'
     >>> browser.getControl(name="form.billing.widgets.street").value = 'Billing Street Äddress'
     >>> browser.getControl(name="form.billing.widgets.post").value = 'Billing Pöst Cöde'
@@ -99,7 +99,7 @@ You need to fill the billing Info since you have not added your address to your 
 
     >>> print browser.bycss('#form-billing-widgets-first_name')
     --- 1 ---
-    <input id="form-billing-widgets-first_name" name="form.billing.widgets.first_name" class="text-widget required textline-field" value="Billing First N&#228;me" type="text">
+    ... value="Billing First N&#228;me" ...
 
     >>> print browser.bycss('#form-billing-widgets-last_name')
     --- 1 ---
@@ -111,7 +111,7 @@ You need to fill the billing Info since you have not added your address to your 
 
     >>> print browser.bycss('#form-billing-widgets-vat')
     --- 1 ---
-    <input id="form-billing-widgets-vat" name="form.billing.widgets.vat" class="text-widget textline-field" value="FI1234567890" type="text">
+    <input id="form-billing-widgets-vat" name="form.billing.widgets.vat" class="text-widget textline-field" value="Billing1234567890" type="text">
 
     >>> print browser.bycss('#form-billing-widgets-email')
     --- 1 ---
@@ -147,7 +147,7 @@ You need to fill the billing Info since you have not added your address to your 
 
     >>> print browser.bycss('#form-shipping-widgets-vat')
     --- 1 ---
-    <input id="form-shipping-widgets-vat" name="form.shipping.widgets.vat" class="text-widget textline-field" value="FI1234567890" type="text">
+    <input id="form-shipping-widgets-vat" name="form.shipping.widgets.vat" class="text-widget textline-field" value="Billing1234567890" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-email')
     --- 1 ---
@@ -169,6 +169,19 @@ You need to fill the billing Info since you have not added your address to your 
     --- 1 ---
     <input id="form-shipping-widgets-phone" name="form.shipping.widgets.phone" class="text-widget required textline-field" value="Billing Ph&#246;ne Number" type="text">
 
+Update shipping info::
+
+    >>> browser.getControl(name="form.shipping.widgets.first_name").value = 'Shipping First Näme'
+    >>> browser.getControl(name="form.shipping.widgets.last_name").value = 'Shipping Last Näme'
+    >>> browser.getControl(name="form.shipping.widgets.organization").value = 'Shipping Örganization'
+    >>> browser.getControl(name="form.shipping.widgets.vat").value = 'Shipping1234567890'
+    >>> browser.getControl(name="form.shipping.widgets.email").value = 'first.last@email.shipping'
+    >>> browser.getControl(name="form.shipping.widgets.street").value = 'Shipping Street Äddress'
+    >>> browser.getControl(name="form.shipping.widgets.post").value = 'Shipping Pöst Cöde'
+    >>> browser.getControl(name="form.shipping.widgets.city").value = 'Shipping €ity'
+    >>> browser.getControl(name="form.shipping.widgets.phone").value = 'Shipping Phöne Number'
+    >>> browser.getControl(name="form.shipping.buttons.submit").click()
+    >>> browser.reload()
 
 # Go to billing-and-shippng::
 
