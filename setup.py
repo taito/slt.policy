@@ -19,20 +19,20 @@ setup(
     author_email='taito.horiuchi@abita.fi',
     url='http://www.sll.fi/kauppa',
     license='None-free',
-    packages=find_packages(exclude=['ez_setup']),
+    # packages=find_packages(exclude=['ez_setup']),
+    packages=find_packages('src', exclude=['ez_setup']),
+    package_dir={'': 'src'},
     namespace_packages=['slt'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'Plone>=4.2'
         'abita.development',
         'hexagonit.socialbutton',
         'hexagonit.testing',
-        'plone.browserlayer',
         'setuptools',
         'sll.locales',
-        'slt.theme',
-        'z3c.autoinclude',
-        'zope.i18nmessageid'],
+        'slt.theme'],
     entry_points="""
     # -*- Entry points: -*-
 
