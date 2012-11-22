@@ -1,0 +1,167 @@
+Creating shop structure
+=======================
+
+Log in as Manager::
+
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+# Add cart portlet::
+
+#     >>> browser.open('/++contextportlets++plone.leftcolumn/+/collective.cart.core.CartPortlet')
+
+# Add some Shipping Methods::
+
+#     >>> browser.open('/shipping-methods/createObject?type_name=ShippingMethod')
+#     >>> browser.getControl(name="title").value = 'ShippingMethöd1'
+#     >>> browser.getControl(name="description").value = 'Descriptiön of ShippingMethöd1'
+#     >>> browser.getControl(name="min_delivery_days").value = '3'
+#     >>> browser.getControl(name="max_delivery_days").value = '5'
+#     >>> browser.getControl(name="shipping_fee").value = 'return 9.00'
+#     >>> browser.getControl(name="form.button.save").click()
+#     >>> 'Shipping fee for one kg' in browser.contents
+#     True
+#     >>> '9.0' in browser.contents
+#     True
+
+#     >>> shippingmethod1_uuid = portal['shop']['shipping-methods']['shippingmethod1'].UID()
+
+#     >>> browser.open('/shop/shipping-methods/createObject?type_name=ShippingMethod')
+#     >>> browser.getControl(name="title").value = 'ShippingMethöd2'
+#     >>> browser.getControl(name="description").value = 'Descriptiön of ShippingMethöd2'
+#     >>> browser.getControl(name="min_delivery_days").value = '5'
+#     >>> browser.getControl(name="max_delivery_days").value = '10'
+#     >>> browser.getControl(name="shipping_fee").value = 'def shipping_fee(weight):\n    return weight * 2\nreturn shipping_fee'
+#     >>> browser.getControl(name="form.button.save").click()
+#     >>> '2.0' in browser.contents
+#     True
+
+#     >>> shippingmethod2_uuid = portal['shop']['shipping-methods']['shippingmethod2'].UID()
+
+
+Add Article Container::
+
+    >>> browser.open('/++add++collective.cart.shopping.ArticleContainer')
+    >>> browser.getControl(name="form.widgets.IDublinCore.title").value = 'Ärticle Cöntäiner'
+    >>> browser.getControl(name="form.widgets.IDublinCore.description").value = 'Descriptiön of Äarticle Cöntäiner.'
+    >>> browser.getControl(name="form.buttons.save").click()
+    >>> browser.getLink('Publish').click()
+
+Add Article1::
+
+    >>> browser.open('/article-container/++add++collective.cart.core.Article')
+    >>> browser.getControl(name="form.widgets.IDublinCore.title").value = 'Ärticle1'
+    >>> browser.getControl(name="form.widgets.IDublinCore.description").value = 'Descriptiön of Ärticle1'
+    >>> browser.getControl(name="form.widgets.ISKU.sku").value = 'SKU1'
+    >>> browser.getControl(name="form.widgets.IDiscount.price").value = '24.60'
+    >>> browser.getControl(name="form.widgets.ISize.weight").value = '100.0'
+    >>> browser.getControl(name="form.buttons.save").click()
+    >>> browser.getLink('Publish').click()
+
+Add Stock to Ärticle1::
+
+    >>> browser.open('/article-container/article1/++add++collective.cart.stock.Stock')
+    >>> browser.getControl(name="form.widgets.IBasic.title").value = 'Stöck1'
+    >>> browser.getControl(name="form.widgets.IBasic.description").value = 'Descriptiön of Stöck1'
+    >>> browser.getControl(name="form.widgets.stock").value = '100'
+    >>> browser.getControl( name="form.widgets.IStockPrice.price").value = '4.00'
+    >>> browser.getControl(name="form.buttons.save").click()
+
+Log out and log in as Member1 and add to cart::
+
+    >>> browser.getLink('Log out').click()
+    >>> browser.login('member1', 'member1')
+    >>> browser.open('/article-container/article1')
+    >>> browser.getControl(name="form.buttons.AddToCart").click()
+
+Go to cart::
+
+    >>> browser.open('/@@billing-and-shipping')
+    >>> browser.url
+    'http://nohost/plone/@@billing-and-shipping'
+    >>> print browser.bycss('#order-flow')
+    --- 1 ---
+    <section id="order-flow"><a href="http://nohost/plone/@@cart">1. Cart</a>&#160;&#160;-&#160;&#160;<span id="current-step">2. Customer Info and Shipping Method</span>&#160;&#160;-&#160;&#160;<span>3. Confirmation</span>
+    </section>
+
+You need to fill the billing Info since you have not added your address to your preferences::
+
+    >>> browser.getControl(name="form.billing.widgets.first_name").value = 'Billing First Näme'
+    >>> browser.getControl(name="form.billing.widgets.last_name").value = 'Billing Last Näme'
+    >>> browser.getControl(name="form.billing.widgets.organization").value = 'Billing Örganization'
+    >>> browser.getControl(name="form.billing.widgets.vat").value = 'FI1234567890'
+    >>> browser.getControl(name="form.billing.widgets.email").value = 'first.last@email.billing'
+    >>> browser.getControl(name="form.billing.widgets.street").value = 'Billing Street Äddress'
+    >>> browser.getControl(name="form.billing.widgets.post").value = 'Billing Pöst Cöde'
+    >>> browser.getControl(name="form.billing.widgets.city").value = 'Billing €ity'
+    >>> browser.getControl(name="form.billing.widgets.phone").value = 'Billing Phöne Number'
+    >>> browser.getControl(name="form.billing.buttons.submit").click()
+
+    >>> print browser.bycss('#form-billing-widgets-first_name')
+
+    >>> print browser.bycss('#form-billing-widgets-last_name')
+
+    >>> print browser.bycss('#form-billing-widgets-organization')
+
+    >>> print browser.bycss('#form-billing-widgets-vat')
+
+    >>> print browser.bycss('#form-billing-widgets-email')
+
+    >>> print browser.bycss('#form-billing-widgets-street')
+
+    >>> print browser.bycss('#form-billing-widgets-post')
+
+    >>> print browser.bycss('#form-billing-widgets-city')
+
+    >>> print browser.bycss('#form-billing-widgets-phone')
+
+    >>> print browser.bycss('#form-shipping-widgets-first_name')
+
+    >>> print browser.bycss('#form-shipping-widgets-last_name')
+
+    >>> print browser.bycss('#form-shipping-widgets-organization')
+
+    >>> print browser.bycss('#form-shipping-widgets-vat')
+
+    >>> print browser.bycss('#form-shipping-widgets-email')
+
+    >>> print browser.bycss('#form-shipping-widgets-street')
+
+    >>> print browser.bycss('#form-shipping-widgets-post')
+
+    >>> print browser.bycss('#form-shipping-widgets-city')
+
+    >>> print browser.bycss('#form-shipping-widgets-phone')
+
+
+#     >>> 'Billing First Näme' in browser.contents
+#     True
+#     >>> 'Billing Last Näme' in browser.contents
+#     True
+#     >>> 'Billing Örganization' in browser.contents
+#     True
+#     >>> 'FI1234567890' in browser.contents
+#     True
+#     >>> 'first.last@email.billing' in browser.contents
+#     True
+#     >>> 'Billing Street Äddress' in browser.contents
+#     True
+#     >>> 'Billing Pöst Cöde' in browser.contents
+#     True
+#     >>> 'Billing €ity' in browser.contents
+#     True
+#     >>> 'Billing Phöne Number' in browser.contents
+#     True
+
+
+# Go to billing-and-shippng::
+
+#     >>> browser.getControl(name="form.checkout").click()
+
+
+# Go to /@@cart page::
+
+#     >>> browser.open('/shop/@@cart')
+
+
+
+    # >>> browser.openBrowser()
