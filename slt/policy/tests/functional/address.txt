@@ -95,62 +95,79 @@ You need to fill the billing Info since you have not added your address to your 
     >>> browser.getControl(name="form.billing.widgets.city").value = 'Billing €ity'
     >>> browser.getControl(name="form.billing.widgets.phone").value = 'Billing Phöne Number'
     >>> browser.getControl(name="form.billing.buttons.submit").click()
+    >>> browser.reload()
 
     >>> print browser.bycss('#form-billing-widgets-first_name')
+    --- 1 ---
+    <input id="form-billing-widgets-first_name" name="form.billing.widgets.first_name" class="text-widget required textline-field" value="Billing First N&#228;me" type="text">
 
     >>> print browser.bycss('#form-billing-widgets-last_name')
+    --- 1 ---
+    <input id="form-billing-widgets-last_name" name="form.billing.widgets.last_name" class="text-widget required textline-field" value="Billing Last N&#228;me" type="text">
 
     >>> print browser.bycss('#form-billing-widgets-organization')
+    --- 1 ---
+    <input id="form-billing-widgets-organization" name="form.billing.widgets.organization" class="text-widget textline-field" value="Billing &#214;rganization" type="text">
 
     >>> print browser.bycss('#form-billing-widgets-vat')
+    --- 1 ---
+    <input id="form-billing-widgets-vat" name="form.billing.widgets.vat" class="text-widget textline-field" value="FI1234567890" type="text">
 
     >>> print browser.bycss('#form-billing-widgets-email')
+    --- 1 ---
+    <input id="form-billing-widgets-email" name="form.billing.widgets.email" class="text-widget required textline-field" value="first.last@email.billing" type="text">
 
     >>> print browser.bycss('#form-billing-widgets-street')
+    --- 1 ---
+    <input id="form-billing-widgets-street" name="form.billing.widgets.street" class="text-widget required textline-field" value="Billing Street &#196;ddress" type="text">
 
     >>> print browser.bycss('#form-billing-widgets-post')
+    --- 1 ---
+    <input id="form-billing-widgets-post" name="form.billing.widgets.post" class="text-widget textline-field" value="Billing P&#246;st C&#246;de" type="text">
 
     >>> print browser.bycss('#form-billing-widgets-city')
+    --- 1 ---
+    <input id="form-billing-widgets-city" name="form.billing.widgets.city" class="text-widget required textline-field" value="Billing &#8364;ity" type="text">
 
     >>> print browser.bycss('#form-billing-widgets-phone')
+    --- 1 ---
+    <input id="form-billing-widgets-phone" name="form.billing.widgets.phone" class="text-widget required textline-field" value="Billing Ph&#246;ne Number" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-first_name')
+    --- 1 ---
+    <input id="form-shipping-widgets-first_name" name="form.shipping.widgets.first_name" class="text-widget required textline-field" value="Billing First N&#228;me" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-last_name')
+    --- 1 ---
+    <input id="form-shipping-widgets-last_name" name="form.shipping.widgets.last_name" class="text-widget required textline-field" value="Billing Last N&#228;me" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-organization')
+    --- 1 ---
+    <input id="form-shipping-widgets-organization" name="form.shipping.widgets.organization" class="text-widget textline-field" value="Billing &#214;rganization" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-vat')
+    --- 1 ---
+    <input id="form-shipping-widgets-vat" name="form.shipping.widgets.vat" class="text-widget textline-field" value="FI1234567890" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-email')
+    --- 1 ---
+    <input id="form-shipping-widgets-email" name="form.shipping.widgets.email" class="text-widget required textline-field" value="first.last@email.billing" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-street')
+    --- 1 ---
+    <input id="form-shipping-widgets-street" name="form.shipping.widgets.street" class="text-widget required textline-field" value="Billing Street &#196;ddress" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-post')
+    --- 1 ---
+    <input id="form-shipping-widgets-post" name="form.shipping.widgets.post" class="text-widget textline-field" value="Billing P&#246;st C&#246;de" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-city')
+    --- 1 ---
+    <input id="form-shipping-widgets-city" name="form.shipping.widgets.city" class="text-widget required textline-field" value="Billing &#8364;ity" type="text">
 
     >>> print browser.bycss('#form-shipping-widgets-phone')
-
-
-#     >>> 'Billing First Näme' in browser.contents
-#     True
-#     >>> 'Billing Last Näme' in browser.contents
-#     True
-#     >>> 'Billing Örganization' in browser.contents
-#     True
-#     >>> 'FI1234567890' in browser.contents
-#     True
-#     >>> 'first.last@email.billing' in browser.contents
-#     True
-#     >>> 'Billing Street Äddress' in browser.contents
-#     True
-#     >>> 'Billing Pöst Cöde' in browser.contents
-#     True
-#     >>> 'Billing €ity' in browser.contents
-#     True
-#     >>> 'Billing Phöne Number' in browser.contents
-#     True
+    --- 1 ---
+    <input id="form-shipping-widgets-phone" name="form.shipping.widgets.phone" class="text-widget required textline-field" value="Billing Ph&#246;ne Number" type="text">
 
 
 # Go to billing-and-shippng::
