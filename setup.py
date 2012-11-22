@@ -26,7 +26,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Plone>=4.2'
+        'Products.CMFPlone>=4.2'
         'abita.development',
         'hexagonit.socialbutton',
         'hexagonit.testing',
