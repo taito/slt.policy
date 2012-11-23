@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Change log
 ----------
 
+0.5 (2012-11-xx)
+================
+
+- Added testing integration to Travis CI. [taito]
+
 0.4 (2012-11-15)
 ================
 
