@@ -28,6 +28,7 @@ setup(
     install_requires=[
         'Products.CMFPlone>=4.2'
         'abita.development',
+        'five.pt',
         'hexagonit.socialbutton',
         'hexagonit.testing',
         'setuptools',
