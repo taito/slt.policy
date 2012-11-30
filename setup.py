@@ -7,8 +7,6 @@ setup(
     version='0.4.0.1',
     description="Turns plone site into SLT shopping site.",
     long_description=open("README.rst").read(),
-    # Get more strings from
-    # http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Framework :: Plone",
         "Framework :: Plone :: 4.2",
@@ -25,12 +23,10 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Products.CMFPlone>=4.2'
-        'abita.development',
-        'five.pt',
-        'hexagonit.socialbutton',
+        'Products.CMFPlone'
         'hexagonit.testing',
         'setuptools',
+        'sll.basepolicy'
         'sll.locales',
         'slt.theme'],
     entry_points="""
