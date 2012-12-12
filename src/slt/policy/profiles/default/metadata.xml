@@ -2,8 +2,7 @@
 <metadata>
   <version>10</version>
   <dependencies>
-    <dependency>profile-abita.development:default</dependency>
-    <dependency>profile-hexagonit.socialbutton:default</dependency>
+    <dependency>profile-sll.basepolicy:default</dependency>
     <dependency>profile-slt.theme:default</dependency>
   </dependencies>
 </metadata>

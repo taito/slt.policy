@@ -3,40 +3,23 @@
 
   <object name="navtree_properties" meta_type="Plone Property Sheet" purge="False">
     <property name="metaTypesNotToList" type="lines" purge="False">
-      <element value="Collection"/>
       <element value="Document"/>
-      <element value="Event"/>
-      <element value="File"/>
-      <element value="Image"/>
-      <element value="Link"/>
       <element value="News Item"/>
-      <element value="Topic"/>
       <element value="slt.content.MemberArea"/>
     </property>
   </object>
 
   <object name="site_properties" meta_type="Plone Property Sheet">
-    <property name="available_editors" type="lines">
-      <element value="TinyMCE"/>
-    </property>
-    <property name="default_language" type="string">fi</property>
-    <property name="disable_folder_sections" type="boolean">True</property>
-    <property name="enable_sitemap" type="boolean">True</property>
-    <property name="external_links_open_new_window" type="string">true</property>
     <property name="icon_visibility" type="string">disabled</property>
     <property name="types_not_searched" type="lines" purge="False">
-      <element value="Collection"/>
       <element value="Document"/>
       <element value="Event"/>
       <element value="File"/>
       <element value="Image"/>
       <element value="Link"/>
       <element value="News Item"/>
-      <element value="Topic"/>
       <element value="slt.content.MemberArea"/>
     </property>
-    <property name="use_email_as_login" type="boolean">True</property>
-    <property name="visible_ids" type="boolean">True</property>
   </object>
 
 </object>

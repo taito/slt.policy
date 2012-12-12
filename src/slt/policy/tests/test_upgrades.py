@@ -1,112 +1,65 @@
 from Products.CMFCore.utils import getToolByName
 from slt.policy.tests.base import IntegrationTestCase
 
+import mock
+import unittest
 
-class TestCase(IntegrationTestCase):
+
+class TestCase(unittest.TestCase):
     """TestCase for upgrade steps."""
 
-    def setUp(self):
-        self.portal = self.layer['portal']
+    @mock.patch('slt.policy.upgrades.reimport_profile')
+    def test_reimport_actions(self, reimport_profile):
+        context = mock.Mock()
+        from slt.policy.upgrades import reimport_actions
+        reimport_actions(context)
+        reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'actions')
 
-    def test_update_rolemap(self):
-        permission = "slt.theme: Manage feed for shop top"
-        self.portal.manage_acquiredPermissions()
-        self.portal.manage_permission(permission)
-        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
-        roles = [item['name'] for item in self.portal.rolesOfPermission(
-            permission) if item['selected'] == 'SELECTED']
-        self.assertEqual(len(roles), 0)
+    @mock.patch('slt.policy.upgrades.reimport_profile')
+    def test_reimport_memberdata_properties(self, reimport_profile):
+        context = mock.Mock()
+        from slt.policy.upgrades import reimport_memberdata_properties
+        reimport_memberdata_properties(context)
+        reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'memberdata-properties')
 
-        from slt.policy.upgrades import update_rolemap
-        update_rolemap(self.portal)
+    @mock.patch('slt.policy.upgrades.reimport_profile')
+    def test_reimport_properties(self, reimport_profile):
+        context = mock.Mock()
+        from slt.policy.upgrades import reimport_properties
+        reimport_properties(context)
+        reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'properties')
 
-        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), 'CHECKED')
-        roles = [item['name'] for item in self.portal.rolesOfPermission(
-            permission) if item['selected'] == 'SELECTED']
-        roles.sort()
-        self.assertEqual(roles, [
-            'Contributor',
-            'Editor',
-            'Manager',
-            'Site Administrator'])
+    @mock.patch('slt.policy.upgrades.reimport_profile')
+    def test_reimport_propertiestool(self, reimport_profile):
+        context = mock.Mock()
+        from slt.policy.upgrades import reimport_propertiestool
+        reimport_propertiestool(context)
+        reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'propertiestool')
 
-    def test_update_typeinfo(self):
-        types = getToolByName(self.portal, 'portal_types')
-        ctype = types.getTypeInfo('collective.cart.shopping.SubArticle')
-        ctype.global_allow = True
-        self.assertTrue(ctype.global_allow)
+    @mock.patch('slt.policy.upgrades.reimport_profile')
+    def test_reimport_registry(self, reimport_profile):
+        context = mock.Mock()
+        from slt.policy.upgrades import reimport_registry
+        reimport_registry(context)
+        reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'plone.app.registry')
 
-        from slt.policy.upgrades import update_typeinfo
-        update_typeinfo(self.portal)
+    @mock.patch('slt.policy.upgrades.reimport_profile')
+    def test_reimport_rolemap(self, reimport_profile):
+        context = mock.Mock()
+        from slt.policy.upgrades import reimport_rolemap
+        reimport_rolemap(context)
+        reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'rolemap')
 
-        self.assertFalse(ctype.global_allow)
+    @mock.patch('slt.policy.upgrades.reimport_profile')
+    def test_reimport_typeinfo(self, reimport_profile):
+        context = mock.Mock()
+        from slt.policy.upgrades import reimport_typeinfo
+        reimport_typeinfo(context)
+        reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'typeinfo')
 
-    def test_update_registry(self):
-        from zope.component import getUtility
-        from plone.registry.interfaces import IRegistry
-        record = getUtility(IRegistry).records.get('hexagonit.socialbutton.codes')
-        record.value = {
-            u'twitter': {u'code_text': u'<CODE />'},
-        }
-
-        self.assertEqual(getUtility(IRegistry)['hexagonit.socialbutton.codes'],
-            {u'twitter': {u'code_text': u'<CODE />'}})
-
-        from slt.policy.upgrades import update_registry
-        update_registry(self.portal)
-
-        self.assertEqual(getUtility(IRegistry)['hexagonit.socialbutton.codes'], {
-            u'twitter': {u'code_text': u'<a class="social-button twitter" title="Twitter" href="https://twitter.com/share?text=${title}?url=${url}">\n<img src="${portal_url}/++resource++hexagonit.socialbutton/twitter.gif" />\n</a>'},
-            u'facebook': {u'code_text': u'<a class="social-button facebook" title="Facebook" target="_blank" href="http://www.facebook.com/sharer.php?t=${title}&u=${url}">\n<img src="${portal_url}/++resource++hexagonit.socialbutton/facebook.gif" />\n</a>'},
-            u'google-plus': {u'code_text': u'<a class="social-button googleplus" title="Google+" href="https://plusone.google.com/_/+1/confirm?hl=${lang}&title=${title}&url=${url}">\n<img src="${portal_url}/++resource++hexagonit.socialbutton/google-plus.gif" />\n</a>'},
-        })
-
-    def test_update_memberdata_properties(self):
-        memberdata = getToolByName(self.portal, 'portal_memberdata')
-        ids = ['registration_number', ]
-        memberdata.manage_delProperties(ids=ids)
-        for pid in ids:
-            self.assertFalse(memberdata.hasProperty(pid))
-
-        from slt.policy.upgrades import update_memberdata_properties
-        update_memberdata_properties(self.portal)
-
-        for pid in ids:
-            self.assertTrue(memberdata.hasProperty(pid))
-
-    def get_action(self, category, name):
-        """Get action by category and name."""
-        actions = getToolByName(self.portal, 'portal_actions')
-        return getattr(getattr(actions, category), name)
-
-    def test_update_actions(self):
-        action = self.get_action('user', 'dashboard')
-        action.visible = True
-        self.assertTrue(action.visible)
-
-        from slt.policy.upgrades import update_actions
-        update_actions(self.portal)
-
-        self.assertFalse(action.visible)
-
-    def test_update_propertiestool(self):
-        properties = getToolByName(self.portal, 'portal_properties')
-        site_properties = getattr(properties, 'site_properties')
-        site_properties.manage_changeProperties(types_not_searched=())
-        self.assertNotIn('slt.content.MemberArea', site_properties.getProperty('types_not_searched'))
-
-        from slt.policy.upgrades import update_propertiestool
-        update_propertiestool(self.portal)
-
-        self.assertIn('slt.content.MemberArea', site_properties.getProperty('types_not_searched'))
-
-    def test_update_workflows(self):
-        workflow = getToolByName(self.portal, 'portal_workflow')
-        workflow.setChainForPortalTypes(('slt.content.MemberArea', ), 'two_states_workflow')
-        self.assertEqual(workflow.getChainForPortalType('slt.content.MemberArea'),
-            ('two_states_workflow',))
-
-        from slt.policy.upgrades import update_workflows
-        update_workflows(self.portal)
-
-        self.assertEqual(workflow.getChainForPortalType('slt.content.MemberArea'), ('member_workflow',))
+    @mock.patch('slt.policy.upgrades.reimport_profile')
+    def test_reimport_workflow(self, reimport_profile):
+        context = mock.Mock()
+        from slt.policy.upgrades import reimport_workflow
+        reimport_workflow(context)
+        reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'workflow')

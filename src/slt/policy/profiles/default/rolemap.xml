@@ -6,10 +6,6 @@
       <role name="Manager" />
       <role name="Site Administrator"/>
     </permission>
-    <permission name="Portlets: View dashboard" acquire="True">
-      <role name="Manager" />
-      <role name="Site Administrator"/>
-    </permission>
     <permission name="Portlets: Manage own portlets" acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
@@ -21,18 +17,6 @@
       <role name="Site Administrator"/>
     </permission>
     <permission name="slt.theme: Manage feed for shop top" acquire="True">
-      <role name="Contributor"/>
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="Sharing page: Delegate roles" acquire="False">
-      <role name="Contributor"/>
-      <role name="Editor"/>
-      <role name="Manager"/>
-      <role name="Site Administrator"/>
-    </permission>
-    <permission name="hexagonit.socialbutton: Manage Social Button" acquire="False">
       <role name="Contributor"/>
       <role name="Editor"/>
       <role name="Manager"/>

@@ -15,7 +15,7 @@ setup(
     keywords='',
     author='Taito Horiuchi',
     author_email='taito.horiuchi@abita.fi',
-    url='http://www.sll.fi/kauppa',
+    url='https://github.com/taito/slt.theme',
     license='None-free',
     packages=find_packages('src', exclude=['ez_setup']),
     package_dir={'': 'src'},
@@ -23,10 +23,10 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Products.CMFPlone'
+        'Products.CMFPlone',
         'hexagonit.testing',
         'setuptools',
-        'sll.basepolicy'
+        'sll.basepolicy',
         'sll.locales',
         'slt.theme'],
     entry_points="""

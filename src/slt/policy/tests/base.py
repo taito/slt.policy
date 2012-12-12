@@ -13,16 +13,12 @@ class SltPolicyLayer(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
-
         # Required by Products.CMFPlone:plone-content to setup defaul plone site.
         z2.installProduct(app, 'Products.PythonScripts')
         z2.installProduct(app, 'Products.ATCountryWidget')
-
-        # import Products.PloneFormGen
-        # self.loadZCML(package=Products.PloneFormGen)
-        # z2.installProduct(app, 'Products.PloneFormGen')
-
         # Load ZCML
+        import plonetheme.sunburst
+        self.loadZCML(package=plonetheme.sunburst)
         import slt.policy
         self.loadZCML(package=slt.policy)
         import sll.locales
@@ -38,11 +34,11 @@ class SltPolicyLayer(PloneSandboxLayer):
         # Install portal content. Including the Members folder! to setup defaul plone site.
         self.applyProfile(portal, 'Products.CMFPlone:plone-content')
 
+        self.applyProfile(portal, 'plonetheme.sunburst:default')
         self.applyProfile(portal, 'slt.policy:default')
 
     def tearDownZope(self, app):
         """Tear down Zope."""
-        # z2.uninstallProduct(app, 'Products.PloneFormGen')
         z2.uninstallProduct(app, 'ATCountryWidget')
         z2.uninstallProduct(app, 'Products.PythonScripts')
 

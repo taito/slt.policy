@@ -7,7 +7,7 @@
   <genericsetup:upgradeStep
     description=""
     destination="1"
-    handler="slt.policy.upgrades.update_rolemap"
+    handler="slt.policy.upgrades.reimport_rolemap"
     profile="slt.policy:default"
     sortkey="1"
     source="0"
@@ -17,7 +17,7 @@
   <genericsetup:upgradeStep
     description=""
     destination="2"
-    handler="slt.policy.upgrades.update_typeinfo"
+    handler="slt.policy.upgrades.reimport_typeinfo"
     profile="slt.policy:default"
     sortkey="1"
     source="1"
@@ -27,7 +27,7 @@
   <genericsetup:upgradeStep
     description=""
     destination="3"
-    handler="slt.policy.upgrades.update_registry"
+    handler="slt.policy.upgrades.reimport_registry"
     profile="slt.policy:default"
     sortkey="1"
     source="2"
@@ -37,7 +37,7 @@
   <genericsetup:upgradeStep
     description=""
     destination="4"
-    handler="slt.policy.upgrades.update_memberdata_properties"
+    handler="slt.policy.upgrades.reimport_memberdata_properties"
     profile="slt.policy:default"
     sortkey="1"
     source="3"
@@ -47,7 +47,7 @@
   <genericsetup:upgradeStep
     description=""
     destination="5"
-    handler="slt.policy.upgrades.update_actions"
+    handler="slt.policy.upgrades.reimport_actions"
     profile="slt.policy:default"
     sortkey="1"
     source="4"
@@ -57,7 +57,7 @@
   <genericsetup:upgradeStep
     description="Adds slt.content.MemberArea to types_not_searched and metaTypesNotToList."
     destination="6"
-    handler="slt.policy.upgrades.update_propertiestool"
+    handler="slt.policy.upgrades.reimport_propertiestool"
     profile="slt.policy:default"
     sortkey="1"
     source="5"
@@ -67,17 +67,17 @@
   <genericsetup:upgradeStep
     description="Update workflow of slt.content.MemberArea."
     destination="7"
-    handler="slt.policy.upgrades.update_workflows"
+    handler="slt.policy.upgrades.reimport_workflow"
     profile="slt.policy:default"
     sortkey="1"
     source="6"
-    title="Update workflows"
+    title="Update workflow"
     />
 
   <genericsetup:upgradeStep
     description="Update roles for permission: Sharing page: Delegate roles and hexagonit.socialbutton: Manage Social Button."
     destination="8"
-    handler="slt.policy.upgrades.update_rolemap"
+    handler="slt.policy.upgrades.reimport_rolemap"
     profile="slt.policy:default"
     sortkey="1"
     source="7"
@@ -87,7 +87,7 @@
   <genericsetup:upgradeStep
     description="Update properties for default_page."
     destination="9"
-    handler="slt.policy.upgrades.update_rolemap"
+    handler="slt.policy.upgrades.reimport_rolemap"
     profile="slt.policy:default"
     sortkey="1"
     source="8"
@@ -97,7 +97,7 @@
   <genericsetup:upgradeStep
     description="Update property: icon_visibility to disabled."
     destination="10"
-    handler="slt.policy.upgrades.update_propertiestool"
+    handler="slt.policy.upgrades.reimport_propertiestool"
     profile="slt.policy:default"
     sortkey="1"
     source="9"

@@ -1,84 +1,45 @@
-from Products.CMFCore.utils import getToolByName
+from abita.utils.utils import reimport_profile
 
-import logging
 
 
 PROFILE_ID = 'profile-slt.policy:default'
 
 
-def update_rolemap(context, logger=None):
-    """Update rolemap"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting rolemap.')
-    setup.runImportStepFromProfile(PROFILE_ID, 'rolemap', run_dependencies=False, purge_old=False)
-
-
-def update_typeinfo(context, logger=None):
-    """Update typeinfo"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting typeinfo.')
-    setup.runImportStepFromProfile(
-        'profile-collective.cart.shopping:default', 'typeinfo', run_dependencies=False, purge_old=False)
-
-
-def update_registry(context, logger=None):
-    """Update registry"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting registy.')
-    setup.runImportStepFromProfile(
-        PROFILE_ID, 'plone.app.registry', run_dependencies=False, purge_old=False)
-
-
-def update_memberdata_properties(context, logger=None):
-    """Update memberdata properties"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting memberdata_properties.')
-    setup.runImportStepFromProfile(
-        PROFILE_ID, 'memberdata-properties', run_dependencies=False, purge_old=False)
-
-
-def update_actions(context, logger=None):
+def reimport_actions(context):
     """Update actions"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting actions.')
-    setup.runImportStepFromProfile(PROFILE_ID, 'actions', run_dependencies=False, purge_old=False)
+    reimport_profile(context, PROFILE_ID, 'actions')
 
 
-def update_properties(context, logger=None):
+def reimport_memberdata_properties(context):
+    """Update memberdata properties"""
+    reimport_profile(context, PROFILE_ID, 'memberdata-properties')
+
+
+def reimport_properties(context):
     """Update properties"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting properties.')
-    setup.runImportStepFromProfile(
-        PROFILE_ID, 'properties', run_dependencies=False, purge_old=False)
+    reimport_profile(context, PROFILE_ID, 'properties')
 
 
-def update_propertiestool(context, logger=None):
+def reimport_propertiestool(context):
     """Update propertiestool"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting propertiestool.')
-    setup.runImportStepFromProfile(
-        PROFILE_ID, 'propertiestool', run_dependencies=False, purge_old=False)
+    reimport_profile(context, PROFILE_ID, 'propertiestool')
 
 
-def update_workflows(context, logger=None):
-    """Update workflows"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting workflows.')
-    setup.runImportStepFromProfile(
-        PROFILE_ID, 'workflow', run_dependencies=False, purge_old=False)
+def reimport_registry(context):
+    """Update registry"""
+    reimport_profile(context, PROFILE_ID, 'plone.app.registry')
+
+
+def reimport_rolemap(context):
+    """Update rolemap"""
+    reimport_profile(context, PROFILE_ID, 'rolemap')
+
+
+def reimport_typeinfo(context):
+    """Update typeinfo"""
+    reimport_profile(context, PROFILE_ID, 'typeinfo')
+
+
+def reimport_workflow(context):
+    """Update workflow"""
+    reimport_profile(context, PROFILE_ID, 'workflow')
