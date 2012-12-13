@@ -6,6 +6,8 @@
   xmlns="http://namespaces.zope.org/zope">
 
   <include package="sll.basepolicy"/>
+  <include package="sll.locales"/>
+  <include package="slt.locales"/>
   <include package="slt.theme"/>
   <include file="upgrades.zcml"/>
   <i18n:registerTranslations directory="locales" />

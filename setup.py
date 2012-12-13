@@ -28,6 +28,7 @@ setup(
         'setuptools',
         'sll.basepolicy',
         'sll.locales',
+        'slt.locales',
         'slt.theme'],
     entry_points="""
     # -*- Entry points: -*-
