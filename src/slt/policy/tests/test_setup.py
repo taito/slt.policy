@@ -136,7 +136,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'10')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'11')
 
     def test_metadata__dependency__sll_basepolicy(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -183,6 +183,21 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(len(ctypes), number_of_default_ctypes + len(additional_ctypes))
         for ctype in additional_ctypes:
             self.assertIn(ctype, ctypes)
+
+    def get_record(self, name):
+        """Get record by name.
+        :param name: Name of record.
+        :type name: basestring
+
+        :rtype: plone.registry.record.Record
+        """
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+        return getUtility(IRegistry).records.get(name)
+
+    def test_registry_record__collective_cart_shopping_notification_cc_email__value(self):
+        record = self.get_record('collective.cart.shopping.notification_cc_email')
+        self.assertEqual(record.value, u'lk-tilaukset@sll.fi')
 
     def test_rolemap__Add_portal_member__rolesOfPermission(self):
         permission = "Add portal member"

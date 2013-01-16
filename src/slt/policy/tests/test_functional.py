@@ -24,6 +24,10 @@ CHECKER = renormalizing.RENormalizing([
 ])
 
 
+def prink(e):
+    print eval('"""{0}"""'.format(str(e)))
+
+
 def setUp(self):
     layer = self.globs['layer']
     browser = Browser(layer['app'])
@@ -50,6 +54,20 @@ def setUp(self):
 
     regtool.addMember('member1', 'member1')
     setRoles(portal, 'member1', ['Member'])
+
+    # ## Setup MockMailHost
+    from Products.CMFPlone.tests.utils import MockMailHost
+    from Products.MailHost.interfaces import IMailHost
+    from zope.component import getSiteManager
+    portal._original_MailHost = portal.MailHost
+    portal.MailHost = mailhost = MockMailHost('MailHost')
+    sm = getSiteManager(context=portal)
+    sm.unregisterUtility(provided=IMailHost)
+    sm.registerUtility(mailhost, provided=IMailHost)
+    self.globs.update({
+        'mailhost': portal.MailHost,
+        'prink': prink,
+    })
 
     transaction.commit()
 

@@ -104,4 +104,14 @@
     title="Update propertiestool"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="11"
+    handler="slt.policy.upgrades.reimport_registry"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="10"
+    title="Add Notification CC E-mail address."
+    />
+
 </configure>

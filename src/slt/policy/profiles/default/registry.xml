@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="collective.cart.shopping.notification_cc_email">
+    <value>lk-tilaukset@sll.fi</value>
+  </record>
+</registry>

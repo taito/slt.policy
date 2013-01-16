@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Change log
 ----------
 
+0.6 (2013-01-16)
+================
+
+- Set notification cc email address to lk-tilaukset@sll.fi. [taito]
+
 0.5 (2012-12-20)
 ================
 

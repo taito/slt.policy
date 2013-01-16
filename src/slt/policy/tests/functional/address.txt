@@ -35,8 +35,9 @@ Add Stock to Ärticle1::
 
 Log out and log in as Member1 and add to cart::
 
-    >>> browser.getLink('Log out').click()
-    >>> browser.login('member1', 'member1')
+    # >>> browser.getLink('Log out').click()
+    # >>> browser.login('member1', 'member1')
+
     >>> browser.open('/article-container/article1')
     >>> browser.getControl(name="form.buttons.AddToCart").click()
 
