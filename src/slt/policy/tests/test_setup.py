@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from abita.utils.utils import get_record
 from sll.basepolicy.tests.test_setup import get_action
 from sll.basepolicy.tests.test_setup import get_property
 from sll.basepolicy.tests.test_setup import get_roles
@@ -136,7 +137,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'11')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'12')
 
     def test_metadata__dependency__sll_basepolicy(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -198,6 +199,14 @@ class TestCase(IntegrationTestCase):
     def test_registry_record__collective_cart_shopping_notification_cc_email__value(self):
         record = self.get_record('collective.cart.shopping.notification_cc_email')
         self.assertEqual(record.value, u'lk-tilaukset@sll.fi')
+
+    def test_registry_record_hexagonit_socialbutton_config(self):
+        record = get_record('hexagonit.socialbutton.config')
+        self.assertEqual(record.value, {
+            u'twitter': {u'content_types': u'Document,Folder,FormFolder,Plone Site,News Item,Event,collective.cart.core.Article,collective.cart.shopping.ArticleContainer', u'view_permission_only': u'True', u'view_models': u'*', u'enabled': u'True', u'viewlet_manager': u'plone.belowcontent'},
+            u'facebook': {u'content_types': u'Document,Folder,FormFolder,Plone Site,News Item,Event,collective.cart.core.Article,collective.cart.shopping.ArticleContainer', u'view_permission_only': u'True', u'view_models': u'*', u'enabled': u'True', u'viewlet_manager': u'plone.belowcontent'},
+            u'google-plus': {u'content_types': u'Document,Folder,FormFolder,Plone Site,News Item,Event,collective.cart.core.Article,collective.cart.shopping.ArticleContainer', u'view_permission_only': u'True', u'view_models': u'*', u'enabled': u'True', u'viewlet_manager': u'plone.belowcontent'},
+        })
 
     def test_rolemap__Add_portal_member__rolesOfPermission(self):
         permission = "Add portal member"

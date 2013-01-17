@@ -114,4 +114,14 @@
     title="Add Notification CC E-mail address."
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="12"
+    handler="slt.policy.upgrades.reimport_registry"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="11"
+    title="Apply social button to articles and article containers."
+    />
+
 </configure>

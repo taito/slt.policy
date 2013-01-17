@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Change log
 ----------
 
+0.7 (2013-01-17)
+================
+
+- Added social button to articles and article containers. [taito]
+
 0.6 (2013-01-16)
 ================
 

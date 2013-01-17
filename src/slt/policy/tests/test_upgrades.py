@@ -1,6 +1,3 @@
-from Products.CMFCore.utils import getToolByName
-from slt.policy.tests.base import IntegrationTestCase
-
 import mock
 import unittest
 

@@ -1,7 +1,6 @@
 from abita.utils.utils import reimport_profile
 
 
-
 PROFILE_ID = 'profile-slt.policy:default'
 
 
