@@ -7,6 +7,12 @@ This package contains policies for SLT shopping site.
 Change log
 ----------
 
+0.8 (2013-02-02)
+================
+
+- Restricted carousel edit link only from shop root. [taito]
+- Tested with Plone-4.2.4. [taito]
+
 0.7 (2013-01-17)
 ================
 

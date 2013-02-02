@@ -124,4 +124,14 @@
     title="Apply social button to articles and article containers."
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="13"
+    handler="slt.policy.upgrades.reimport_actions"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="12"
+    title="Reimport actions"
+    />
+
 </configure>

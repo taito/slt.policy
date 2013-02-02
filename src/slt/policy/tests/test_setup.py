@@ -137,7 +137,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'12')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'13')
 
     def test_metadata__dependency__sll_basepolicy(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -167,7 +167,7 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(self.portal.getProperty('title'), 'Luonnonsuojelukauppa')
 
     def test_propertiestool__navtree_properties__metaTypesNotToList(self):
-        number_of_default_ctypes = 33
+        number_of_default_ctypes = 32
         additional_ctypes = ('Document', 'News Item', 'slt.content.MemberArea')
         ctypes = get_property(self.portal, 'navtree_properties', 'metaTypesNotToList')
         self.assertEqual(len(ctypes), number_of_default_ctypes + len(additional_ctypes))
@@ -178,7 +178,7 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(get_property(self.portal, 'site_properties', 'icon_visibility'), 'disabled')
 
     def test_propertiestool__site_properties__types_not_searched(self):
-        number_of_default_ctypes = 30
+        number_of_default_ctypes = 29
         additional_ctypes = ('Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'slt.content.MemberArea')
         ctypes = get_property(self.portal, 'site_properties', 'types_not_searched')
         self.assertEqual(len(ctypes), number_of_default_ctypes + len(additional_ctypes))

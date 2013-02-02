@@ -51,4 +51,12 @@
 
   </object>
 
+  <object name="object" meta_type="CMF Action Category">
+
+    <object name="carousel" meta_type="CMF Action" purge="False">
+      <property name="available_expr">python: object.restrictedTraverse("is-shopping-site")()</property>
+    </object>
+
+  </object>
+
 </object>

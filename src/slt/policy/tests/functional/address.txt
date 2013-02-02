@@ -53,220 +53,220 @@ Go to cart::
 
 You need to fill the billing Info since you have not added your address to your preferences::
 
-    >>> browser.getControl(name="form.billing.widgets.first_name").value = 'Billing First Näme'
-    >>> browser.getControl(name="form.billing.widgets.last_name").value = 'Billing Last Näme'
-    >>> browser.getControl(name="form.billing.widgets.organization").value = 'Billing Örganization'
-    >>> browser.getControl(name="form.billing.widgets.vat").value = 'Billing1234567890'
-    >>> browser.getControl(name="form.billing.widgets.email").value = 'first.last@email.billing'
-    >>> browser.getControl(name="form.billing.widgets.street").value = 'Billing Street Äddress'
-    >>> browser.getControl(name="form.billing.widgets.post").value = 'Billing Pöst Cöde'
-    >>> browser.getControl(name="form.billing.widgets.city").value = 'Billing €ity'
-    >>> browser.getControl(name="form.billing.widgets.phone").value = 'Billing Phöne Number'
-    >>> browser.getControl(name="form.billing.buttons.submit").click()
-    >>> browser.reload()
-
-    >>> print browser.bycss('#form-billing-widgets-first_name')
-    --- 1 ---
-    ... value="Billing First N&#228;me" ...
-
-    >>> print browser.bycss('#form-billing-widgets-last_name')
-    --- 1 ---
-    ... value="Billing Last N&#228;me" ...
-
-    >>> print browser.bycss('#form-billing-widgets-organization')
-    --- 1 ---
-    ... value="Billing &#214;rganization" ...
-
-    >>> print browser.bycss('#form-billing-widgets-vat')
-    --- 1 ---
-    ... value="Billing1234567890" ...
-
-    >>> print browser.bycss('#form-billing-widgets-email')
-    --- 1 ---
-    ... value="first.last@email.billing" ...
-
-    >>> print browser.bycss('#form-billing-widgets-street')
-    --- 1 ---
-    ... value="Billing Street &#196;ddress" ...
-
-    >>> print browser.bycss('#form-billing-widgets-post')
-    --- 1 ---
-    ... value="Billing P&#246;st C&#246;de" ...
-
-    >>> print browser.bycss('#form-billing-widgets-city')
-    --- 1 ---
-    ... value="Billing &#8364;ity" ...
-
-    >>> print browser.bycss('#form-billing-widgets-phone')
-    --- 1 ---
-    ... value="Billing Ph&#246;ne Number" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-first_name')
-    --- 1 ---
-    ... value="Billing First N&#228;me" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-last_name')
-    --- 1 ---
-    ... value="Billing Last N&#228;me" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-organization')
-    --- 1 ---
-    ... value="Billing &#214;rganization" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-vat')
-    --- 1 ---
-    ... value="Billing1234567890" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-email')
-    --- 1 ---
-    ... value="first.last@email.billing" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-street')
-    --- 1 ---
-    ... value="Billing Street &#196;ddress" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-post')
-    --- 1 ---
-    ... value="Billing P&#246;st C&#246;de" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-city')
-    --- 1 ---
-    ... value="Billing &#8364;ity" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-phone')
-    --- 1 ---
-    ... value="Billing Ph&#246;ne Number" ...
-
-Update shipping info::
-
-    >>> browser.getControl(name="form.shipping.widgets.first_name").value = 'Shipping First Näme'
-    >>> browser.getControl(name="form.shipping.widgets.last_name").value = 'Shipping Last Näme'
-    >>> browser.getControl(name="form.shipping.widgets.organization").value = 'Shipping Örganization'
-    >>> browser.getControl(name="form.shipping.widgets.vat").value = 'Shipping1234567890'
-    >>> browser.getControl(name="form.shipping.widgets.email").value = 'first.last@email.shipping'
-    >>> browser.getControl(name="form.shipping.widgets.street").value = 'Shipping Street Äddress'
-    >>> browser.getControl(name="form.shipping.widgets.post").value = 'Shipping Pöst Cöde'
-    >>> browser.getControl(name="form.shipping.widgets.city").value = 'Shipping €ity'
-    >>> browser.getControl(name="form.shipping.widgets.phone").value = 'Shipping Phöne Number'
-    >>> browser.getControl(name="form.shipping.buttons.submit").click()
-    >>> browser.reload()
-
-    >>> print browser.bycss('#form-billing-widgets-first_name')
-    --- 1 ---
-    ... value="Billing First N&#228;me" ...
-
-    >>> print browser.bycss('#form-billing-widgets-last_name')
-    --- 1 ---
-    ... value="Billing Last N&#228;me" ...
-
-    >>> print browser.bycss('#form-billing-widgets-organization')
-    --- 1 ---
-    ... value="Billing &#214;rganization" ...
-
-    >>> print browser.bycss('#form-billing-widgets-vat')
-    --- 1 ---
-    ... value="Billing1234567890" ...
-
-    >>> print browser.bycss('#form-billing-widgets-email')
-    --- 1 ---
-    ... value="first.last@email.billing" ...
-
-    >>> print browser.bycss('#form-billing-widgets-street')
-    --- 1 ---
-    ... value="Billing Street &#196;ddress" ...
-
-    >>> print browser.bycss('#form-billing-widgets-post')
-    --- 1 ---
-    ... value="Billing P&#246;st C&#246;de" ...
-
-    >>> print browser.bycss('#form-billing-widgets-city')
-    --- 1 ---
-    ... value="Billing &#8364;ity" ...
-
-    >>> print browser.bycss('#form-billing-widgets-phone')
-    --- 1 ---
-    ... value="Billing Ph&#246;ne Number" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-first_name')
-    --- 1 ---
-    ... value="Shipping First N&#228;me" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-last_name')
-    --- 1 ---
-    ... value="Shipping Last N&#228;me" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-organization')
-    --- 1 ---
-    ... value="Shipping &#214;rganization" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-vat')
-    --- 1 ---
-    ... value="Shipping1234567890" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-email')
-    --- 1 ---
-    ... value="first.last@email.shipping" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-street')
-    --- 1 ---
-    ... value="Shipping Street &#196;ddress" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-post')
-    --- 1 ---
-    ... value="Shipping P&#246;st C&#246;de" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-city')
-    --- 1 ---
-    ... value="Shipping &#8364;ity" ...
-
-    >>> print browser.bycss('#form-shipping-widgets-phone')
-    --- 1 ---
-    ... value="Shipping Ph&#246;ne Number" ...
-
-Go to billing-and-shipping::
-
+    >>> browser.getControl(name="first-name").value = 'Billing First Näme'
+    >>> browser.getControl(name="last-name").value = 'Billing Last Näme'
+    >>> browser.getControl(name="organization").value = 'Billing Örganization'
+    >>> browser.getControl(name="vat").value = 'Billing1234567890'
+    >>> browser.getControl(name="email").value = 'first.last@email.bil'
+    >>> browser.getControl(name="street").value = 'Billing Street Äddress'
+    >>> browser.getControl(name="post").value = 'Billing Pöst Cöde'
+    >>> browser.getControl(name="city").value = 'Billing €ity'
+    >>> browser.getControl(name="phone").value = 'Billing Phöne Number'
     >>> browser.getControl(name="form.to.confirmation").click()
+    >>> browser.reload()
 
-    >>> print browser.bycss('#order-flow')
-    --- 1 ---
-    <section id="order-flow"><a href="http://nohost/plone/@@cart">1. Cart</a>&#160;&#160;-&#160;&#160;
-    <a href="http://nohost/plone/@@billing-and-shipping">2. Customer Info and Shipping Method</a>&#160;&#160;-&#160;&#160;<span id="current-step">3. Confirmation</span>
-    </section>
+#     >>> print browser.bycss('#form-billing-widgets-first_name')
+#     --- 1 ---
+#     ... value="Billing First N&#228;me" ...
 
-Go to order-confirmation::
+#     >>> print browser.bycss('#form-billing-widgets-last_name')
+#     --- 1 ---
+#     ... value="Billing Last N&#228;me" ...
 
-    >>> browser.getControl(name="form.buttons.ConfirmOrder").click()
-    >>> browser.url
-    'http://nohost/plone/@@thanks'
+#     >>> print browser.bycss('#form-billing-widgets-organization')
+#     --- 1 ---
+#     ... value="Billing &#214;rganization" ...
 
-    >>> browser.open('/@@cart')
-    >>> print browser.bycss('#cart-is-empty')
-    --- 1 ---
-    <p id="cart-is-empty">Cart is empty.</p>
+#     >>> print browser.bycss('#form-billing-widgets-vat')
+#     --- 1 ---
+#     ... value="Billing1234567890" ...
 
-Add Address to member preferences::
+#     >>> print browser.bycss('#form-billing-widgets-email')
+#     --- 1 ---
+#     ... value="first.last@email.billing" ...
 
-    >>> browser.getLink('Addresses').click()
-    >>> browser.getLink('Add New Address').click()
-    >>> browser.getControl(name="form.widgets.first_name").value = 'First Näme 1'
-    >>> browser.getControl(name="form.widgets.last_name").value = 'Last Näme 1'
-    >>> browser.getControl(name="form.widgets.organization").value = 'Örganization 1'
-    >>> browser.getControl(name="form.widgets.vat").value = '1111'
-    >>> browser.getControl(name="form.widgets.email").value = 'first.last@email.1'
-    >>> browser.getControl(name="form.widgets.street").value = 'Street Äddress 1'
-    >>> browser.getControl(name="form.widgets.post").value = 'Pöst Cöde 1'
-    >>> browser.getControl(name="form.widgets.city").value = '€ity 1'
-    >>> browser.getControl(name="form.widgets.phone").value = 'Phöne Number 1'
-    >>> browser.getControl(name="form.buttons.save").click()
+#     >>> print browser.bycss('#form-billing-widgets-street')
+#     --- 1 ---
+#     ... value="Billing Street &#196;ddress" ...
 
-    >>> '<td>First Näme 1</td>' in browser.contents
-    True
+#     >>> print browser.bycss('#form-billing-widgets-post')
+#     --- 1 ---
+#     ... value="Billing P&#246;st C&#246;de" ...
 
-Go through check out flow::
+#     >>> print browser.bycss('#form-billing-widgets-city')
+#     --- 1 ---
+#     ... value="Billing &#8364;ity" ...
 
-    >>> browser.open('/article-container/article1')
-    >>> browser.getControl(name="form.buttons.AddToCart").click()
+#     >>> print browser.bycss('#form-billing-widgets-phone')
+#     --- 1 ---
+#     ... value="Billing Ph&#246;ne Number" ...
 
-Go to cart::
+#     >>> print browser.bycss('#form-shipping-widgets-first_name')
+#     --- 1 ---
+#     ... value="Billing First N&#228;me" ...
 
-    >>> browser.open('/@@billing-and-shipping')
+#     >>> print browser.bycss('#form-shipping-widgets-last_name')
+#     --- 1 ---
+#     ... value="Billing Last N&#228;me" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-organization')
+#     --- 1 ---
+#     ... value="Billing &#214;rganization" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-vat')
+#     --- 1 ---
+#     ... value="Billing1234567890" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-email')
+#     --- 1 ---
+#     ... value="first.last@email.billing" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-street')
+#     --- 1 ---
+#     ... value="Billing Street &#196;ddress" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-post')
+#     --- 1 ---
+#     ... value="Billing P&#246;st C&#246;de" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-city')
+#     --- 1 ---
+#     ... value="Billing &#8364;ity" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-phone')
+#     --- 1 ---
+#     ... value="Billing Ph&#246;ne Number" ...
+
+# Update shipping info::
+
+#     >>> browser.getControl(name="form.shipping.widgets.first_name").value = 'Shipping First Näme'
+#     >>> browser.getControl(name="form.shipping.widgets.last_name").value = 'Shipping Last Näme'
+#     >>> browser.getControl(name="form.shipping.widgets.organization").value = 'Shipping Örganization'
+#     >>> browser.getControl(name="form.shipping.widgets.vat").value = 'Shipping1234567890'
+#     >>> browser.getControl(name="form.shipping.widgets.email").value = 'first.last@email.shipping'
+#     >>> browser.getControl(name="form.shipping.widgets.street").value = 'Shipping Street Äddress'
+#     >>> browser.getControl(name="form.shipping.widgets.post").value = 'Shipping Pöst Cöde'
+#     >>> browser.getControl(name="form.shipping.widgets.city").value = 'Shipping €ity'
+#     >>> browser.getControl(name="form.shipping.widgets.phone").value = 'Shipping Phöne Number'
+#     >>> browser.getControl(name="form.shipping.buttons.submit").click()
+#     >>> browser.reload()
+
+#     >>> print browser.bycss('#form-billing-widgets-first_name')
+#     --- 1 ---
+#     ... value="Billing First N&#228;me" ...
+
+#     >>> print browser.bycss('#form-billing-widgets-last_name')
+#     --- 1 ---
+#     ... value="Billing Last N&#228;me" ...
+
+#     >>> print browser.bycss('#form-billing-widgets-organization')
+#     --- 1 ---
+#     ... value="Billing &#214;rganization" ...
+
+#     >>> print browser.bycss('#form-billing-widgets-vat')
+#     --- 1 ---
+#     ... value="Billing1234567890" ...
+
+#     >>> print browser.bycss('#form-billing-widgets-email')
+#     --- 1 ---
+#     ... value="first.last@email.billing" ...
+
+#     >>> print browser.bycss('#form-billing-widgets-street')
+#     --- 1 ---
+#     ... value="Billing Street &#196;ddress" ...
+
+#     >>> print browser.bycss('#form-billing-widgets-post')
+#     --- 1 ---
+#     ... value="Billing P&#246;st C&#246;de" ...
+
+#     >>> print browser.bycss('#form-billing-widgets-city')
+#     --- 1 ---
+#     ... value="Billing &#8364;ity" ...
+
+#     >>> print browser.bycss('#form-billing-widgets-phone')
+#     --- 1 ---
+#     ... value="Billing Ph&#246;ne Number" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-first_name')
+#     --- 1 ---
+#     ... value="Shipping First N&#228;me" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-last_name')
+#     --- 1 ---
+#     ... value="Shipping Last N&#228;me" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-organization')
+#     --- 1 ---
+#     ... value="Shipping &#214;rganization" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-vat')
+#     --- 1 ---
+#     ... value="Shipping1234567890" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-email')
+#     --- 1 ---
+#     ... value="first.last@email.shipping" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-street')
+#     --- 1 ---
+#     ... value="Shipping Street &#196;ddress" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-post')
+#     --- 1 ---
+#     ... value="Shipping P&#246;st C&#246;de" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-city')
+#     --- 1 ---
+#     ... value="Shipping &#8364;ity" ...
+
+#     >>> print browser.bycss('#form-shipping-widgets-phone')
+#     --- 1 ---
+#     ... value="Shipping Ph&#246;ne Number" ...
+
+# Go to billing-and-shipping::
+
+#     >>> browser.getControl(name="form.to.confirmation").click()
+
+#     >>> print browser.bycss('#order-flow')
+#     --- 1 ---
+#     <section id="order-flow"><a href="http://nohost/plone/@@cart">1. Cart</a>&#160;&#160;-&#160;&#160;
+#     <a href="http://nohost/plone/@@billing-and-shipping">2. Customer Info and Shipping Method</a>&#160;&#160;-&#160;&#160;<span id="current-step">3. Confirmation</span>
+#     </section>
+
+# Go to order-confirmation::
+
+#     >>> browser.getControl(name="form.buttons.ConfirmOrder").click()
+#     >>> browser.url
+#     'http://nohost/plone/@@thanks'
+
+#     >>> browser.open('/@@cart')
+#     >>> print browser.bycss('#cart-is-empty')
+#     --- 1 ---
+#     <p id="cart-is-empty">Cart is empty.</p>
+
+# Add Address to member preferences::
+
+#     >>> browser.getLink('Addresses').click()
+#     >>> browser.getLink('Add New Address').click()
+#     >>> browser.getControl(name="form.widgets.first_name").value = 'First Näme 1'
+#     >>> browser.getControl(name="form.widgets.last_name").value = 'Last Näme 1'
+#     >>> browser.getControl(name="form.widgets.organization").value = 'Örganization 1'
+#     >>> browser.getControl(name="form.widgets.vat").value = '1111'
+#     >>> browser.getControl(name="form.widgets.email").value = 'first.last@email.1'
+#     >>> browser.getControl(name="form.widgets.street").value = 'Street Äddress 1'
+#     >>> browser.getControl(name="form.widgets.post").value = 'Pöst Cöde 1'
+#     >>> browser.getControl(name="form.widgets.city").value = '€ity 1'
+#     >>> browser.getControl(name="form.widgets.phone").value = 'Phöne Number 1'
+#     >>> browser.getControl(name="form.buttons.save").click()
+
+#     >>> '<td>First Näme 1</td>' in browser.contents
+#     True
+
+# Go through check out flow::
+
+#     >>> browser.open('/article-container/article1')
+#     >>> browser.getControl(name="form.buttons.AddToCart").click()
+
+# Go to cart::
+
+#     >>> browser.open('/@@billing-and-shipping')
