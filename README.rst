@@ -7,7 +7,7 @@ This package contains policies for SLT shopping site.
 Change log
 ----------
 
-0.8 (2013-02-02)
+0.8 (2013-02-04)
 ================
 
 - Restricted carousel edit link only from shop root. [taito]
