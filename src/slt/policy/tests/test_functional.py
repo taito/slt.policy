@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from Testing import ZopeTestCase as ztc
 from hexagonit.testing.browser import Browser
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
@@ -24,8 +25,8 @@ CHECKER = renormalizing.RENormalizing([
 ])
 
 
-def prink(e):
-    print eval('"""{0}"""'.format(str(e)))
+# def prink(e):
+#     print eval('"""{0}"""'.format(str(e)))
 
 
 def setUp(self):
@@ -39,7 +40,7 @@ def setUp(self):
         'portal': portal,
         'browser': browser,
     })
-
+    ztc.utils.setupCoreSessions(layer['app'])
     browser.setBaseUrl(portal.absolute_url())
 
     browser.handleErrors = True
@@ -51,7 +52,6 @@ def setUp(self):
     portal.portal_languages.manage_setLanguageSettings('en', ['en', 'fi'])
 
     regtool = getToolByName(portal, 'portal_registration')
-
     regtool.addMember('member1', 'member1')
     setRoles(portal, 'member1', ['Member'])
 
@@ -66,7 +66,7 @@ def setUp(self):
     sm.registerUtility(mailhost, provided=IMailHost)
     self.globs.update({
         'mailhost': portal.MailHost,
-        'prink': prink,
+        # 'prink': prink,
     })
 
     transaction.commit()
@@ -102,5 +102,4 @@ def test_suite():
         DocFileSuite('functional/address.txt'),
         DocFileSuite('functional/browser.txt'),
         DocFileSuite('functional/manager.txt'),
-        DocFileSuite('functional/member.txt'),
-        DocFileSuite('functional/personal-information.txt')])
+        DocFileSuite('functional/member.txt')])

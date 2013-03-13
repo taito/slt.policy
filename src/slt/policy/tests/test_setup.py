@@ -128,12 +128,6 @@ class TestCase(IntegrationTestCase):
         from plone.browserlayer import utils
         self.assertIn(ISltPolicyLayer, utils.registered_layers())
 
-    def test_memberdata_properties(self):
-        memberdata = getToolByName(self.portal, 'portal_memberdata')
-        ids = ['registration_number', ]
-        for pid in ids:
-            self.assertTrue(memberdata.hasProperty(pid))
-
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
