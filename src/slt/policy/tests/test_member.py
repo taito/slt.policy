@@ -1,12 +1,20 @@
+# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Testing import ZopeTestCase as ztc
+from decimal import Decimal
 from hexagonit.testing.browser import Browser
+from moneyed import Money
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.app.testing import setRoles
+from plone.dexterity.utils import createContentInContainer
+from plone.registry.interfaces import IRegistry
 from plone.testing import layered
+from plone.uuid.interfaces import IUUID
 from slt.policy.tests.base import FUNCTIONAL_TESTING
+from zope.component import getUtility
+from zope.lifecycleevent import modified
 from zope.testing import renormalizing
 
 import doctest
@@ -17,7 +25,7 @@ import re
 import transaction
 import unittest
 
-FLAGS = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS | doctest.REPORT_NDIFF | doctest.REPORT_ONLY_FIRST_FAILURE
+FLAGS = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
 
 CHECKER = renormalizing.RENormalizing([
     # Normalize the generated UUID values to always compare equal.
@@ -25,37 +33,70 @@ CHECKER = renormalizing.RENormalizing([
 ])
 
 
-# def prink(e):
-#     print eval('"""{0}"""'.format(str(e)))
+def prink(e):
+    print eval('"""{0}"""'.format(str(e)))
 
 
 def setUp(self):
     layer = self.globs['layer']
-    browser = Browser(layer['app'])
     portal = layer['portal']
-    # Update global variables within the tests.
+    app = layer['app']
+    browser = Browser(app)
     self.globs.update({
         'TEST_USER_NAME': TEST_USER_NAME,
         'TEST_USER_PASSWORD': TEST_USER_PASSWORD,
-        'portal': portal,
         'browser': browser,
+        'portal': portal,
+        'prink': prink,
     })
-    ztc.utils.setupCoreSessions(layer['app'])
+    ztc.utils.setupCoreSessions(app)
     browser.setBaseUrl(portal.absolute_url())
-
     browser.handleErrors = True
     portal.error_log._ignored_exceptions = ()
-
     setRoles(portal, TEST_USER_ID, ['Manager'])
 
-    # Set the site back in English mode to make testing easier.
-    portal.portal_languages.manage_setLanguageSettings('en', ['en', 'fi'])
+    workflow = getToolByName(portal, 'portal_workflow')
 
+    # Add two shipping method
+    shipping_method_container = portal['toimitustavat']
+    shipping_method1 = shipping_method_container[shipping_method_container.invokeFactory('ShippingMethod', 'shippingmethod1',
+        title='ShippingMethöd1', vat=24.0)]
+    modified(shipping_method1)
+    workflow.doActionFor(shipping_method1, 'publish')
+    shipping_method2 = shipping_method_container[shipping_method_container.invokeFactory('ShippingMethod', 'shippingmethod2',
+        title='ShippingMethöd2', vat=24.0)]
+    modified(shipping_method2)
+    workflow.doActionFor(shipping_method2, 'publish')
+
+    self.globs['shippingmethod2_uuid'] = IUUID(shipping_method2)
+
+    # Add Article
+    article1 = createContentInContainer(portal, 'collective.cart.core.Article', checkConstraints=False, title='Ärticle1',
+        money=Money(Decimal('12.40'), currency='EUR'), vat=Decimal('24.00'), reducible_quantity=100, sku='SKÖ1')
+    modified(article1)
+    workflow.doActionFor(article1, 'publish')
+
+    # Add Stock
+    stock1 = createContentInContainer(article1, 'collective.cart.stock.Stock', checkConstraints=False, title='Stöck1',
+        stock=10)
+    modified(stock1)
+
+    getUtility(IRegistry)['collective.cart.shopping.notification_cc_email'] = u'info@shop.com'
+
+    # Add two members
     regtool = getToolByName(portal, 'portal_registration')
-    regtool.addMember('member1', 'member1')
-    setRoles(portal, 'member1', ['Member'])
 
-    # ## Setup MockMailHost
+    member1 = 'member1'
+    regtool.addMember(member1, member1)
+    setRoles(portal, member1, ['Member'])
+    self.globs['member1'] = member1
+
+    member2 = 'member2'
+    regtool.addMember(member2, member2)
+    setRoles(portal, member2, ['Member'])
+    self.globs['member2'] = member2
+
+    # Setup MockMailHost
     from Products.CMFPlone.tests.utils import MockMailHost
     from Products.MailHost.interfaces import IMailHost
     from zope.component import getSiteManager
@@ -66,8 +107,10 @@ def setUp(self):
     sm.registerUtility(mailhost, provided=IMailHost)
     self.globs.update({
         'mailhost': portal.MailHost,
-        # 'prink': prink,
     })
+
+    # Set the site back in English mode to make testing easier.
+    portal.portal_languages.manage_setLanguageSettings('en', ['en', 'fi'])
 
     transaction.commit()
 
@@ -99,6 +142,4 @@ def DocFileSuite(testfile, flags=FLAGS, setUp=setUp, layer=FUNCTIONAL_TESTING):
 
 def test_suite():
     return unittest.TestSuite([
-        DocFileSuite('functional/address.txt'),
-        DocFileSuite('functional/browser.txt'),
-        DocFileSuite('functional/manager.txt')])
+        DocFileSuite('functional/member.txt')])

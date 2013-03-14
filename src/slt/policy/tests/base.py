@@ -17,6 +17,12 @@ class SltPolicyLayer(PloneSandboxLayer):
         z2.installProduct(app, 'Products.PythonScripts')
         z2.installProduct(app, 'Products.ATCountryWidget')
         # Load ZCML
+        import collective.cart.shopping
+        self.loadZCML(package=collective.cart.shopping)
+        z2.installProduct(app, 'collective.cart.shopping')
+        z2.installProduct(app, 'collective.cart.shipping')
+        import z3c.jbot
+        self.loadZCML(package=z3c.jbot)
         import plonetheme.sunburst
         self.loadZCML(package=plonetheme.sunburst)
         import slt.policy
@@ -35,10 +41,13 @@ class SltPolicyLayer(PloneSandboxLayer):
         self.applyProfile(portal, 'Products.CMFPlone:plone-content')
 
         self.applyProfile(portal, 'plonetheme.sunburst:default')
+        self.applyProfile(portal, 'collective.cart.shopping:default')
         self.applyProfile(portal, 'slt.policy:default')
 
     def tearDownZope(self, app):
         """Tear down Zope."""
+        z2.uninstallProduct(app, 'collective.cart.shipping')
+        z2.uninstallProduct(app, 'collective.cart.shopping')
         z2.uninstallProduct(app, 'ATCountryWidget')
         z2.uninstallProduct(app, 'Products.PythonScripts')
 

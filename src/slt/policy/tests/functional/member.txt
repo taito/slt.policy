@@ -1,6 +1,42 @@
+Log in as Manager::
+
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+Assign cart portlet and member portlet::
+
+    >>> browser.open('/++contextportlets++plone.leftcolumn/+/collective.cart.core.CartPortlet')
+    >>> browser.open('/++contextportlets++plone.leftcolumn/+/slt.portlet.MemberPortlet')
+
+Log out::
+
+    >>> browser.getLink('Log out').click()
+
+    >>> browser.open('/')
+    >>> print browser.bycss('.portletMember')
+    --- 1 ---
+    <dl class="portlet portletMember"><dd class="portletItem">
+    <ul><li>
+    <a href="http://nohost/plone/login" title="Log in">Log in</a>
+    </li>
+    </ul></dd>
+    </dl>
+
 Log in as member1::
 
     >>> browser.login('member1', 'member1')
+    >>> browser.url
+    'http://nohost/plone/@@personal-information'
+    >>> print browser.bycss('.info')
+    --- 1 ---
+    ...
+    --- 2 ---
+    <dl class="portalMessage info"><dt>Info</dt>
+    <dd>Please fill your personal information.</dd>
+    </dl>
+
+Go to portal top::
+
+    >>> browser.open('/')
 
 Link to Personal Information should be there::
 
@@ -32,8 +68,182 @@ Visiting @@personal-preferences::
     >>> 'Insufficient Privileges' in browser.contents
     True
 
-Visiting @@personal-information::
+Go to Personal Information and add informations::
 
-    >>> browser.open('/@@personal-information')
-    >>> 'Insufficient Privileges' in browser.contents
-    False
+    >>> browser.getLink('Personal Information').click()
+    >>> browser.getControl(name="form.fullname").value = 'Fırst Läst'
+    >>> browser.getControl(name="form.email").value = 'first.last@email.com'
+    >>> browser.getControl(name="form.registration_number").value = 'REGISTRÄTIÖN12345'
+    >>> browser.getControl(name="form.actions.save").click()
+
+Go to Orders::
+
+    >>> browser.getLink('Orders').click()
+    >>> browser.url
+    'http://nohost/plone/Members/member1'
+    >>> print browser.bycss('#collective-cart-shopping-order')
+    --- 1 ---
+    <section id="collective-cart-shopping-order"><h1 class="documentFirstHeading">Orders</h1>
+    <div class="documentDescription">You haven't tried to order anything yet.</div>
+    </section>
+
+sGo to article1::
+
+    >>> browser.open('/article1')
+
+Add Ärticle1 to cart::
+
+    >>> browser.getControl(name="form.buttons.AddToCart").click()
+
+Go to cart::
+
+    >>> browser.getLink('Go to cart').click()
+
+Check out::
+
+    >>> browser.getControl(name="form.checkout").click()
+    >>> 'value="Fırst"' in browser.contents
+    True
+    >>> 'value="Läst"' in browser.contents
+    True
+    >>> 'value="first.last@email.com"' in browser.contents
+    True
+    >>> print browser.bycss('.portletCart')
+    --- 1 ---
+    <dl class="portlet portletCart"><dd class="portletItem">
+    <table><tbody><tr><td id="go-to-cart">
+    <a href="http://nohost/plone/@@cart">Go to cart</a>
+    </td>
+    <td id="article-count">
+    1
+    </td>
+    </tr></tbody></table></dd>
+    </dl>
+
+Fill Billing Info and select Shipping Methöd 2::
+
+    >>> browser.getControl(name="first_name").value = 'Bılling First'
+    >>> browser.getControl(name="last_name").value = 'Bılling Last'
+    >>> browser.getControl(name="organization").value = 'Bılling Organization'
+    >>> browser.getControl(name="vat").value = 'Bılling VAT'
+    >>> browser.getControl(name="email").value = 'first.last@email.bil'
+    >>> browser.getControl(name="street").value = 'Bılling Street'
+    >>> browser.getControl(name="post").value = 'Bılling Post'
+    >>> browser.getControl(name="city").value = 'Bılling City'
+    >>> browser.getControl(name="phone").value = 'Bılling Phone'
+    >>> browser.getControl(name="shipping-method").value = [shippingmethod2_uuid]
+    >>> browser.getControl(name="form.to.confirmation").click()
+
+Confirm order::
+
+    >>> browser.getControl(name="form.buttons.ConfirmOrder").click()
+
+Check the newest message sent::
+
+    >>> len(mailhost.messages)
+    1
+
+    >>> msg = mailhost.messages[-1]
+    >>> prink(msg)
+    MIME-Version: 1.0
+    Content-Type: text/plain; charset="utf-8"
+    Content-Transfer-Encoding: quoted-printable
+    CC: info@shop.com
+    Subject: =?utf-8?q?Order_Number=3A_1?=
+    To: first.last@email.bil
+    From: info@shop.com
+    Date: ...
+    <BLANKLINE>
+    Thank you for the order.
+    <BLANKLINE>
+    Order Number: 1
+    <BLANKLINE>
+    Billing Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    B=C4=B1lling First B=C4=B1lling Last  B=C4=B1lling Organization  B=C4=B1lli=
+    ng VAT
+    B=C4=B1lling Street
+    B=C4=B1lling Post B=C4=B1lling City
+    B=C4=B1lling Phone
+    first.last@email.bil
+    <BLANKLINE>
+    <BLANKLINE>
+    Shipping Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    B=C4=B1lling First B=C4=B1lling Last  B=C4=B1lling Organization  B=C4=B1lli=
+    ng VAT
+    B=C4=B1lling Street
+    B=C4=B1lling Post B=C4=B1lling City
+    B=C4=B1lling Phone
+    first.last@email.bil
+    <BLANKLINE>
+    <BLANKLINE>
+    Ordered contents
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    SKU: SK=C3=961
+    =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
+    <BLANKLINE>
+    Shipping Method: ShippingMeth=C3=B6d2  0.00 =E2=82=AC
+    <BLANKLINE>
+    Total: 12.40 =E2=82=AC
+    <BLANKLINE>
+    Link to the order: http://nohost/plone/tilaukset/1
+
+Thanks page::
+
+    >>> 'Check the order' in browser.contents
+    True
+
+Check the order::
+
+    >>> browser.getLink('Check the order').click()
+    >>> print browser.bycss('#collective-cart-shopping-order')
+    --- 1 ---
+    <section id="collective-cart-shopping-order"><h1 class="documentFirstHeading">Orders</h1>
+    <dl class="collapsible"><dt class="collapsibleHeader">
+    <span class="order-number">Order Number: 1</span>
+    <span class="order-state">
+    State:
+    Ordered</span>
+    <span class="order-updated">...</span>
+    </dt>
+    <dd class="collapsibleContent">
+    <section id="cart-articles"><table><tbody><tr><td class="image">
+    <a href="http://nohost/plone/article1" title="&#196;rticle1">
+    <img src="http://nohost/plone/fallback.png"></a>
+    </td>
+    <td class="name">
+    <h3>
+    <a href="http://nohost/plone/article1">&#196;rticle1</a>
+    </h3>
+    <p></p>
+    </td>
+    <td class="price-and-quantity">
+    <span class="gross">12.40 &#8364;</span>
+    <br><span class="vat">Including VAT: 24.00 %</span>
+    </td>
+    </tr></tbody></table></section><section id="shipping-method"><table><tbody><tr><td class="shipping-method-title">Shipping Method:</td>
+    <td>ShippingMeth&#246;d2</td>
+    <td class="price-and-quantity">
+    <span class="gross">0.00 &#8364;</span>
+    <br><span class="vat">Including VAT: 24.0 %</span>
+    </td>
+    </tr></tbody></table></section><section id="cart-total"><span>Total</span>&#160;&#160;
+    <span id="total">12.40 &#8364;</span>
+    </section><section id="addresses"><dl><dt>Billing Address</dt>
+    <dd>
+    B&#305;lling First&#160;B&#305;lling Last&#160;&#160;B&#305;lling Organization&#160;&#160;B&#305;lling VAT<br>
+    B&#305;lling Post&#160;B&#305;lling City<br>
+    B&#305;lling Phone<br>
+    first.last@email.bil<br></dd>
+    </dl><dl><dt>Shipping Address</dt>
+    <dd>
+    B&#305;lling First&#160;B&#305;lling Last&#160;&#160;B&#305;lling Organization&#160;&#160;B&#305;lling VAT<br>
+    B&#305;lling Post&#160;B&#305;lling City<br>
+    B&#305;lling Phone<br>
+    first.last@email.bil<br></dd>
+    </dl></section></dd>
+    </dl></section>
