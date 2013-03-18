@@ -4,10 +4,16 @@ slt.policy
 
 This package contains policies for SLT shopping site.
 
-Change log
-----------
+Changelog
+---------
 
-0.9 (2013-02-13)
+0.10 (2013-03-18)
+=================
+
+- Added test for member. [taito]
+- Tested with Plone-4.2.5. [taito]
+
+0.9 (2013-03-13)
 ================
 
 - Moved some setup filed to the different packages. [taito]

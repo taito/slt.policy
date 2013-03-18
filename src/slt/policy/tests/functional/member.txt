@@ -141,20 +141,20 @@ Confirm order::
 Check the newest message sent::
 
     >>> len(mailhost.messages)
-    1
+    2
 
-    >>> msg = mailhost.messages[-1]
+    >>> msg = mailhost.messages[-2]
     >>> prink(msg)
     MIME-Version: 1.0
     Content-Type: text/plain; charset="utf-8"
     Content-Transfer-Encoding: quoted-printable
-    CC: info@shop.com
     Subject: =?utf-8?q?Order_Number=3A_1?=
-    To: first.last@email.bil
-    From: info@shop.com
+    To: =?utf-8?q?B=C4=B1lling_First_B=C4=B1lling_Last?= <first.last@email.bil>
+    From: Luonnonsuojelukauppa <info@shop.com>
     Date: ...
     <BLANKLINE>
     Thank you for the order.
+    <BLANKLINE>
     <BLANKLINE>
     Order Number: 1
     <BLANKLINE>
@@ -168,6 +168,57 @@ Check the newest message sent::
     B=C4=B1lling Phone
     first.last@email.bil
     <BLANKLINE>
+    Shipping Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    B=C4=B1lling First B=C4=B1lling Last  B=C4=B1lling Organization  B=C4=B1lli=
+    ng VAT
+    B=C4=B1lling Street
+    B=C4=B1lling Post B=C4=B1lling City
+    B=C4=B1lling Phone
+    first.last@email.bil
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Contents
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    <BLANKLINE>
+    SKU: SK=C3=961
+    =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
+    <BLANKLINE>
+    <BLANKLINE>
+    Shipping Method: ShippingMeth=C3=B6d2 0.00 =E2=82=AC
+    <BLANKLINE>
+    Total: 12.40 =E2=82=AC
+    <BLANKLINE>
+    Link to the order: http://nohost/plone/Members/member1?order_number=3D1
+    <BLANKLINE>
+    <BLANKLINE>
+
+    >>> msg = mailhost.messages[-1]
+    >>> prink(msg)
+    MIME-Version: 1.0
+    Content-Type: text/plain; charset="utf-8"
+    Content-Transfer-Encoding: quoted-printable
+    Subject: =?utf-8?q?Order_Number=3A_1?=
+    To: Luonnonsuojelukauppa <info@shop.com>
+    From: Luonnonsuojelukauppa <info@shop.com>
+    Date: ...
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Number: 1
+    <BLANKLINE>
+    Billing Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    B=C4=B1lling First B=C4=B1lling Last  B=C4=B1lling Organization  B=C4=B1lli=
+    ng VAT
+    B=C4=B1lling Street
+    B=C4=B1lling Post B=C4=B1lling City
+    B=C4=B1lling Phone
+    first.last@email.bil
     <BLANKLINE>
     Shipping Address
     =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
@@ -180,17 +231,21 @@ Check the newest message sent::
     first.last@email.bil
     <BLANKLINE>
     <BLANKLINE>
-    Ordered contents
+    Order Contents
     =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
     =3D=3D=3D
+    <BLANKLINE>
     SKU: SK=C3=961
     =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
     <BLANKLINE>
-    Shipping Method: ShippingMeth=C3=B6d2  0.00 =E2=82=AC
+    <BLANKLINE>
+    Shipping Method: ShippingMeth=C3=B6d2 0.00 =E2=82=AC
     <BLANKLINE>
     Total: 12.40 =E2=82=AC
     <BLANKLINE>
     Link to the order: http://nohost/plone/tilaukset/1
+    <BLANKLINE>
+    <BLANKLINE>
 
 Thanks page::
 
