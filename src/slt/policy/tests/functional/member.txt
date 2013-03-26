@@ -187,7 +187,7 @@ Check the newest message sent::
     =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
     <BLANKLINE>
     <BLANKLINE>
-    Shipping Method: ShippingMeth=C3=B6d2 0.00 =E2=82=AC
+    Shipping Method: ShippingMeth=C3=B6d2
     <BLANKLINE>
     Total: 12.40 =E2=82=AC
     <BLANKLINE>
@@ -239,7 +239,7 @@ Check the newest message sent::
     =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
     <BLANKLINE>
     <BLANKLINE>
-    Shipping Method: ShippingMeth=C3=B6d2 0.00 =E2=82=AC
+    Shipping Method: ShippingMeth=C3=B6d2
     <BLANKLINE>
     Total: 12.40 =E2=82=AC
     <BLANKLINE>
@@ -278,13 +278,11 @@ Check the order::
     </td>
     <td class="price-and-quantity">
     <span class="gross">12.40 &#8364;</span>
-    <br><span class="vat">Including VAT: 24.00 %</span>
+    <br><span class="vat">Including VAT: 24%</span>
     </td>
     </tr></tbody></table></section><section id="shipping-method"><table><tbody><tr><td class="shipping-method-title">Shipping Method:</td>
     <td>ShippingMeth&#246;d2</td>
     <td class="price-and-quantity">
-    <span class="gross">0.00 &#8364;</span>
-    <br><span class="vat">Including VAT: 24.0 %</span>
     </td>
     </tr></tbody></table></section><section id="cart-total"><span>Total</span>&#160;&#160;
     <span id="total">12.40 &#8364;</span>
