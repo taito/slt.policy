@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.11 (2013-04-04)
+=================
+
+- Added upgrade step to migrate related items for changing plone instance id. [taito]
+
 0.10 (2013-03-18)
 =================
 

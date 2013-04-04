@@ -134,4 +134,14 @@
     title="Reimport actions"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="14"
+    handler="slt.policy.upgrades.upgrade_13_to_14"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="13"
+    title="Upgrade"
+    />
+
 </configure>

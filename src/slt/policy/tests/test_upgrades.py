@@ -1,8 +1,9 @@
+from slt.policy.tests.base import IntegrationTestCase
+
 import mock
-import unittest
 
 
-class TestCase(unittest.TestCase):
+class TestCase(IntegrationTestCase):
     """TestCase for upgrade steps."""
 
     @mock.patch('slt.policy.upgrades.reimport_profile')
@@ -60,3 +61,31 @@ class TestCase(unittest.TestCase):
         from slt.policy.upgrades import reimport_workflow
         reimport_workflow(context)
         reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'workflow')
+
+    @mock.patch('slt.policy.upgrades.aq_parent')
+    def test_upgrade_13_to_14(self, aq_parent):
+        from z3c.relationfield.relation import RelationValue
+        from zope.app.intid.interfaces import IIntIds
+        from zope.component import getUtility
+
+        # Create articles
+        article1 = self.create_content('collective.cart.core.Article', id='article1', money=self.money('12.40'), vat_rate=24.0)
+        article2 = self.create_content('collective.cart.core.Article', id='article2', money=self.money('12.40'), vat_rate=24.0)
+        # Relate article2 to article1
+        intids = getUtility(IIntIds)
+
+        to_id = intids.register(article2)
+        relation_value = RelationValue(to_id)
+        from_id = intids.register(article1)
+        relation_value._from_id = from_id
+        self.assertEqual(relation_value.from_id, from_id)
+        article1.relatedItems = [relation_value]
+
+        from slt.policy.upgrades import upgrade_13_to_14
+        upgrade_13_to_14(self.portal)
+
+        aq_parent().manage_renameObject.assert_called_with('slt', 'kauppa')
+
+        item = article1.relatedItems[0]
+        self.assertEqual(item.to_id, to_id)
+        self.assertNotEqual(item.from_id, from_id)
