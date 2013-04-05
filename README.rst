@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.12 (2013-04-05)
+=================
+
+- Updated upgrade step to update plone instance id from kauppa to luontokauppa. [taito]
+
 0.11 (2013-04-04)
 =================
 

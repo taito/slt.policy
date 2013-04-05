@@ -63,7 +63,7 @@ class TestCase(IntegrationTestCase):
         reimport_profile.assert_called_with(context, 'profile-slt.policy:default', 'workflow')
 
     @mock.patch('slt.policy.upgrades.aq_parent')
-    def test_upgrade_13_to_14(self, aq_parent):
+    def test_upgrade_14_to_15(self, aq_parent):
         from z3c.relationfield.relation import RelationValue
         from zope.app.intid.interfaces import IIntIds
         from zope.component import getUtility
@@ -81,10 +81,10 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(relation_value.from_id, from_id)
         article1.relatedItems = [relation_value]
 
-        from slt.policy.upgrades import upgrade_13_to_14
-        upgrade_13_to_14(self.portal)
+        from slt.policy.upgrades import upgrade_14_to_15
+        upgrade_14_to_15(self.portal)
 
-        aq_parent().manage_renameObject.assert_called_with('slt', 'kauppa')
+        aq_parent().manage_renameObject.assert_called_with('kauppa', 'luontokauppa')
 
         item = article1.relatedItems[0]
         self.assertEqual(item.to_id, to_id)

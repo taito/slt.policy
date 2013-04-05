@@ -28,7 +28,8 @@ setup(
         'sll.basepolicy',
         'sll.locales',
         'slt.locales',
-        'slt.theme'],
+        'slt.theme',
+        'z3c.jbot'],
     entry_points="""
     # -*- Entry points: -*-
 

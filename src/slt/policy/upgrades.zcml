@@ -136,11 +136,11 @@
 
   <genericsetup:upgradeStep
     description=""
-    destination="14"
-    handler="slt.policy.upgrades.upgrade_13_to_14"
+    destination="15"
+    handler="slt.policy.upgrades.upgrade_14_to_15"
     profile="slt.policy:default"
     sortkey="1"
-    source="13"
+    source="14"
     title="Upgrade"
     />
 
