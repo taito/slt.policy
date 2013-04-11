@@ -144,4 +144,14 @@
     title="Upgrade"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="16"
+    handler="slt.policy.upgrades.unregister_layer_ISltPolicyLayer"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="15"
+    title="Unregister ISltPolicyLayer"
+    />
+
 </configure>

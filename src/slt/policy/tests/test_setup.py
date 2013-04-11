@@ -123,15 +123,10 @@ class TestCase(IntegrationTestCase):
         action = get_action(self.portal, 'user', 'orders')
         self.assertTrue(action.visible)
 
-    def test_browserlayer(self):
-        from slt.policy.browser.interfaces import ISltPolicyLayer
-        from plone.browserlayer import utils
-        self.assertIn(ISltPolicyLayer, utils.registered_layers())
-
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'15')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'16')
 
     def test_metadata__dependency__sll_basepolicy(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -514,9 +509,3 @@ class TestCase(IntegrationTestCase):
         self.uninstall_package()
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.assertFalse(installer.isProductInstalled('slt.policy'))
-
-    def test_uninstall__browserlayer(self):
-        self.uninstall_package()
-        from slt.policy.browser.interfaces import ISltPolicyLayer
-        from plone.browserlayer import utils
-        self.assertNotIn(ISltPolicyLayer, utils.registered_layers())

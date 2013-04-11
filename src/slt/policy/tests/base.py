@@ -26,6 +26,8 @@ class SltPolicyLayer(PloneSandboxLayer):
         self.loadZCML(package=z3c.jbot)
         import plonetheme.sunburst
         self.loadZCML(package=plonetheme.sunburst)
+        import slt.theme
+        self.loadZCML(package=slt.theme)
         import slt.policy
         self.loadZCML(package=slt.policy)
         import sll.locales

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Testing import ZopeTestCase as ztc
 from hexagonit.testing.browser import Browser
@@ -7,6 +8,7 @@ from plone.app.testing import TEST_USER_PASSWORD
 from plone.app.testing import setRoles
 from plone.testing import layered
 from slt.policy.tests.base import FUNCTIONAL_TESTING
+from zope.lifecycleevent import modified
 from zope.testing import renormalizing
 
 import doctest
@@ -50,6 +52,19 @@ def setUp(self):
 
     # Set the site back in English mode to make testing easier.
     portal.portal_languages.manage_setLanguageSettings('en', ['en', 'fi'])
+
+    workflow = getToolByName(portal, 'portal_workflow')
+
+    # Add two shipping method
+    shipping_method_container = portal['toimitustavat']
+    shipping_method1 = shipping_method_container[shipping_method_container.invokeFactory('ShippingMethod', 'shippingmethod1',
+        title='ShippingMethöd1', vat=24.0)]
+    modified(shipping_method1)
+    workflow.doActionFor(shipping_method1, 'publish')
+    shipping_method2 = shipping_method_container[shipping_method_container.invokeFactory('ShippingMethod', 'shippingmethod2',
+        title='ShippingMethöd2', vat=24.0)]
+    modified(shipping_method2)
+    workflow.doActionFor(shipping_method2, 'publish')
 
     regtool = getToolByName(portal, 'portal_registration')
     regtool.addMember('member1', 'member1')

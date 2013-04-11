@@ -45,6 +45,16 @@ Go to cart::
 
     >>> browser.open('/@@billing-and-shipping')
     >>> browser.url
+    'http://nohost/plone/@@cart'
+    >>> print browser.bycss('#order-flow')
+    --- 1 ---
+    <section id="order-flow"><span id="current-step">1. Cart</span>&#160;&#160;-&#160;&#160;<span>2. Customer Info and Shipping Method</span>&#160;&#160;-&#160;&#160;<span>3. Confirmation</span>
+    </section>
+
+Check out::
+
+    >>> browser.getControl(name="form.checkout").click()
+    >>> browser.url
     'http://nohost/plone/@@billing-and-shipping'
     >>> print browser.bycss('#order-flow')
     --- 1 ---
@@ -53,13 +63,13 @@ Go to cart::
 
 You need to fill the billing Info since you have not added your address to your preferences::
 
-    >>> browser.getControl(name="first_name").value = 'Bılling First'
-    >>> browser.getControl(name="last_name").value = 'Bılling Last'
-    >>> browser.getControl(name="organization").value = 'Bılling Organization'
-    >>> browser.getControl(name="vat").value = 'Bılling VAT'
-    >>> browser.getControl(name="email").value = 'first.last@email.bil'
-    >>> browser.getControl(name="street").value = 'Bılling Street'
-    >>> browser.getControl(name="post").value = 'Bılling Post'
-    >>> browser.getControl(name="city").value = 'Bılling City'
-    >>> browser.getControl(name="phone").value = 'Bılling Phone'
+    >>> browser.getControl(name="billing_first_name").value = 'Bılling First'
+    >>> browser.getControl(name="billing_last_name").value = 'Bılling Last'
+    >>> browser.getControl(name="billing_organization").value = 'Bılling Organization'
+    >>> browser.getControl(name="billing_vat").value = 'Bılling VAT'
+    >>> browser.getControl(name="billing_email").value = 'first.last@email.bil'
+    >>> browser.getControl(name="billing_street").value = 'Bılling Street'
+    >>> browser.getControl(name="billing_post").value = 'Bılling Post'
+    >>> browser.getControl(name="billing_city").value = 'Bılling City'
+    >>> browser.getControl(name="billing_phone").value = 'Bılling Phone'
     >>> browser.getControl(name="form.to.confirmation").click()

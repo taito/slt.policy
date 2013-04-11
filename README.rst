@@ -7,6 +7,12 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.13 (2013-04-11)
+=================
+
+- Moved test package to extras_require. [taito]
+- Added upgrade step to remove unnecessary browser layer. [taito]
+
 0.12 (2013-04-05)
 =================
 

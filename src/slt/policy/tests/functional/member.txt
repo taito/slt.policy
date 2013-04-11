@@ -16,6 +16,9 @@ Log out::
     --- 1 ---
     <dl class="portlet portletMember"><dd class="portletItem">
     <ul><li>
+    <a href="http://www.sll.fi/" title="The Finnish Association for Nature Conservation">The Finnish Association for Nature Conservation</a>
+    </li>
+    <li>
     <a href="http://nohost/plone/login" title="Log in">Log in</a>
     </li>
     </ul></dd>
@@ -87,7 +90,7 @@ Go to Orders::
     <div class="documentDescription">You haven't tried to order anything yet.</div>
     </section>
 
-sGo to article1::
+Go to article1::
 
     >>> browser.open('/article1')
 
@@ -122,15 +125,15 @@ Check out::
 
 Fill Billing Info and select Shipping Methöd 2::
 
-    >>> browser.getControl(name="first_name").value = 'Bılling First'
-    >>> browser.getControl(name="last_name").value = 'Bılling Last'
-    >>> browser.getControl(name="organization").value = 'Bılling Organization'
-    >>> browser.getControl(name="vat").value = 'Bılling VAT'
-    >>> browser.getControl(name="email").value = 'first.last@email.bil'
-    >>> browser.getControl(name="street").value = 'Bılling Street'
-    >>> browser.getControl(name="post").value = 'Bılling Post'
-    >>> browser.getControl(name="city").value = 'Bılling City'
-    >>> browser.getControl(name="phone").value = 'Bılling Phone'
+    >>> browser.getControl(name="billing_first_name").value = 'Bılling First'
+    >>> browser.getControl(name="billing_last_name").value = 'Bılling Last'
+    >>> browser.getControl(name="billing_organization").value = 'Bılling Organization'
+    >>> browser.getControl(name="billing_vat").value = 'Bılling VAT'
+    >>> browser.getControl(name="billing_email").value = 'first.last@email.bil'
+    >>> browser.getControl(name="billing_street").value = 'Bılling Street'
+    >>> browser.getControl(name="billing_post").value = 'Bılling Post'
+    >>> browser.getControl(name="billing_city").value = 'Bılling City'
+    >>> browser.getControl(name="billing_phone").value = 'Bılling Phone'
     >>> browser.getControl(name="shipping-method").value = [shippingmethod2_uuid]
     >>> browser.getControl(name="form.to.confirmation").click()
 
@@ -286,7 +289,9 @@ Check the order::
     </td>
     </tr></tbody></table></section><section id="cart-total"><span>Total</span>&#160;&#160;
     <span id="total">12.40 &#8364;</span>
-    </section><section id="addresses"><dl><dt>Billing Address</dt>
+    </section><dl id="registration-number"><dt>Registration Number</dt>
+    <dd>REGISTR&#196;TI&#214;N12345</dd>
+    </dl><section id="addresses"><dl><dt>Billing Address</dt>
     <dd>
     B&#305;lling First&#160;B&#305;lling Last&#160;&#160;B&#305;lling Organization&#160;&#160;B&#305;lling VAT<br>
     B&#305;lling Post&#160;B&#305;lling City<br>
@@ -300,3 +305,14 @@ Check the order::
     first.last@email.bil<br></dd>
     </dl></section></dd>
     </dl></section>
+
+# Purchase with registraton number::
+
+#     >>> browser.open('/article1')
+#     >>> browser.getControl(name="form.buttons.AddToCart").click()
+#     >>> browser.getLink('Go to cart').click()
+#     >>> browser.getControl(name="form.checkout").click()
+
+
+
+#     >>> browser.openBrowser()

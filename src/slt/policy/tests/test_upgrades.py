@@ -89,3 +89,9 @@ class TestCase(IntegrationTestCase):
         item = article1.relatedItems[0]
         self.assertEqual(item.to_id, to_id)
         self.assertNotEqual(item.from_id, from_id)
+
+    @mock.patch('slt.policy.upgrades.unregister_layer')
+    def test_unregister_layer_ISltPolicyLayer(self, unregister_layer):
+        from slt.policy.upgrades import unregister_layer_ISltPolicyLayer
+        unregister_layer_ISltPolicyLayer(self.portal)
+        unregister_layer.assert_called_with('slt.policy')

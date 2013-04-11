@@ -23,13 +23,12 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'hexagonit.testing',
         'setuptools',
         'sll.basepolicy',
         'sll.locales',
         'slt.locales',
-        'slt.theme',
-        'z3c.jbot'],
+        'slt.theme'],
+    extras_require={'test': ['hexagonit.testing']},
     entry_points="""
     # -*- Entry points: -*-
 

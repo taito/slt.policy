@@ -2,6 +2,7 @@ from Acquisition import aq_parent
 from Products.CMFCore.utils import getToolByName
 from abita.utils.utils import reimport_profile
 from collective.cart.core.interfaces import IArticle
+from plone.browserlayer.utils import unregister_layer
 
 
 PROFILE_ID = 'profile-slt.policy:default'
@@ -73,3 +74,8 @@ def upgrade_14_to_15(context):
                 item._from_id = from_id
                 index = obj.relatedItems.index(item)
                 item.to_id = intids.register(res[obj][index])
+
+
+def unregister_layer_ISltPolicyLayer(context):
+    """Unregister ISltPolicyLayer"""
+    unregister_layer('slt.policy')
