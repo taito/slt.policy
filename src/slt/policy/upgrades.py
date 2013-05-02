@@ -48,32 +48,32 @@ def reimport_workflow(context):
     reimport_profile(context, PROFILE_ID, 'workflow')
 
 
-def upgrade_14_to_15(context):
-    """"""
-    from zope.app.intid.interfaces import IIntIds
-    from zope.component import getUtility
-    intids = getUtility(IIntIds)
-    catalog = getToolByName(context, 'portal_catalog')
-    res = {}
-    for brain in catalog(object_provides=[IArticle.__identifier__]):
-        obj = brain.getObject()
-        if hasattr(obj, 'relatedItems'):
-            res.update({obj: [item.to_object for item in obj.relatedItems]})
+# def upgrade_14_to_15(context):
+#     """"""
+#     from zope.app.intid.interfaces import IIntIds
+#     from zope.component import getUtility
+#     intids = getUtility(IIntIds)
+#     catalog = getToolByName(context, 'portal_catalog')
+#     res = {}
+#     for brain in catalog(object_provides=[IArticle.__identifier__]):
+#         obj = brain.getObject()
+#         if hasattr(obj, 'relatedItems'):
+#             res.update({obj: [item.to_object for item in obj.relatedItems]})
 
-    portal = getToolByName(context, 'portal_url').getPortalObject()
-    parent = aq_parent(portal)
-    parent.manage_renameObject('kauppa', 'luontokauppa')
+#     portal = getToolByName(context, 'portal_url').getPortalObject()
+#     parent = aq_parent(portal)
+#     parent.manage_renameObject('kauppa', 'luontokauppa')
 
-    for obj in res:
-        intids.unregister(obj)
+#     for obj in res:
+#         intids.unregister(obj)
 
-    for obj in res:
-        from_id = intids.register(obj)
-        if hasattr(obj, 'relatedItems'):
-            for item in obj.relatedItems:
-                item._from_id = from_id
-                index = obj.relatedItems.index(item)
-                item.to_id = intids.register(res[obj][index])
+#     for obj in res:
+#         from_id = intids.register(obj)
+#         if hasattr(obj, 'relatedItems'):
+#             for item in obj.relatedItems:
+#                 item._from_id = from_id
+#                 index = obj.relatedItems.index(item)
+#                 item.to_id = intids.register(res[obj][index])
 
 
 def unregister_layer_ISltPolicyLayer(context):

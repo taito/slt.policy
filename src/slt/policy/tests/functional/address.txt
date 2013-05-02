@@ -46,20 +46,25 @@ Go to cart::
     >>> browser.open('/@@billing-and-shipping')
     >>> browser.url
     'http://nohost/plone/@@cart'
-    >>> print browser.bycss('#order-flow')
+
+    >>> print browser.bycss('#check-out-flow')
     --- 1 ---
-    <section id="order-flow"><span id="current-step">1. Cart</span>&#160;&#160;-&#160;&#160;<span>2. Customer Info and Shipping Method</span>&#160;&#160;-&#160;&#160;<span>3. Confirmation</span>
-    </section>
+    <section id="check-out-flow"><ol><li class="cart current-step">Cart</li>
+    <li class="billing-and-shipping">Addresses</li>
+    <li class="order-confirmation">Confirmation</li>
+    </ol></section>
 
 Check out::
 
-    >>> browser.getControl(name="form.checkout").click()
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
     >>> browser.url
     'http://nohost/plone/@@billing-and-shipping'
-    >>> print browser.bycss('#order-flow')
+    >>> print browser.bycss('#check-out-flow')
     --- 1 ---
-    <section id="order-flow"><a href="http://nohost/plone/@@cart">1. Cart</a>&#160;&#160;-&#160;&#160;<span id="current-step">2. Customer Info and Shipping Method</span>&#160;&#160;-&#160;&#160;<span>3. Confirmation</span>
-    </section>
+    <section id="check-out-flow"><ol><li class="cart">Cart</li>
+    <li class="billing-and-shipping current-step">Addresses</li>
+    <li class="order-confirmation">Confirmation</li>
+    </ol></section>
 
 You need to fill the billing Info since you have not added your address to your preferences::
 
@@ -72,4 +77,12 @@ You need to fill the billing Info since you have not added your address to your 
     >>> browser.getControl(name="billing_post").value = 'Bılling Post'
     >>> browser.getControl(name="billing_city").value = 'Bılling City'
     >>> browser.getControl(name="billing_phone").value = 'Bılling Phone'
-    >>> browser.getControl(name="form.to.confirmation").click()
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.url
+    'http://nohost/plone/@@order-confirmation'
+    >>> print browser.bycss('#check-out-flow')
+    --- 1 ---
+    <section id="check-out-flow"><ol><li class="cart">Cart</li>
+    <li class="billing-and-shipping">Addresses</li>
+    <li class="order-confirmation current-step">Confirmation</li>
+    </ol></section>

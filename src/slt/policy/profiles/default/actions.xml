@@ -6,8 +6,7 @@
     <object name="information" meta_type="CMF Action" i18n:domain="slt.policy">
       <property name="title" i18n:translate="">Personal Information</property>
       <property name="description" i18n:translate=""></property>
-      <property
-      name="url_expr">string:${globals_view/navigationRootUrl}/@@personal-information</property>
+      <property name="url_expr">string:${globals_view/navigationRootUrl}/@@personal-information</property>
       <property name="icon_expr"></property>
       <property name="available_expr">python:member is not None</property>
       <property name="permissions">
@@ -26,8 +25,7 @@
     <object name="addresses" meta_type="CMF Action" i18n:domain="slt.policy">
       <property name="title" i18n:translate="">Addresses</property>
       <property name="description" i18n:translate=""></property>
-      <property
-      name="url_expr">string:${portal/portal_membership/getHomeUrl}/@@addresses</property>
+      <property name="url_expr">string:${portal/portal_membership/getHomeUrl}/@@address-listing</property>
       <property name="icon_expr"></property>
       <property name="available_expr">python:member is not None</property>
       <property name="permissions">
@@ -39,8 +37,7 @@
     <object name="orders" meta_type="CMF Action" i18n:domain="slt.policy">
       <property name="title" i18n:translate="">Orders</property>
       <property name="description" i18n:translate=""></property>
-      <property
-      name="url_expr">string:${portal/portal_membership/getHomeUrl}</property>
+      <property name="url_expr">string:${portal/portal_membership/getHomeUrl}</property>
       <property name="icon_expr"></property>
       <property name="available_expr">python:member is not None</property>
       <property name="permissions">

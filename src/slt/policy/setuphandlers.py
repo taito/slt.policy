@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 def create_containers(context):
     portal = context.getSite()
     logger.info('Creating cart container named: Tilaukset.')
-    container = createContentInContainer(portal, 'collective.cart.core.CartContainer',
+    container = createContentInContainer(portal, 'collective.cart.core.OrderContainer',
         title="Tilaukset", checkConstraints=False)
     modified(container)
     logger.info('Creating shipping method container named: Toimitustavat.')

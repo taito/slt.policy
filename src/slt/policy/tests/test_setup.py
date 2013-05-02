@@ -58,69 +58,69 @@ class TestCase(IntegrationTestCase):
         action = get_action(self.portal, 'user', 'preferences')
         self.assertTrue(action.visible)
 
-    def test_actions__user__addresses__i18n_domain(self):
-        action = get_action(self.portal, 'user', 'addresses')
+    def test_actions__user__address_listing__i18n_domain(self):
+        action = get_action(self.portal, 'user', 'address_listing')
         self.assertEqual(action.i18n_domain, 'slt.policy')
 
-    def test_actions__user__addresses__meta_type(self):
-        action = get_action(self.portal, 'user', 'addresses')
+    def test_actions__user__address_listing__meta_type(self):
+        action = get_action(self.portal, 'user', 'address_listing')
         self.assertEqual(action.meta_type, 'CMF Action')
 
-    def test_actions__user__addresses__title(self):
-        action = get_action(self.portal, 'user', 'addresses')
+    def test_actions__user__address_listing__title(self):
+        action = get_action(self.portal, 'user', 'address_listing')
         self.assertEqual(action.title, 'Addresses')
 
-    def test_actions__user__addresses__descripion(self):
-        action = get_action(self.portal, 'user', 'addresses')
+    def test_actions__user__address_listing__descripion(self):
+        action = get_action(self.portal, 'user', 'address_listing')
         self.assertEqual(action.description, '')
 
-    def test_actions__user__addresses__url_expr(self):
-        action = get_action(self.portal, 'user', 'addresses')
+    def test_actions__user__address_listing__url_expr(self):
+        action = get_action(self.portal, 'user', 'address_listing')
         self.assertEqual(action.url_expr,
-            'string:${portal/portal_membership/getHomeUrl}/@@addresses')
+            'string:${portal/portal_membership/getHomeUrl}/@@address-listing')
 
-    def test_actions__user__addresses__available_expr(self):
-        action = get_action(self.portal, 'user', 'addresses')
+    def test_actions__user__address_listing__available_expr(self):
+        action = get_action(self.portal, 'user', 'address_listing')
         self.assertEqual(action.available_expr, 'python:member is not None')
 
-    def test_actions__user__addresses__permissions(self):
-        action = get_action(self.portal, 'user', 'addresses')
+    def test_actions__user__address_listing__permissions(self):
+        action = get_action(self.portal, 'user', 'address_listing')
         self.assertEqual(action.permissions, ('View',))
 
-    def test_actions__user__addresses__visible(self):
-        action = get_action(self.portal, 'user', 'addresses')
+    def test_actions__user__address_listing__visible(self):
+        action = get_action(self.portal, 'user', 'address_listing')
         self.assertTrue(action.visible)
 
-    def test_actions__user__orders__i18n_domain(self):
-        action = get_action(self.portal, 'user', 'orders')
+    def test_actions__user__order_listing__i18n_domain(self):
+        action = get_action(self.portal, 'user', 'order_listing')
         self.assertEqual(action.i18n_domain, 'slt.policy')
 
-    def test_actions__user__orders__meta_type(self):
-        action = get_action(self.portal, 'user', 'orders')
+    def test_actions__user__order_listing__meta_type(self):
+        action = get_action(self.portal, 'user', 'order_listing')
         self.assertEqual(action.meta_type, 'CMF Action')
 
-    def test_actions__user__orders__title(self):
-        action = get_action(self.portal, 'user', 'orders')
+    def test_actions__user__order_listing__title(self):
+        action = get_action(self.portal, 'user', 'order_listing')
         self.assertEqual(action.title, 'Orders')
 
-    def test_actions__user__orders__descripion(self):
-        action = get_action(self.portal, 'user', 'orders')
+    def test_actions__user__order_listing__descripion(self):
+        action = get_action(self.portal, 'user', 'order_listing')
         self.assertEqual(action.description, '')
 
-    def test_actions__user__orders__url_expr(self):
-        action = get_action(self.portal, 'user', 'orders')
+    def test_actions__user__order_listing__url_expr(self):
+        action = get_action(self.portal, 'user', 'order_listing')
         self.assertEqual(action.url_expr, 'string:${portal/portal_membership/getHomeUrl}')
 
-    def test_actions__user__orders__available_expr(self):
-        action = get_action(self.portal, 'user', 'orders')
+    def test_actions__user__order_listing__available_expr(self):
+        action = get_action(self.portal, 'user', 'order_listing')
         self.assertEqual(action.available_expr, 'python:member is not None')
 
-    def test_actions__user__orders__permissions(self):
-        action = get_action(self.portal, 'user', 'orders')
+    def test_actions__user__order_listing__permissions(self):
+        action = get_action(self.portal, 'user', 'order_listing')
         self.assertEqual(action.permissions, ('View',))
 
-    def test_actions__user__orders__visible(self):
-        action = get_action(self.portal, 'user', 'orders')
+    def test_actions__user__order_listing__visible(self):
+        action = get_action(self.portal, 'user', 'order_listing')
         self.assertTrue(action.visible)
 
     def test_metadata__version(self):
@@ -156,10 +156,8 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(self.portal.getProperty('title'), 'Luonnonsuojelukauppa')
 
     def test_propertiestool__navtree_properties__metaTypesNotToList(self):
-        number_of_default_ctypes = 32
         additional_ctypes = ('Document', 'News Item', 'slt.content.MemberArea')
         ctypes = get_property(self.portal, 'navtree_properties', 'metaTypesNotToList')
-        self.assertEqual(len(ctypes), number_of_default_ctypes + len(additional_ctypes))
         for ctype in additional_ctypes:
             self.assertIn(ctype, ctypes)
 
@@ -167,10 +165,8 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(get_property(self.portal, 'site_properties', 'icon_visibility'), 'disabled')
 
     def test_propertiestool__site_properties__types_not_searched(self):
-        number_of_default_ctypes = 29
         additional_ctypes = ('Document', 'Event', 'File', 'Image', 'Link', 'News Item', 'slt.content.MemberArea')
         ctypes = get_property(self.portal, 'site_properties', 'types_not_searched')
-        self.assertEqual(len(ctypes), number_of_default_ctypes + len(additional_ctypes))
         for ctype in additional_ctypes:
             self.assertIn(ctype, ctypes)
 
@@ -244,7 +240,7 @@ class TestCase(IntegrationTestCase):
 
     def test_setuphandlers__create_containers(self):
         self.assertIsNotNone(self.portal.get('tilaukset'))
-        self.assertEqual(self.portal.get('tilaukset').Type(), u'Cart Container')
+        self.assertEqual(self.portal.get('tilaukset').Type(), u'Order Container')
         self.assertIsNotNone(self.portal.get('toimitustavat'))
         self.assertEqual(self.portal.get('toimitustavat').Type(), u'Shipping Method Container')
 

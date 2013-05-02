@@ -134,7 +134,7 @@
     title="Reimport actions"
     />
 
-  <genericsetup:upgradeStep
+  <!-- <genericsetup:upgradeStep
     description=""
     destination="15"
     handler="slt.policy.upgrades.upgrade_14_to_15"
@@ -142,7 +142,7 @@
     sortkey="1"
     source="14"
     title="Upgrade"
-    />
+    /> -->
 
   <genericsetup:upgradeStep
     description=""
@@ -152,6 +152,16 @@
     sortkey="1"
     source="15"
     title="Unregister ISltPolicyLayer"
+    />
+
+  <genericsetup:upgradeStep
+    description=""
+    destination="17"
+    handler="slt.policy.upgrades.reimport_actions"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="16"
+    title="Reimport actions"
     />
 
 </configure>

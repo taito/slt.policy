@@ -72,7 +72,7 @@ def setUp(self):
 
     # Add Article
     article1 = createContentInContainer(portal, 'collective.cart.core.Article', checkConstraints=False, title='Ärticle1',
-        money=Money(Decimal('12.40'), currency='EUR'), vat_rate=24.0, reducible_quantity=100, sku='SKÖ1')
+        money=Money(Decimal('12.40'), currency='EUR'), vat_rate=24.0, reducible_quantity=100, sku='SKÖ1', salable=True)
     modified(article1)
     workflow.doActionFor(article1, 'publish')
 
