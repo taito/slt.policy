@@ -7,6 +7,12 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.14 (2013-05-03)
+=================
+
+- Added upgrade step. [taito]
+- Tested with Plone-4.3. [taito]
+
 0.13 (2013-04-11)
 =================
 
