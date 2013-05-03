@@ -157,11 +157,21 @@
   <genericsetup:upgradeStep
     description=""
     destination="17"
-    handler="slt.policy.upgrades.reimport_actions"
+    handler="slt.policy.upgrades.remove_relatedItems"
     profile="slt.policy:default"
     sortkey="1"
     source="16"
-    title="Reimport actions"
+    title="Remove relatedItems"
     />
+
+  <!-- <genericsetup:upgradeStep
+    description=""
+    destination="18"
+    handler="slt.policy.upgrades.reimport_actions"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="17"
+    title="Reimport actions"
+    /> -->
 
 </configure>

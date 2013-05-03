@@ -58,75 +58,75 @@ class TestCase(IntegrationTestCase):
         action = get_action(self.portal, 'user', 'preferences')
         self.assertTrue(action.visible)
 
-    def test_actions__user__address_listing__i18n_domain(self):
-        action = get_action(self.portal, 'user', 'address_listing')
+    def test_actions__user__addresses__i18n_domain(self):
+        action = get_action(self.portal, 'user', 'addresses')
         self.assertEqual(action.i18n_domain, 'slt.policy')
 
-    def test_actions__user__address_listing__meta_type(self):
-        action = get_action(self.portal, 'user', 'address_listing')
+    def test_actions__user__addresses__meta_type(self):
+        action = get_action(self.portal, 'user', 'addresses')
         self.assertEqual(action.meta_type, 'CMF Action')
 
-    def test_actions__user__address_listing__title(self):
-        action = get_action(self.portal, 'user', 'address_listing')
+    def test_actions__user__addresses__title(self):
+        action = get_action(self.portal, 'user', 'addresses')
         self.assertEqual(action.title, 'Addresses')
 
-    def test_actions__user__address_listing__descripion(self):
-        action = get_action(self.portal, 'user', 'address_listing')
+    def test_actions__user__addresses__descripion(self):
+        action = get_action(self.portal, 'user', 'addresses')
         self.assertEqual(action.description, '')
 
-    def test_actions__user__address_listing__url_expr(self):
-        action = get_action(self.portal, 'user', 'address_listing')
+    def test_actions__user__addresses__url_expr(self):
+        action = get_action(self.portal, 'user', 'addresses')
         self.assertEqual(action.url_expr,
             'string:${portal/portal_membership/getHomeUrl}/@@address-listing')
 
-    def test_actions__user__address_listing__available_expr(self):
-        action = get_action(self.portal, 'user', 'address_listing')
+    def test_actions__user__addresses__available_expr(self):
+        action = get_action(self.portal, 'user', 'addresses')
         self.assertEqual(action.available_expr, 'python:member is not None')
 
-    def test_actions__user__address_listing__permissions(self):
-        action = get_action(self.portal, 'user', 'address_listing')
+    def test_actions__user__addresses__permissions(self):
+        action = get_action(self.portal, 'user', 'addresses')
         self.assertEqual(action.permissions, ('View',))
 
-    def test_actions__user__address_listing__visible(self):
-        action = get_action(self.portal, 'user', 'address_listing')
+    def test_actions__user__addresses__visible(self):
+        action = get_action(self.portal, 'user', 'addresses')
         self.assertTrue(action.visible)
 
-    def test_actions__user__order_listing__i18n_domain(self):
-        action = get_action(self.portal, 'user', 'order_listing')
+    def test_actions__user__orders__i18n_domain(self):
+        action = get_action(self.portal, 'user', 'orders')
         self.assertEqual(action.i18n_domain, 'slt.policy')
 
-    def test_actions__user__order_listing__meta_type(self):
-        action = get_action(self.portal, 'user', 'order_listing')
+    def test_actions__user__orders__meta_type(self):
+        action = get_action(self.portal, 'user', 'orders')
         self.assertEqual(action.meta_type, 'CMF Action')
 
-    def test_actions__user__order_listing__title(self):
-        action = get_action(self.portal, 'user', 'order_listing')
+    def test_actions__user__orders__title(self):
+        action = get_action(self.portal, 'user', 'orders')
         self.assertEqual(action.title, 'Orders')
 
-    def test_actions__user__order_listing__descripion(self):
-        action = get_action(self.portal, 'user', 'order_listing')
+    def test_actions__user__orders__descripion(self):
+        action = get_action(self.portal, 'user', 'orders')
         self.assertEqual(action.description, '')
 
-    def test_actions__user__order_listing__url_expr(self):
-        action = get_action(self.portal, 'user', 'order_listing')
+    def test_actions__user__orders__url_expr(self):
+        action = get_action(self.portal, 'user', 'orders')
         self.assertEqual(action.url_expr, 'string:${portal/portal_membership/getHomeUrl}')
 
-    def test_actions__user__order_listing__available_expr(self):
-        action = get_action(self.portal, 'user', 'order_listing')
+    def test_actions__user__orders__available_expr(self):
+        action = get_action(self.portal, 'user', 'orders')
         self.assertEqual(action.available_expr, 'python:member is not None')
 
-    def test_actions__user__order_listing__permissions(self):
-        action = get_action(self.portal, 'user', 'order_listing')
+    def test_actions__user__orders__permissions(self):
+        action = get_action(self.portal, 'user', 'orders')
         self.assertEqual(action.permissions, ('View',))
 
-    def test_actions__user__order_listing__visible(self):
-        action = get_action(self.portal, 'user', 'order_listing')
+    def test_actions__user__orders__visible(self):
+        action = get_action(self.portal, 'user', 'orders')
         self.assertTrue(action.visible)
 
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'16')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'17')
 
     def test_metadata__dependency__sll_basepolicy(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
