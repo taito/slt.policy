@@ -7,6 +7,12 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+
+0.15 (2013-05-07)
+=================
+
+- Added upgrade step. [taito]
+
 0.14 (2013-05-03)
 =================
 
