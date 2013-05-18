@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.15.3 (2013-05-18)
+===================
+
+- Removed dependency from sll.locales. [taito]
+
 0.15.2 (2013-05-18)
 ===================
 
