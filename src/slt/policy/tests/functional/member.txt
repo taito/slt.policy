@@ -84,18 +84,14 @@ Go to Orders::
     >>> browser.getLink('Orders').click()
     >>> browser.url
     'http://nohost/plone/Members/member1'
+
     >>> print browser.bycss('.documentFirstHeading')
     --- 1 ---
     <h1 class="documentFirstHeading">Order Linsting</h1>
 
     >>> print browser.bycss('.documentDescription')
-    --- 1 ---
-    <div class="documentDescription">Add commonly used addresses to make your order easier.</div>
 
 Go to article1::
-
-    # >>> browser.getLink('Log out').click()
-    # >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
 
     >>> browser.open('/article1')
 
@@ -272,7 +268,6 @@ Thanks page::
     <section id="link-to-order"><a href="http://nohost/plone/Members/member1?order_number=1">Check the order</a>
     </section>
 
-
 Check the order::
 
     >>> browser.getLink('Check the order').click()
@@ -288,45 +283,51 @@ Check the order::
     Updated: ...</span>
     </dt>
     <dd class="collapsibleContent">
-    <section id="order-articles"><table><tbody><tr><td class="image">
-    <a href="http://nohost/plone/article1" title="&#196;rticle1">
+    <section id="article-listing"><article><section class="image"><a href="http://nohost/plone/article1" title="&#196;rticle1">
     <img src="http://nohost/plone/fallback.png"></a>
-    </td>
-    <td class="name">
-    <h3>
+    </section><section class="title-and-description"><dl><dt>
     <a href="http://nohost/plone/article1">&#196;rticle1</a>
-    </h3>
-    <p></p>
-    </td>
-    <td class="price-and-quantity">
-    <span class="gross">12.40 &#8364;</span>
-    <br><span class="vat">
-    Including VAT: 24%
-    </span>
-    </td>
-    </tr></tbody></table></section><section id="shipping-method"><table><tbody><tr><td class="shipping-method-title">
-    Shipping Method:
-    </td>
-    <td>ShippingMeth&#246;d2</td>
-    <td class="price-and-quantity">
-    </td>
-    </tr></tbody></table></section><section id="order-total"><span>Total</span>&#160;&#160;
-    <span id="total">12.40 &#8364;</span>
-    </section><dl id="registration-number"><dt>
-    Registration Number
     </dt>
-    <dd>REGISTR&#196;TI&#214;N12345</dd>
-    </dl><section id="addresses"><dl><dt>Billing Address</dt>
+    <dd class="description"></dd>
+    </dl></section><section class="gross-and-vat-rate"><section class="gross">12.40 &#8364;</section><section class="vat-rate">
+    Including VAT: 24%
+    </section></section></article></section><section id="shipping-method"><span class="title">Shipping Method</span>
+    <span>ShippingMeth&#246;d2</span>
+    <span class="gross-and-vat-rate">
+    </span>
+    </section><section id="total"><span class="title">Total</span>&#160;&#160;
+    <span class="total">12.40 &#8364;</span>
+    </section><section id="addresses"><dl><dt>Billing Address</dt>
     <dd>
-    B&#305;lling First&#160;B&#305;lling Last&#160;&#160;B&#305;lling Organization&#160;&#160;B&#305;lling VAT<br>
-    B&#305;lling Post&#160;B&#305;lling City<br>
-    B&#305;lling Phone<br>
-    first.last@email.bil<br></dd>
+    <span class="name">
+    <span class="first-name">B&#305;lling First</span>
+    <span class="last-name">B&#305;lling Last</span>
+    <span class="organization">B&#305;lling Organization</span>
+    <span class="vat-number">B&#305;lling VAT</span>
+    </span>
+    <span class="location">
+    <span class="post">B&#305;lling Post</span>
+    <span class="city">B&#305;lling City</span>
+    </span>
+    <span class="phone">B&#305;lling Phone</span>
+    <span class="email">first.last@email.bil</span>
+    </dd>
     </dl><dl><dt>Shipping Address</dt>
     <dd>
-    B&#305;lling First&#160;B&#305;lling Last&#160;&#160;B&#305;lling Organization&#160;&#160;B&#305;lling VAT<br>
-    B&#305;lling Post&#160;B&#305;lling City<br>
-    B&#305;lling Phone<br>
-    first.last@email.bil<br></dd>
-    </dl></section></dd>
+    <span class="name">
+    <span class="first-name">B&#305;lling First</span>
+    <span class="last-name">B&#305;lling Last</span>
+    <span class="organization">B&#305;lling Organization</span>
+    <span class="vat-number">B&#305;lling VAT</span>
+    </span>
+    <span class="location">
+    <span class="post">B&#305;lling Post</span>
+    <span class="city">B&#305;lling City</span>
+    </span>
+    <span class="phone">B&#305;lling Phone</span>
+    <span class="email">first.last@email.bil</span>
+    </dd>
+    </dl></section><section id="registration-number"><span class="title">Registration Number</span>
+    <span class="registration-number">REGISTR&#196;TI&#214;N12345</span>
+    </section></dd>
     </dl></section>
