@@ -25,7 +25,6 @@ setup(
     install_requires=[
         'setuptools',
         'sll.basepolicy',
-        'sll.locales',
         'slt.locales',
         'slt.theme'],
     extras_require={'test': ['hexagonit.testing']},
