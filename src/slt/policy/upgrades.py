@@ -46,108 +46,27 @@ def reimport_workflow(context):
     reimport_profile(context, PROFILE_ID, 'workflow')
 
 
-# def upgrade_14_to_15(context):
-#     """"""
-#     from zope.app.intid.interfaces import IIntIds
-#     from zope.component import getUtility
-#     intids = getUtility(IIntIds)
-#     catalog = getToolByName(context, 'portal_catalog')
-#     res = {}
-#     for brain in catalog(object_provides=[IArticle.__identifier__]):
-#         obj = brain.getObject()
-#         if hasattr(obj, 'relatedItems'):
-#             res.update({obj: [item.to_object for item in obj.relatedItems]})
-
-#     portal = getToolByName(context, 'portal_url').getPortalObject()
-#     parent = aq_parent(portal)
-#     parent.manage_renameObject('kauppa', 'luontokauppa')
-
-#     for obj in res:
-#         intids.unregister(obj)
-
-#     for obj in res:
-#         from_id = intids.register(obj)
-#         if hasattr(obj, 'relatedItems'):
-#             for item in obj.relatedItems:
-#                 item._from_id = from_id
-#                 index = obj.relatedItems.index(item)
-#                 item.to_id = intids.register(res[obj][index])
-
-
 def unregister_layer_ISltPolicyLayer(context):
     """Unregister ISltPolicyLayer"""
     unregister_layer('slt.policy')
 
 
-def remove_relatedItems(context):
-    from plone.uuid.interfaces import IUUID
-    from zope.lifecycleevent import modified
+# def remove_relatedItems(context):
+#     from plone.uuid.interfaces import IUUID
+#     from zope.lifecycleevent import modified
 
-    # catalog = getToolByName(context, 'portal_catalog')
-    # catalog.clearFindAndRebuild()
+#     catalog = getToolByName(context, 'portal_catalog')
+#     for brain in catalog(portal_type=['collective.cart.core.Article']):
+#         obj = brain.getObject()
 
-    # intids = getUtility(IIntIds)
-    # res = {}
-    # res = []
-    catalog = getToolByName(context, 'portal_catalog')
-    for brain in catalog(portal_type=['collective.cart.core.Article']):
-        obj = brain.getObject()
-        # modified(obj)
+#         if hasattr(obj, 'relatedItems'):
+#             uuids = []
+#             for item in obj.relatedItems:
+#                 item_object = item.to_object
+#                 if item_object is not None:
+#                     uuids.append(IUUID(item_object))
 
-        if hasattr(obj, 'relatedItems'):
-            uuids = []
-            for item in obj.relatedItems:
-                item_object = item.to_object
-                if item_object is not None:
-                    uuids.append(IUUID(item_object))
+#             setattr(obj, 'related_articles', uuids)
+#             del obj.relatedItems
 
-            setattr(obj, 'related_articles', uuids)
-            del obj.relatedItems
-            # obj.relatedItems = []
-
-        modified(obj)
-
-    # for brain in catalog():
-    #     obj = brain.getObject()
-    #     try:
-    #         intids.unregister(obj)
-    #     except KeyError:
-    #         pass
-    #     modified(obj)
-
-
-
-
-            # res.append(obj)
-
-        # import pdb; pdb.set_trace()
-        # noLongerProvides(obj, IArticleSchema)
-        # obj.vat_rate = float(obj.vat_rate)
-        # obj.relatedItems = []
-        # alsoProvides(obj, IArticle)
-        # modified(obj)
-        # obj.reindexObject()
-        # res.update({obj: [item.to_object for item in obj.relatedItems]})
-
-    # for obj in res:
-    #     intids.unregister(obj)
-
-    # for obj in res:
-    #     from_id = intids.register(obj)
-    #     if hasattr(obj, 'relatedItems'):
-    #         for item in obj.relatedItems:
-    #             item._from_id = from_id
-    #             index = obj.relatedItems.index(item)
-    #             item.to_id = intids.register(res[obj][index])
-    #             import pdb; pdb.set_trace()
-
-        # modified(obj)
-
-    #     res.append(obj)
-
-    # catalog = getToolByName(context, 'portal_catalog')
-    # catalog.clearFindAndRebuild()
-
-    # for obj in res:
-    #     alsoProvides(obj, IArticle)
-    #     modified(obj)
+#         modified(obj)

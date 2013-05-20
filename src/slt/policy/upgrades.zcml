@@ -3,7 +3,6 @@
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
   xmlns="http://namespaces.zope.org/zope">
 
-
   <genericsetup:upgradeStep
     description=""
     destination="1"
@@ -144,7 +143,7 @@
     title="Unregister ISltPolicyLayer"
     />
 
-  <genericsetup:upgradeStep
+  <!-- <genericsetup:upgradeStep
     description=""
     destination="17"
     handler="slt.policy.upgrades.remove_relatedItems"
@@ -152,7 +151,7 @@
     sortkey="1"
     source="16"
     title="Remove relatedItems"
-    />
+    /> -->
 
   <genericsetup:upgradeStep
     description=""
@@ -162,6 +161,16 @@
     sortkey="1"
     source="17"
     title="Reimport actions"
+    />
+
+  <genericsetup:upgradeStep
+    description=""
+    destination="19"
+    handler="slt.policy.upgrades.reimport_registry"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="18"
+    title="Reimport plone.app.registry"
     />
 
 </configure>

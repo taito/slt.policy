@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.16 (2013-05-20)
+=================
+
+- Added upgrade step to reimport plone.app.registry after reimporting package: sll.basepolicy. [taito]
+
 0.15.3 (2013-05-18)
 ===================
 
