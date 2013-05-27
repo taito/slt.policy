@@ -1,4 +1,3 @@
-from Products.CMFCore.utils import getToolByName
 from abita.utils.utils import reimport_profile
 from plone.browserlayer.utils import unregister_layer
 
@@ -49,24 +48,3 @@ def reimport_workflow(context):
 def unregister_layer_ISltPolicyLayer(context):
     """Unregister ISltPolicyLayer"""
     unregister_layer('slt.policy')
-
-
-# def remove_relatedItems(context):
-#     from plone.uuid.interfaces import IUUID
-#     from zope.lifecycleevent import modified
-
-#     catalog = getToolByName(context, 'portal_catalog')
-#     for brain in catalog(portal_type=['collective.cart.core.Article']):
-#         obj = brain.getObject()
-
-#         if hasattr(obj, 'relatedItems'):
-#             uuids = []
-#             for item in obj.relatedItems:
-#                 item_object = item.to_object
-#                 if item_object is not None:
-#                     uuids.append(IUUID(item_object))
-
-#             setattr(obj, 'related_articles', uuids)
-#             del obj.relatedItems
-
-#         modified(obj)

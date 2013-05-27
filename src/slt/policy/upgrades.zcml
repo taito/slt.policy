@@ -143,16 +143,6 @@
     title="Unregister ISltPolicyLayer"
     />
 
-  <!-- <genericsetup:upgradeStep
-    description=""
-    destination="17"
-    handler="slt.policy.upgrades.remove_relatedItems"
-    profile="slt.policy:default"
-    sortkey="1"
-    source="16"
-    title="Remove relatedItems"
-    /> -->
-
   <genericsetup:upgradeStep
     description=""
     destination="18"

@@ -1,6 +1,3 @@
-Creating shop structure
-=======================
-
 Log in as Manager::
 
     >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
@@ -19,7 +16,7 @@ Add Article1::
     >>> browser.getControl(name="form.widgets.IDublinCore.title").value = 'Ärticle1'
     >>> browser.getControl(name="form.widgets.IDublinCore.description").value = 'Descriptiön of Ärticle1'
     >>> browser.getControl(name="form.widgets.ISKU.sku").value = 'SKU1'
-    >>> browser.getControl(name="form.widgets.IDiscount.price").value = '24.60'
+    >>> browser.getControl(name="form.widgets.IDiscountBehavior.price").value = '24.60'
     >>> browser.getControl(name="form.widgets.ISize.weight").value = '100.0'
     >>> browser.getControl(name="form.buttons.save").click()
     >>> browser.getLink('Publish').click()
@@ -105,4 +102,3 @@ You need to fill the billing Info since you have not added your address to your 
     Confirmation
     </li>
     </ul></section>
-
