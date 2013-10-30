@@ -8,7 +8,7 @@ Changelog
 ---------
 
 0.17 (2013-10-30)
-================
+=================
 
 - Fix tests. [taito]
 - Test with Plone-4.3.2. [taito]
