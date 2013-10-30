@@ -306,8 +306,9 @@ Check the order::
     <span class="vat-number">B&#305;lling VAT</span>
     </span>
     <span class="location">
-    <span class="post">B&#305;lling Post</span>
+    <span class="street">B&#305;lling Street</span>
     <span class="city">B&#305;lling City</span>
+    <span class="post">B&#305;lling Post</span>
     </span>
     <span class="phone">B&#305;lling Phone</span>
     <span class="email">first.last@email.bil</span>
@@ -321,8 +322,9 @@ Check the order::
     <span class="vat-number">B&#305;lling VAT</span>
     </span>
     <span class="location">
-    <span class="post">B&#305;lling Post</span>
+    <span class="street">B&#305;lling Street</span>
     <span class="city">B&#305;lling City</span>
+    <span class="post">B&#305;lling Post</span>
     </span>
     <span class="phone">B&#305;lling Phone</span>
     <span class="email">first.last@email.bil</span>

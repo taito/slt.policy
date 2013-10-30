@@ -6,4 +6,3 @@
 .DS_Store
 .long-description.html
 dist
-slt/policy/docs/_build/*
