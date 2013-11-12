@@ -167,7 +167,7 @@ Check the newest message sent::
     <BLANKLINE>
     Registration Number: REGISTR=C3=84TI=C3=96N12345
     <BLANKLINE>
-    Birth Date: 2013-11-06
+    Birth Date: ...
     <BLANKLINE>
     <BLANKLINE>
     Billing Address
@@ -225,7 +225,7 @@ Check the newest message sent::
     <BLANKLINE>
     Registration Number: REGISTR=C3=84TI=C3=96N12345
     <BLANKLINE>
-    Birth Date: 2013-11-06
+    Birth Date: ...
     <BLANKLINE>
     <BLANKLINE>
     Billing Address
@@ -334,7 +334,7 @@ Check the order::
     <span class="email">first.last@email.bil</span>
     </dd>
     </dl></section><section id="birth-date"><span class="title">Birth Date</span>
-    <span class="birth-date">2013-11-06</span>
+    <span class="birth-date">...</span>
     </section><section id="registration-number"><span class="title">Registration Number</span>
     <span class="registration-number">REGISTR&#196;TI&#214;N12345</span>
     </section></dd>
