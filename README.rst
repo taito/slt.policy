@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.17.3 (2014-01-08)
+===================
+
+- Use Finnish format for birth date. [taito]
+
 0.17.2 (2013-11-06)
 ===================
 

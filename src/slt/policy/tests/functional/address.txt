@@ -87,6 +87,7 @@ You need to fill the billing Info since you have not added your address to your 
     >>> browser.getControl(name="billing_post").value = 'Bılling Post'
     >>> browser.getControl(name="billing_city").value = 'Bılling City'
     >>> browser.getControl(name="billing_phone").value = 'Bılling Phone'
+    >>> browser.getControl(name="birth_date").value = '31.12.1990'
     >>> browser.getControl(name="form.buttons.CheckOut").click()
     >>> browser.url
     'http://nohost/plone/@@order-confirmation'

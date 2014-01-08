@@ -137,6 +137,7 @@ Fill Billing Info and select Shipping Methöd 2::
     >>> browser.getControl(name="billing_post").value = 'Bılling Post'
     >>> browser.getControl(name="billing_city").value = 'Bılling City'
     >>> browser.getControl(name="billing_phone").value = 'Bılling Phone'
+    >>> browser.getControl(name="birth_date").value = '31.12.1990'
     >>> browser.getControl(name="shipping-method").value = [shippingmethod2_uuid]
     >>> browser.getControl(name="form.buttons.CheckOut").click()
 
@@ -339,3 +340,8 @@ Check the order::
     <span class="registration-number">REGISTR&#196;TI&#214;N12345</span>
     </section></dd>
     </dl></section>
+
+    >>> browser.getLink('Log out').click()
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+    >>> browser.open('/prefs_error_log_form')
+    >>> browser.getLink('Unauthorized', index=2).click()
