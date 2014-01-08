@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='slt.policy',
-    version='0.17.2',
+    version='0.17.3',
     description="Turns plone site into SLT shopping site.",
     long_description=open("README.rst").read(),
     classifiers=[
