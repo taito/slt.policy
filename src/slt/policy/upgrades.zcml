@@ -163,4 +163,14 @@
     title="Reimport plone.app.registry"
     />
 
+  <genericsetup:upgradeStep
+    description="Set imaging_properties:quality from 88 to 20"
+    destination="20"
+    handler="slt.policy.upgrades.reimport_propertiestool"
+    profile="slt.policy:default"
+    sortkey="1"
+    source="19"
+    title="Update propertiestool"
+    />
+
 </configure>

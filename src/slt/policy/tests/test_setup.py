@@ -126,7 +126,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.policy:default'), u'19')
+            setup.getVersionForProfile('profile-slt.policy:default'), u'20')
 
     def test_metadata__dependency__sll_basepolicy(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -154,6 +154,9 @@ class TestCase(IntegrationTestCase):
 
     def test_properties__title(self):
         self.assertEqual(self.portal.getProperty('title'), 'Luonnonsuojelukauppa')
+
+    def test_propertiestool__imaging_properties__quality(self):
+        self.assertEqual(get_property(self.portal, 'imaging_properties', 'quality'), 20)
 
     def test_propertiestool__navtree_properties__metaTypesNotToList(self):
         additional_ctypes = ('Document', 'News Item', 'slt.content.MemberArea')

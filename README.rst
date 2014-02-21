@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.17.4 (2014-02-21)
+===================
+
+- Update imaging properties: quality form 88 to 20. [taito]
+
 0.17.3 (2014-01-08)
 ===================
 
