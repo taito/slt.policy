@@ -156,7 +156,7 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(self.portal.getProperty('title'), 'Luonnonsuojelukauppa')
 
     def test_propertiestool__imaging_properties__quality(self):
-        self.assertEqual(get_property(self.portal, 'imaging_properties', 'quality'), 20)
+        self.assertEqual(get_property(self.portal, 'imaging_properties', 'quality'), 35)
 
     def test_propertiestool__navtree_properties__metaTypesNotToList(self):
         additional_ctypes = ('Document', 'News Item', 'slt.content.MemberArea')

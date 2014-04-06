@@ -164,7 +164,7 @@
     />
 
   <genericsetup:upgradeStep
-    description="Set imaging_properties:quality from 88 to 20"
+    description="Set imaging_properties:quality from 88 to 35"
     destination="20"
     handler="slt.policy.upgrades.reimport_propertiestool"
     profile="slt.policy:default"
