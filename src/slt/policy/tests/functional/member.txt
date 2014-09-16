@@ -365,7 +365,7 @@ Check the newest message sent::
     <BLANKLINE>
     Registration Number: REGISTR=C3=84TI=C3=96N12345
     <BLANKLINE>
-    Birth Date: Dec 31, 1990
+    Birth Date: ...
     <BLANKLINE>
     <BLANKLINE>
     Billing Address
