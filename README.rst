@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.18 (2014-09-16)
+=================
+
+- Add robot framework for testing. [taito]
+
 0.17.5 (2014-09-16)
 ===================
 

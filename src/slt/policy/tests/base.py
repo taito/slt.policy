@@ -1,4 +1,5 @@
 from collective.cart.shopping.tests.base import IntegrationTestCase as BaseIntegrationTestCase
+from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
@@ -58,6 +59,8 @@ INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,), name="SltPolicyLayer:Integration")
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,), name="SltPolicyLayer:Functional")
+ROBOT_TESTING = FunctionalTesting(
+    bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE), name="SltPolicyLayer:Robot")
 
 
 class IntegrationTestCase(BaseIntegrationTestCase):

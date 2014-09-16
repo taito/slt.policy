@@ -27,7 +27,7 @@ setup(
         'sll.basepolicy',
         'slt.locales',
         'slt.theme'],
-    extras_require={'test': ['hexagonit.testing']},
+    extras_require={'test': ['hexagonit.testing', 'plone.app.robotframework']},
     entry_points="""
     # -*- Entry points: -*-
 
