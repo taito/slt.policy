@@ -91,20 +91,11 @@ Go to Orders::
 
     >>> print browser.bycss('.documentDescription')
 
-Go to article1::
+Check out with organization::
 
     >>> browser.open('/article1')
-
-Add Ärticle1 to cart::
-
     >>> browser.getControl(name="form.buttons.AddToCart").click()
-
-Go to cart::
-
     >>> browser.getLink('Go to cart').click()
-
-Check out::
-
     >>> browser.getControl(name="form.buttons.CheckOut").click()
     >>> 'value="Fırst"' in browser.contents
     True
@@ -168,7 +159,6 @@ Check the newest message sent::
     <BLANKLINE>
     Registration Number: REGISTR=C3=84TI=C3=96N12345
     <BLANKLINE>
-    Birth Date: ...
     <BLANKLINE>
     <BLANKLINE>
     Billing Address
@@ -226,7 +216,6 @@ Check the newest message sent::
     <BLANKLINE>
     Registration Number: REGISTR=C3=84TI=C3=96N12345
     <BLANKLINE>
-    Birth Date: ...
     <BLANKLINE>
     <BLANKLINE>
     Billing Address
@@ -334,14 +323,88 @@ Check the order::
     <span class="phone">B&#305;lling Phone</span>
     <span class="email">first.last@email.bil</span>
     </dd>
-    </dl></section><section id="birth-date"><span class="title">Birth Date</span>
-    <span class="birth-date">...</span>
-    </section><section id="registration-number"><span class="title">Registration Number</span>
+    </dl></section><section id="registration-number"><span class="title">Registration Number</span>
     <span class="registration-number">REGISTR&#196;TI&#214;N12345</span>
     </section></dd>
     </dl></section>
 
-    >>> browser.getLink('Log out').click()
-    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
-    >>> browser.open('/prefs_error_log_form')
-    >>> browser.getLink('Unauthorized', index=2).click()
+Check out without organization::
+
+    >>> browser.open('/article1')
+    >>> browser.getControl(name="form.buttons.AddToCart").click()
+    >>> browser.getLink('Go to cart').click()
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.getControl(name="billing_organization").value = ''
+    >>> browser.getControl(name="birth_date").value = '31.12.1990'
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+
+Confirm order::
+
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+
+Check the newest message sent::
+
+    >>> len(mailhost.messages)
+    4
+
+    >>> msg = mailhost.messages[-2]
+    >>> prink(msg)
+    MIME-Version: 1.0
+    Content-Type: text/plain; charset="utf-8"
+    Content-Transfer-Encoding: quoted-printable
+    Subject: =?utf-8?q?Order_Number=3A_2?=
+    To: =?utf-8?q?B=C4=B1lling_First_B=C4=B1lling_Last?= <first.last@email.bil>
+    From: Luonnonsuojelukauppa <info@shop.com>
+    Date: ...
+    <BLANKLINE>
+    Thank you for the order.
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Number: 2
+    <BLANKLINE>
+    <BLANKLINE>
+    Registration Number: REGISTR=C3=84TI=C3=96N12345
+    <BLANKLINE>
+    Birth Date: Dec 31, 1990
+    <BLANKLINE>
+    <BLANKLINE>
+    Billing Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    B=C4=B1lling First B=C4=B1lling Last    B=C4=B1lling VAT
+    B=C4=B1lling Street
+    B=C4=B1lling Post B=C4=B1lling City
+    B=C4=B1lling Phone
+    first.last@email.bil
+    <BLANKLINE>
+    Shipping Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    B=C4=B1lling First B=C4=B1lling Last    B=C4=B1lling VAT
+    B=C4=B1lling Street
+    B=C4=B1lling Post B=C4=B1lling City
+    B=C4=B1lling Phone
+    first.last@email.bil
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Contents
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    <BLANKLINE>
+    SKU: SK=C3=961
+    =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    Shipping Method: ShippingMeth=C3=B6d2
+    <BLANKLINE>
+    Total: 12.40 =E2=82=AC
+    <BLANKLINE>
+    Link to the order: http://nohost/plone/Members/member1?order_number=3D2
+    <BLANKLINE>
+    <BLANKLINE>
+
+#     >>> browser.getLink('Log out').click()
+#     >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+#     >>> browser.open('/prefs_error_log_form')
+#     >>> browser.getLink('Unauthorized', index=2).click()

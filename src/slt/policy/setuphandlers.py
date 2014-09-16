@@ -18,7 +18,7 @@ def create_containers(context):
     modified(container)
     logger.info('Creating shipping method container named: Toimitustavat.')
     container = createContentInContainer(portal, 'collective.cart.shipping.ShippingMethodContainer',
-        title='Toimitustavat', checkConstraints=False)
+        title=u'Toimitustavat', checkConstraints=False)
     modified(container)
 
 

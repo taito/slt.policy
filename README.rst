@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.17.5 (2014-09-16)
+===================
+
+- Fix test input to unicode for Dexterity content types. [taito]
+
 0.17.4 (2014-02-21)
 ===================
 
