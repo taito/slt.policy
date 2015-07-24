@@ -7,6 +7,11 @@ This package contains policies for SLT shopping site.
 Changelog
 ---------
 
+0.19 (2015-07-24)
+=================
+
+- Remove property: default_page. [taito]
+
 0.18 (2014-09-16)
 =================
 
