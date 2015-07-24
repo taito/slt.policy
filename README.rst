@@ -4,6 +4,9 @@ slt.policy
 
 This package contains policies for SLT shopping site.
 
+.. image:: https://secure.travis-ci.org/taito/slt.policy.png
+    :target: http://travis-ci.org/taito/slt.policy
+
 Changelog
 ---------
 
@@ -11,6 +14,7 @@ Changelog
 =================
 
 - Remove property: default_page. [taito]
+- Add dependency to Products.CMFPlacefulWorkflow for test. [taito]
 
 0.18 (2014-09-16)
 =================

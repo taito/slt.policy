@@ -291,6 +291,8 @@ Check the order::
     </span>
     </section><section id="total"><span class="title">Total</span>&#160;&#160;
     <span class="total">12.40 &#8364;</span>
+    </section><section id="registration-number"><span class="title">Registration Number</span>
+    <span class="registration-number">REGISTR&#196;TI&#214;N12345</span>
     </section><section id="addresses"><dl><dt>Billing Address</dt>
     <dd>
     <span class="name">
@@ -323,10 +325,9 @@ Check the order::
     <span class="phone">B&#305;lling Phone</span>
     <span class="email">first.last@email.bil</span>
     </dd>
-    </dl></section><section id="registration-number"><span class="title">Registration Number</span>
-    <span class="registration-number">REGISTR&#196;TI&#214;N12345</span>
-    </section></dd>
+    </dl></section></dd>
     </dl></section>
+
 
 Check out without organization::
 
