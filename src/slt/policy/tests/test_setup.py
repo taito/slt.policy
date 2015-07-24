@@ -136,9 +136,6 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('slt.theme'))
 
-    def test_properties__default_page(self):
-        self.assertEqual(self.portal.getProperty('default_page'), 'slt-view')
-
     def test_properties__description(self):
         self.assertEqual(self.portal.getProperty('description'),
             'Suomen Luonnonsuojelun Tuki Oy')
